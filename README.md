@@ -6,4 +6,4 @@
   <a href="https://srihari-sirisipalli.github.io/">srihari-sirisipalli.github.io</a>
 </h2>
   
-<h2> This repo is taken from https://github.com/thepranaygupta/thepranaygupta.github.io
+<h2> This repo is based on https://github.com/thepranaygupta/thepranaygupta.github.io
