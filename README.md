@@ -1,6 +1,6 @@
 <div align="center">
 
-<h1>Personal Portfolio Website - v0.1.0</h1>
+<h1>Personal Portfolio Website</h1>
 
 <h2>
   <a href="https://srihari-sirisipalli.github.io/">srihari-sirisipalli.github.io</a>
