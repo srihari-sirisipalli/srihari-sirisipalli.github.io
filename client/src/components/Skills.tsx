@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import { Code, Brain, Cloud, Database } from "lucide-react";
+import { Code, Brain, Cloud, Database, Lightbulb, Target } from "lucide-react";
 
 const skillCategories = [
   {
@@ -7,11 +6,11 @@ const skillCategories = [
     title: "Programming Languages",
     icon: Code,
     skills: [
-      { name: "Python", level: 95 },
-      { name: "JavaScript", level: 85 },
-      { name: "Java", level: 80 },
-      { name: "Go", level: 75 },
-      { name: "SQL", level: 90 },
+      "Python",
+      "JavaScript",
+      "Java",
+      "Go",
+      "SQL"
     ]
   },
   {
@@ -19,11 +18,11 @@ const skillCategories = [
     title: "AI/ML & Frameworks",
     icon: Brain,
     skills: [
-      { name: "PyTorch", level: 95 },
-      { name: "TensorFlow", level: 90 },
-      { name: "LLMs & RAG", level: 92 },
-      { name: "FastAPI", level: 88 },
-      { name: "NLP", level: 90 },
+      "PyTorch",
+      "TensorFlow",
+      "LLMs & RAG",
+      "FastAPI",
+      "NLP"
     ]
   },
   {
@@ -31,11 +30,11 @@ const skillCategories = [
     title: "Cloud & Infrastructure",
     icon: Cloud,
     skills: [
-      { name: "AWS", level: 92 },
-      { name: "Terraform", level: 85 },
-      { name: "Docker", level: 88 },
-      { name: "Kubernetes", level: 80 },
-      { name: "CI/CD", level: 85 },
+      "AWS",
+      "Terraform",
+      "Docker",
+      "Kubernetes",
+      "CI/CD"
     ]
   },
   {
@@ -43,38 +42,30 @@ const skillCategories = [
     title: "Data Engineering & Tools",
     icon: Database,
     skills: [
-      { name: "PySpark", level: 88 },
-      { name: "Hadoop", level: 82 },
-      { name: "ETL Pipelines", level: 90 },
-      { name: "ANSYS APDL", level: 85 },
-      { name: "Prometheus & Grafana", level: 80 },
+      "PySpark",
+      "Hadoop",
+      "ETL Pipelines",
+      "ANSYS APDL",
+      "Prometheus & Grafana"
     ]
   }
 ];
 
+const expertiseAreas = [
+  "Generative AI & LLMs",
+  "Cloud Infrastructure & DevOps",
+  "Predictive Analytics",
+  "Computer Vision",
+  "Natural Language Processing",
+  "MLOps & Model Deployment",
+  "System Architecture",
+  "Data Engineering"
+];
+
 export default function Skills() {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isVisible) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [isVisible]);
 
   return (
-    <section ref={sectionRef} id="skills" className="py-20">
+    <section id="skills" className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4" data-testid="section-title-skills">Technical Skills</h2>
@@ -90,29 +81,48 @@ export default function Skills() {
                   <IconComponent className="w-6 h-6 text-primary" />
                   {category.title}
                 </h3>
-                <div className="space-y-4">
+                <div className="grid grid-cols-1 gap-3">
                   {category.skills.map((skill) => (
-                    <div key={skill.name} data-testid={`skill-${category.id}-${skill.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}>
-                      <div className="flex justify-between mb-2">
-                        <span className="text-foreground" data-testid={`skill-name-${skill.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}>{skill.name}</span>
-                        <span className="text-muted-foreground" data-testid={`skill-level-${skill.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}>{skill.level}%</span>
-                      </div>
-                      <div className="bg-secondary rounded-full h-2">
-                        <div 
-                          className="skill-bar bg-primary h-2 rounded-full" 
-                          style={{ 
-                            width: isVisible ? `${skill.level}%` : '0%',
-                            transition: 'width 2s ease-in-out'
-                          }}
-                          data-testid={`skill-bar-${skill.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
-                        />
-                      </div>
+                    <div 
+                      key={skill} 
+                      className="flex items-center gap-2 p-3 bg-secondary/50 rounded-lg border border-border/50 hover:bg-secondary/70 transition-colors"
+                      data-testid={`skill-${category.id}-${skill.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
+                    >
+                      <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0" />
+                      <span className="text-foreground font-medium" data-testid={`skill-name-${skill.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}>{skill}</span>
                     </div>
                   ))}
                 </div>
               </div>
             );
           })}
+        </div>
+        
+        {/* Areas of Expertise */}
+        <div className="mt-16">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-4" data-testid="section-title-expertise">Areas of Expertise</h3>
+            <div className="w-16 h-1 bg-primary mx-auto"></div>
+          </div>
+          
+          <div className="bg-card p-8 rounded-lg border border-border" data-testid="expertise-areas">
+            <div className="flex items-center gap-3 mb-6">
+              <Target className="w-8 h-8 text-primary" />
+              <h4 className="text-xl font-semibold text-foreground">Core Specializations</h4>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {expertiseAreas.map((area, index) => (
+                <div 
+                  key={index} 
+                  className="flex items-center gap-3 p-4 bg-primary/5 rounded-lg border border-primary/20 hover:bg-primary/10 transition-colors"
+                  data-testid={`expertise-area-${index}`}
+                >
+                  <Lightbulb className="w-5 h-5 text-primary flex-shrink-0" />
+                  <span className="text-foreground font-medium text-sm" data-testid={`expertise-name-${index}`}>{area}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

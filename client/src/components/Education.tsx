@@ -1,11 +1,31 @@
-import { GraduationCap, Award, Book } from "lucide-react";
+import { GraduationCap, Award, Book, ExternalLink } from "lucide-react";
 
 const certifications = [
-  { name: "Stanford Machine Learning", issuer: "Andrew Ng" },
-  { name: "Deep Learning Specialization", issuer: "deeplearning.ai" },
-  { name: "IBM Machine Learning", issuer: "IBM" },
-  { name: "Applied ML", issuer: "University of Michigan" },
-  { name: "Deep Learning with TensorFlow", issuer: "TensorFlow" }
+  { 
+    name: "Stanford Machine Learning", 
+    issuer: "Andrew Ng",
+    url: "https://www.coursera.org/learn/machine-learning"
+  },
+  { 
+    name: "Deep Learning Specialization", 
+    issuer: "deeplearning.ai",
+    url: "https://www.coursera.org/specializations/deep-learning"
+  },
+  { 
+    name: "IBM Machine Learning", 
+    issuer: "IBM",
+    url: "https://www.coursera.org/professional-certificates/ibm-machine-learning"
+  },
+  { 
+    name: "Applied ML", 
+    issuer: "University of Michigan",
+    url: "https://www.coursera.org/learn/applied-machine-learning-in-python"
+  },
+  { 
+    name: "Deep Learning with TensorFlow", 
+    issuer: "TensorFlow",
+    url: "https://www.coursera.org/professional-certificates/tensorflow-in-practice"
+  }
 ];
 
 const courses = [
@@ -55,10 +75,21 @@ export default function Education() {
               </div>
               <div className="grid md:grid-cols-2 gap-4">
                 {certifications.map((cert, index) => (
-                  <div key={index} className="flex items-start gap-3" data-testid={`certification-${index}`}>
+                  <div key={index} className="flex items-start gap-3 group" data-testid={`certification-${index}`}>
                     <Award className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                    <div>
-                      <h4 className="font-medium text-foreground" data-testid={`cert-name-${index}`}>{cert.name}</h4>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <a 
+                          href={cert.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-medium text-foreground hover:text-primary transition-colors group-hover:underline"
+                          data-testid={`cert-link-${index}`}
+                        >
+                          {cert.name}
+                        </a>
+                        <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                      </div>
                       <p className="text-sm text-muted-foreground" data-testid={`cert-issuer-${index}`}>{cert.issuer}</p>
                     </div>
                   </div>
