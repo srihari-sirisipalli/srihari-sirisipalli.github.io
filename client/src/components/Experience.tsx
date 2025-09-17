@@ -9,7 +9,6 @@ const workExperience = [
     period: "03/2024 – Present",
     location: "Remote",
     achievements: [
-      "Built patent similarity system using LLMs for prior art detection, novelty assessment, and infringement analysis",
       "Designed dynamic AWS architecture with EC2 autoscaling, reducing infrastructure costs by {'>'}30%",
       "Migrated workloads to GPU-enabled Lambda, reducing EC2 dependency",
       "Automated Lambda health checks & audits, improving resource utilization",
@@ -55,37 +54,55 @@ const workExperience = [
 
 const rndExperience = [
   {
-    id: "naval-projects",
-    title: "Machine Learning Engineer – Naval & Industry R&D",
+    id: "patent-similarity",
+    title: "Patent Similarity System",
+    company: "Pangeon",
+    period: "03/2024 – Present",
+    location: "Remote",
+    achievements: [
+      "Built patent similarity system using LLMs for prior art detection, novelty assessment, and infringement analysis",
+      "Implemented advanced NLP techniques for patent document processing",
+      "Developed similarity scoring algorithms for patent comparison",
+      "Integrated vector databases for efficient patent search and retrieval"
+    ]
+  },
+  {
+    id: "ai-avatar",
+    title: "Real-Time AI Avatar System",
     company: "Defense & Industry Clients",
     period: "05/2024 – Present",
     location: "Remote",
     achievements: [
-      "Lead Developer – Real-Time AI Avatar System:",
-      "• Built offline-capable 3D AI avatar with Whisper STT, Ollama LLM, LangChain RAG, and Silero TTS lip-sync",
-      "• Reduced STT latency by 75% and TTS latency by 52%; deployed low-latency stack (FastAPI + React + Three.js)",
-      "• Designed RAG Control Gate ensuring accurate knowledge base use",
-      "Predictive Maintenance of Naval Systems:",
-      "• Built anomaly detection pipelines from accelerometer data with features (RMS, FFT, kurtosis)",
-      "• Trained Random Forest, SVM, k-NN, DL models with cross-validation + expert-in-the-loop validation",
-      "• Enabled early fault detection, reducing downtime; findings shared in defense R&D conference"
+      "Built offline-capable 3D AI avatar with Whisper STT, Ollama LLM, LangChain RAG, and Silero TTS lip-sync",
+      "Reduced STT latency by 75% and TTS latency by 52%; deployed low-latency stack (FastAPI + React + Three.js)",
+      "Designed RAG Control Gate ensuring accurate knowledge base use",
+      "Developed real-time lip-sync capabilities for natural conversation experience"
     ]
   },
   {
-    id: "industry-rnd",
-    title: "AI-Driven Offshore & Engineering R&D",
+    id: "predictive-maintenance",
+    title: "Predictive Maintenance System",
+    company: "Defense & Industry Clients",
+    period: "05/2024 – Present",
+    location: "Remote",
+    achievements: [
+      "Built anomaly detection pipelines from accelerometer data with features (RMS, FFT, kurtosis)",
+      "Trained Random Forest, SVM, k-NN, DL models with cross-validation + expert-in-the-loop validation",
+      "Enabled early fault detection, reducing downtime; findings shared in defense R&D conference",
+      "Implemented real-time monitoring system for naval equipment health assessment"
+    ]
+  },
+  {
+    id: "offshore-riser",
+    title: "Offshore Riser Behavior Modeling",
     company: "Industry R&D Projects",
     period: "05/2024 – Present",
     location: "Remote",
     achievements: [
-      "AI-Driven Offshore Riser Behavior Modeling & Wave Direction Estimation:",
-      "• Modeled fatigue life prediction for offshore risers under extreme sea states",
-      "• Integrated wave directionality, quadrant classification, and Hs into ML models",
-      "• Processed gyro data for wave direction estimation, improving environmental modeling and risk assessment",
-      "Automated Engineering Simulation Pipelines:",
-      "• Automated ANSYS APDL + FreeCAD workflows for wind turbine design-to-analysis",
-      "• Enabled parametric modeling, mesh generation, and modal analysis automation",
-      "• Integrated ML-driven optimization loops to speed design iterations"
+      "Modeled fatigue life prediction for offshore risers under extreme sea states",
+      "Integrated wave directionality, quadrant classification, and Hs into ML models",
+      "Processed gyro data for wave direction estimation, improving environmental modeling and risk assessment",
+      "Developed predictive models for structural integrity assessment"
     ]
   }
 ];

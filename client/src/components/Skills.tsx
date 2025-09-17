@@ -72,6 +72,33 @@ export default function Skills() {
           <div className="w-20 h-1 bg-primary mx-auto"></div>
         </div>
         
+        {/* Areas of Expertise */}
+        <div className="mb-16">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-4" data-testid="section-title-expertise">Areas of Expertise</h3>
+            <div className="w-16 h-1 bg-primary mx-auto"></div>
+          </div>
+          
+          <div className="bg-card p-8 rounded-lg border border-border" data-testid="expertise-areas">
+            <div className="flex items-center gap-3 mb-6">
+              <Target className="w-8 h-8 text-primary" />
+              <h4 className="text-xl font-semibold text-foreground">Core Specializations</h4>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {expertiseAreas.map((area, index) => (
+                <div 
+                  key={index} 
+                  className="flex items-center gap-3 p-4 bg-primary/5 rounded-lg border border-primary/20 hover:bg-primary/10 transition-colors"
+                  data-testid={`expertise-area-${index}`}
+                >
+                  <Lightbulb className="w-5 h-5 text-primary flex-shrink-0" />
+                  <span className="text-foreground font-medium text-sm" data-testid={`expertise-name-${index}`}>{area}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        
         <div className="grid lg:grid-cols-2 gap-12">
           {skillCategories.map((category) => {
             const IconComponent = category.icon;
@@ -96,33 +123,6 @@ export default function Skills() {
               </div>
             );
           })}
-        </div>
-        
-        {/* Areas of Expertise */}
-        <div className="mt-16">
-          <div className="text-center mb-12">
-            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-4" data-testid="section-title-expertise">Areas of Expertise</h3>
-            <div className="w-16 h-1 bg-primary mx-auto"></div>
-          </div>
-          
-          <div className="bg-card p-8 rounded-lg border border-border" data-testid="expertise-areas">
-            <div className="flex items-center gap-3 mb-6">
-              <Target className="w-8 h-8 text-primary" />
-              <h4 className="text-xl font-semibold text-foreground">Core Specializations</h4>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {expertiseAreas.map((area, index) => (
-                <div 
-                  key={index} 
-                  className="flex items-center gap-3 p-4 bg-primary/5 rounded-lg border border-primary/20 hover:bg-primary/10 transition-colors"
-                  data-testid={`expertise-area-${index}`}
-                >
-                  <Lightbulb className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-foreground font-medium text-sm" data-testid={`expertise-name-${index}`}>{area}</span>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </section>
