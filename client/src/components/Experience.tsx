@@ -1,6 +1,7 @@
-import { ChevronRight } from "lucide-react";
+import { useState } from "react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 
-const experiences = [
+const workExperience = [
   {
     id: "pangeon",
     title: "Software Engineer – GenAI & Cloud Infra",
@@ -9,21 +10,11 @@ const experiences = [
     location: "Remote",
     achievements: [
       "Built patent similarity system using LLMs for prior art detection, novelty assessment, and infringement analysis",
-      "Designed dynamic AWS architecture with EC2 autoscaling, reducing infrastructure costs by >30%",
+      "Designed dynamic AWS architecture with EC2 autoscaling, reducing infrastructure costs by {'>'}30%",
       "Migrated workloads to GPU-enabled Lambda, reducing EC2 dependency",
-      "Delivered end-to-end AWS infrastructure with Terraform (Amplify, IAM, monitoring, security)"
-    ]
-  },
-  {
-    id: "defense-rnd",
-    title: "Machine Learning Engineer – Naval & Industry R&D",
-    company: "Defense & Industry Clients",
-    period: "05/2024 – Present",
-    location: "Remote",
-    achievements: [
-      "Built offline-capable 3D AI avatar with Whisper STT, Ollama LLM, LangChain RAG, and Silero TTS lip-sync",
-      "Reduced STT latency by 75% and TTS latency by 52%; deployed low-latency stack (FastAPI + React + Three.js)",
-      "Built anomaly detection pipelines for naval systems with early fault detection capabilities"
+      "Automated Lambda health checks & audits, improving resource utilization",
+      "Delivered end-to-end AWS infrastructure with Terraform (Amplify, IAM, monitoring, security)",
+      "Built custom Terraform GUI for simplified AWS resource management"
     ]
   },
   {
@@ -34,7 +25,7 @@ const experiences = [
     location: "Hyderabad",
     achievements: [
       "Migrated SAS → PySpark, improving scalability & performance of large data pipelines",
-      "Built automated validation scripts with HTML reports, ensuring >99% migration accuracy",
+      "Built automated validation scripts with HTML reports, ensuring {'>'}99% migration accuracy",
       "Applied graph theory to map dependencies, uncovering pipeline bottlenecks"
     ]
   },
@@ -48,8 +39,135 @@ const experiences = [
       "Converted models across TensorFlow/PyTorch → ONNX/other formats for cross-platform deployment",
       "Optimized computer vision models via compression, quantization, and pruning"
     ]
+  },
+  {
+    id: "dojima",
+    title: "Software Engineer Intern",
+    company: "Dojima Networks",
+    period: "06/2022 – 12/2022",
+    location: "Remote",
+    achievements: [
+      "Integrated Polkadot ecosystem with Dojima blockchain for cross-chain interoperability",
+      "Built Prometheus–Grafana dashboards for real-time API monitoring"
+    ]
   }
 ];
+
+const rndExperience = [
+  {
+    id: "naval-projects",
+    title: "Machine Learning Engineer – Naval & Industry R&D",
+    company: "Defense & Industry Clients",
+    period: "05/2024 – Present",
+    location: "Remote",
+    achievements: [
+      "Lead Developer – Real-Time AI Avatar System:",
+      "• Built offline-capable 3D AI avatar with Whisper STT, Ollama LLM, LangChain RAG, and Silero TTS lip-sync",
+      "• Reduced STT latency by 75% and TTS latency by 52%; deployed low-latency stack (FastAPI + React + Three.js)",
+      "• Designed RAG Control Gate ensuring accurate knowledge base use",
+      "Predictive Maintenance of Naval Systems:",
+      "• Built anomaly detection pipelines from accelerometer data with features (RMS, FFT, kurtosis)",
+      "• Trained Random Forest, SVM, k-NN, DL models with cross-validation + expert-in-the-loop validation",
+      "• Enabled early fault detection, reducing downtime; findings shared in defense R&D conference"
+    ]
+  },
+  {
+    id: "industry-rnd",
+    title: "AI-Driven Offshore & Engineering R&D",
+    company: "Industry R&D Projects",
+    period: "05/2024 – Present",
+    location: "Remote",
+    achievements: [
+      "AI-Driven Offshore Riser Behavior Modeling & Wave Direction Estimation:",
+      "• Modeled fatigue life prediction for offshore risers under extreme sea states",
+      "• Integrated wave directionality, quadrant classification, and Hs into ML models",
+      "• Processed gyro data for wave direction estimation, improving environmental modeling and risk assessment",
+      "Automated Engineering Simulation Pipelines:",
+      "• Automated ANSYS APDL + FreeCAD workflows for wind turbine design-to-analysis",
+      "• Enabled parametric modeling, mesh generation, and modal analysis automation",
+      "• Integrated ML-driven optimization loops to speed design iterations"
+    ]
+  }
+];
+
+const advisoryExperience = [
+  {
+    id: "agritech-advisor",
+    title: "AI/ML Advisor – Agritech Startup",
+    company: "Agritech Startup",
+    period: "03/2025 – 08/2025",
+    location: "Remote",
+    achievements: [
+      "LLM Benchmarking & Evaluation:",
+      "• Conducted benchmarking of commercial (OpenAI, Anthropic) and open-source LLMs (LLaMA, Mistral, etc.) for domain-specific QA on agriculture datasets",
+      "• Evaluated answering capabilities in English and Telugu, with emphasis on Andhra agriculture use cases",
+      "• Identified strengths and limitations of each model for bilingual agricultural contexts",
+      "Speech-to-Text Pipeline Development:",
+      "• Designed speech-to-text fine-tuning pipeline, automating audio collection, transcription, diarization, and dataset preparation",
+      "• Fine-tuned STT and LLM models with agriculture-specific vocabulary, improving accuracy for farmer queries",
+      "• Enhanced bilingual contexts (English & Telugu) for better farmer accessibility"
+    ]
+  }
+];
+
+interface Experience {
+  id: string;
+  title: string;
+  company: string;
+  period: string;
+  location: string;
+  achievements: string[];
+}
+
+function ExperienceCard({ exp, sectionPrefix }: { exp: Experience; sectionPrefix: string }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleCard = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  return (
+    <div className="bg-card rounded-lg border border-border overflow-hidden" data-testid={`experience-${exp.id}`}>
+      <button
+        onClick={toggleCard}
+        className="w-full p-6 text-left hover:bg-muted/50 transition-colors duration-200"
+        data-testid={`exp-toggle-${exp.id}`}
+      >
+        <div className="flex items-center justify-between">
+          <div className="flex-1">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h3 className="text-xl font-semibold text-foreground" data-testid={`exp-title-${exp.id}`}>{exp.title}</h3>
+                <p className="text-primary font-medium" data-testid={`exp-company-${exp.id}`}>{exp.company}</p>
+              </div>
+              <span className="text-sm text-muted-foreground bg-secondary px-3 py-1 rounded-full mt-2 sm:mt-0" data-testid={`exp-period-${exp.id}`}>
+                {exp.period}
+              </span>
+            </div>
+          </div>
+          <div className="ml-4">
+            {isExpanded ? (
+              <ChevronDown className="w-5 h-5 text-muted-foreground" />
+            ) : (
+              <ChevronRight className="w-5 h-5 text-muted-foreground" />
+            )}
+          </div>
+        </div>
+      </button>
+      
+      {isExpanded && (
+        <div className="px-6 pb-6 space-y-3 text-muted-foreground border-t border-border pt-4" data-testid={`exp-details-${exp.id}`}>
+          {exp.achievements.map((achievement, achievementIndex) => (
+            <div key={achievementIndex} className="flex items-start gap-2">
+              <ChevronRight className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+              <p data-testid={`exp-achievement-${exp.id}-${achievementIndex}`}>{achievement}</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function Experience() {
   return (
@@ -60,34 +178,32 @@ export default function Experience() {
           <div className="w-20 h-1 bg-primary mx-auto"></div>
         </div>
         
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 timeline-line"></div>
-          
-          <div className="space-y-12">
-            {experiences.map((exp, index) => (
-              <div key={exp.id} className="relative pl-20" data-testid={`experience-${exp.id}`}>
-                <div className="absolute left-6 w-4 h-4 bg-primary rounded-full border-4 border-background"></div>
-                <div className="bg-card p-6 rounded-lg border border-border">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                    <div>
-                      <h3 className="text-xl font-semibold text-foreground" data-testid={`exp-title-${exp.id}`}>{exp.title}</h3>
-                      <p className="text-primary font-medium" data-testid={`exp-company-${exp.id}`}>{exp.company}</p>
-                    </div>
-                    <span className="text-sm text-muted-foreground bg-secondary px-3 py-1 rounded-full" data-testid={`exp-period-${exp.id}`}>
-                      {exp.period}
-                    </span>
-                  </div>
-                  <div className="space-y-3 text-muted-foreground">
-                    {exp.achievements.map((achievement, achievementIndex) => (
-                      <div key={achievementIndex} className="flex items-start gap-2">
-                        <ChevronRight className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                        <p data-testid={`exp-achievement-${exp.id}-${achievementIndex}`}>{achievement}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+        {/* Work Experience */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-semibold text-foreground mb-8" data-testid="section-title-work-experience">Work Experience</h3>
+          <div className="space-y-6">
+            {workExperience.map((exp) => (
+              <ExperienceCard key={exp.id} exp={exp} sectionPrefix="work" />
+            ))}
+          </div>
+        </div>
+        
+        {/* R&D Experience */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-semibold text-foreground mb-8" data-testid="section-title-rnd-experience">R&D Experience</h3>
+          <div className="space-y-6">
+            {rndExperience.map((exp) => (
+              <ExperienceCard key={exp.id} exp={exp} sectionPrefix="rnd" />
+            ))}
+          </div>
+        </div>
+        
+        {/* Advisory Experience */}
+        <div>
+          <h3 className="text-2xl font-semibold text-foreground mb-8" data-testid="section-title-advisory-experience">Advisory Experience</h3>
+          <div className="space-y-6">
+            {advisoryExperience.map((exp) => (
+              <ExperienceCard key={exp.id} exp={exp} sectionPrefix="advisory" />
             ))}
           </div>
         </div>
