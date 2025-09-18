@@ -23,11 +23,11 @@ export default function About() {
             
             <div className="grid grid-cols-2 gap-6 pt-6">
               <div className="bg-card p-4 rounded-lg border border-border" data-testid="stat-years">
-                <div className="text-2xl font-bold text-primary">5+</div>
+                <div className="text-2xl font-bold text-primary">2+</div>
                 <div className="text-sm text-muted-foreground">Years Experience</div>
               </div>
               <div className="bg-card p-4 rounded-lg border border-border" data-testid="stat-projects">
-                <div className="text-2xl font-bold text-primary">20+</div>
+                <div className="text-2xl font-bold text-primary">10+</div>
                 <div className="text-sm text-muted-foreground">Projects Completed</div>
               </div>
               <div className="bg-card p-4 rounded-lg border border-border" data-testid="stat-technologies">

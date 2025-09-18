@@ -9,6 +9,10 @@ const workExperience = [
     period: "03/2024 – Present",
     location: "Remote",
     achievements: [
+      "Built patent similarity system using LLMs for prior art detection, novelty assessment, and infringement analysis",
+      "Implemented advanced NLP techniques for patent document processing",
+      "Developed similarity scoring algorithms for patent comparison",
+      "Integrated vector databases for efficient patent search and retrieval",
       "Designed dynamic AWS architecture with EC2 autoscaling, reducing infrastructure costs by {'>'}30%",
       "Migrated workloads to GPU-enabled Lambda, reducing EC2 dependency",
       "Automated Lambda health checks & audits, improving resource utilization",
@@ -52,26 +56,10 @@ const workExperience = [
   }
 ];
 
-const rndExperience = [
-  {
-    id: "patent-similarity",
-    title: "Patent Similarity System",
-    company: "Pangeon",
-    period: "03/2024 – Present",
-    location: "Remote",
-    achievements: [
-      "Built patent similarity system using LLMs for prior art detection, novelty assessment, and infringement analysis",
-      "Implemented advanced NLP techniques for patent document processing",
-      "Developed similarity scoring algorithms for patent comparison",
-      "Integrated vector databases for efficient patent search and retrieval"
-    ]
-  },
+const rndProjects = [
   {
     id: "ai-avatar",
     title: "Real-Time AI Avatar System",
-    company: "Defense & Industry Clients",
-    period: "05/2024 – Present",
-    location: "Remote",
     achievements: [
       "Built offline-capable 3D AI avatar with Whisper STT, Ollama LLM, LangChain RAG, and Silero TTS lip-sync",
       "Reduced STT latency by 75% and TTS latency by 52%; deployed low-latency stack (FastAPI + React + Three.js)",
@@ -82,9 +70,6 @@ const rndExperience = [
   {
     id: "predictive-maintenance",
     title: "Predictive Maintenance System",
-    company: "Defense & Industry Clients",
-    period: "05/2024 – Present",
-    location: "Remote",
     achievements: [
       "Built anomaly detection pipelines from accelerometer data with features (RMS, FFT, kurtosis)",
       "Trained Random Forest, SVM, k-NN, DL models with cross-validation + expert-in-the-loop validation",
@@ -95,15 +80,24 @@ const rndExperience = [
   {
     id: "offshore-riser",
     title: "Offshore Riser Behavior Modeling",
-    company: "Industry R&D Projects",
-    period: "05/2024 – Present",
-    location: "Remote",
     achievements: [
       "Modeled fatigue life prediction for offshore risers under extreme sea states",
       "Integrated wave directionality, quadrant classification, and Hs into ML models",
       "Processed gyro data for wave direction estimation, improving environmental modeling and risk assessment",
       "Developed predictive models for structural integrity assessment"
     ]
+  }
+];
+
+const rndExperience = [
+  {
+    id: "ml-engineer-rnd",
+    title: "ML Engineer - R&D",
+    company: "Defense & Industry Clients",
+    period: "05/2024 – Present",
+    location: "Remote",
+    achievements: [],
+    projects: rndProjects
   }
 ];
 
@@ -127,6 +121,12 @@ const advisoryExperience = [
   }
 ];
 
+interface Project {
+  id: string;
+  title: string;
+  achievements: string[];
+}
+
 interface Experience {
   id: string;
   title: string;
@@ -134,6 +134,47 @@ interface Experience {
   period: string;
   location: string;
   achievements: string[];
+  projects?: Project[];
+}
+
+function ProjectCard({ project }: { project: Project }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleProject = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  return (
+    <div className="bg-secondary/30 rounded-lg border border-border/50 overflow-hidden ml-4" data-testid={`project-${project.id}`}>
+      <button
+        onClick={toggleProject}
+        className="w-full p-4 text-left hover:bg-secondary/50 transition-colors duration-200"
+        data-testid={`project-toggle-${project.id}`}
+      >
+        <div className="flex items-center justify-between">
+          <h4 className="text-lg font-medium text-foreground" data-testid={`project-title-${project.id}`}>{project.title}</h4>
+          <div className="ml-4">
+            {isExpanded ? (
+              <ChevronDown className="w-4 h-4 text-muted-foreground" />
+            ) : (
+              <ChevronRight className="w-4 h-4 text-muted-foreground" />
+            )}
+          </div>
+        </div>
+      </button>
+      
+      {isExpanded && (
+        <div className="px-4 pb-4 space-y-2 text-muted-foreground border-t border-border/50 pt-3" data-testid={`project-details-${project.id}`}>
+          {project.achievements.map((achievement, achievementIndex) => (
+            <div key={achievementIndex} className="flex items-start gap-2">
+              <ChevronRight className="w-3 h-3 text-primary mt-1 flex-shrink-0" />
+              <p className="text-sm" data-testid={`project-achievement-${project.id}-${achievementIndex}`}>{achievement}</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 function ExperienceCard({ exp, sectionPrefix }: { exp: Experience; sectionPrefix: string }) {
@@ -173,13 +214,26 @@ function ExperienceCard({ exp, sectionPrefix }: { exp: Experience; sectionPrefix
       </button>
       
       {isExpanded && (
-        <div className="px-6 pb-6 space-y-3 text-muted-foreground border-t border-border pt-4" data-testid={`exp-details-${exp.id}`}>
-          {exp.achievements.map((achievement, achievementIndex) => (
-            <div key={achievementIndex} className="flex items-start gap-2">
-              <ChevronRight className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-              <p data-testid={`exp-achievement-${exp.id}-${achievementIndex}`}>{achievement}</p>
+        <div className="px-6 pb-6 space-y-4 text-muted-foreground border-t border-border pt-4" data-testid={`exp-details-${exp.id}`}>
+          {exp.achievements.length > 0 && (
+            <div className="space-y-3">
+              {exp.achievements.map((achievement, achievementIndex) => (
+                <div key={achievementIndex} className="flex items-start gap-2">
+                  <ChevronRight className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                  <p data-testid={`exp-achievement-${exp.id}-${achievementIndex}`}>{achievement}</p>
+                </div>
+              ))}
             </div>
-          ))}
+          )}
+          
+          {exp.projects && exp.projects.length > 0 && (
+            <div className="space-y-3">
+              <h4 className="text-lg font-semibold text-foreground">Projects:</h4>
+              {exp.projects.map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>

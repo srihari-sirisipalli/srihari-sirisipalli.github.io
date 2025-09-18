@@ -1,4 +1,5 @@
-import { Code, Brain, Cloud, Database, Lightbulb, Target } from "lucide-react";
+import { useState } from "react";
+import { Code, Brain, Cloud, Database, Lightbulb, Target, ChevronDown, ChevronRight } from "lucide-react";
 
 const skillCategories = [
   {
@@ -62,8 +63,64 @@ const expertiseAreas = [
   "Data Engineering"
 ];
 
-export default function Skills() {
+interface SkillCategory {
+  id: string;
+  title: string;
+  icon: any;
+  skills: string[];
+}
 
+function SkillCategoryCard({ category }: { category: SkillCategory }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const IconComponent = category.icon;
+
+  const toggleCategory = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  return (
+    <div className="bg-card rounded-lg border border-border overflow-hidden" data-testid={`skills-category-${category.id}`}>
+      <button
+        onClick={toggleCategory}
+        className="w-full p-6 text-left hover:bg-muted/50 transition-colors duration-200"
+        data-testid={`skills-toggle-${category.id}`}
+      >
+        <div className="flex items-center justify-between">
+          <h3 className="text-xl font-semibold text-foreground flex items-center gap-2">
+            <IconComponent className="w-6 h-6 text-primary" />
+            {category.title}
+          </h3>
+          <div className="ml-4">
+            {isExpanded ? (
+              <ChevronDown className="w-5 h-5 text-muted-foreground" />
+            ) : (
+              <ChevronRight className="w-5 h-5 text-muted-foreground" />
+            )}
+          </div>
+        </div>
+      </button>
+      
+      {isExpanded && (
+        <div className="px-6 pb-6 border-t border-border pt-4" data-testid={`skills-details-${category.id}`}>
+          <div className="grid grid-cols-1 gap-3">
+            {category.skills.map((skill) => (
+              <div 
+                key={skill} 
+                className="flex items-center gap-2 p-3 bg-secondary/50 rounded-lg border border-border/50 hover:bg-secondary/70 transition-colors"
+                data-testid={`skill-${category.id}-${skill.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
+              >
+                <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0" />
+                <span className="text-foreground font-medium" data-testid={`skill-name-${skill.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}>{skill}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default function Skills() {
   return (
     <section id="skills" className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -99,30 +156,15 @@ export default function Skills() {
           </div>
         </div>
         
-        <div className="grid lg:grid-cols-2 gap-12">
-          {skillCategories.map((category) => {
-            const IconComponent = category.icon;
-            return (
-              <div key={category.id} className="bg-card p-6 rounded-lg border border-border" data-testid={`skills-category-${category.id}`}>
-                <h3 className="text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
-                  <IconComponent className="w-6 h-6 text-primary" />
-                  {category.title}
-                </h3>
-                <div className="grid grid-cols-1 gap-3">
-                  {category.skills.map((skill) => (
-                    <div 
-                      key={skill} 
-                      className="flex items-center gap-2 p-3 bg-secondary/50 rounded-lg border border-border/50 hover:bg-secondary/70 transition-colors"
-                      data-testid={`skill-${category.id}-${skill.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
-                    >
-                      <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0" />
-                      <span className="text-foreground font-medium" data-testid={`skill-name-${skill.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}>{skill}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
+        <div className="mb-12 text-center">
+          <h3 className="text-2xl font-semibold text-foreground mb-8" data-testid="section-title-technical-skills">Technical Skills</h3>
+          <div className="w-16 h-1 bg-primary mx-auto mb-8"></div>
+        </div>
+        
+        <div className="grid lg:grid-cols-2 gap-6">
+          {skillCategories.map((category) => (
+            <SkillCategoryCard key={category.id} category={category} />
+          ))}
         </div>
       </div>
     </section>

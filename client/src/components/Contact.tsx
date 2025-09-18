@@ -1,19 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Globe, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
-
-// Type declarations for Calendly
-declare global {
-  interface Window {
-    Calendly?: {
-      initPopupWidget: (options: { url: string }) => void;
-    };
-  }
-}
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -22,39 +12,10 @@ export default function Contact() {
     subject: '',
     message: ''
   });
-  const [isCalendlyLoaded, setIsCalendlyLoaded] = useState(false);
-  const [showInlineCalendly, setShowInlineCalendly] = useState(false);
   const { toast } = useToast();
-  
-  // Placeholder Calendly URL - can be updated with actual Calendly link
-  const CALENDLY_URL = "https://calendly.com/srihari-sirisipalli";
-  
-  // Load Calendly script dynamically
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
-    script.async = true;
-    script.onload = () => setIsCalendlyLoaded(true);
-    document.head.appendChild(script);
-    
-    return () => {
-      const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
-      if (existingScript) {
-        document.head.removeChild(existingScript);
-      }
-    };
-  }, []);
-  
-  const openCalendlyPopup = () => {
-    if (isCalendlyLoaded && window.Calendly) {
-      window.Calendly.initPopupWidget({ url: CALENDLY_URL });
-    } else {
-      toast({
-        title: "Loading...",
-        description: "Calendly is loading. Please try again in a moment.",
-      });
-    }
-  };
+
+  // Calendly URL for scheduling meetings
+  const CALENDLY_URL = "https://calendly.com/sriharisirisipalli0";
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -64,14 +25,34 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement form submission logic
-    toast({
-      title: "Message sent!",
-      description: "Thank you for your message. I'll get back to you soon.",
-    });
-    setFormData({ name: '', email: '', subject: '', message: '' });
+
+    try {
+      const response = await fetch('https://formspree.io/f/meqwqdal', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Message sent!",
+          description: "Thank you for your message. I'll get back to you soon.",
+        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -118,62 +99,27 @@ export default function Contact() {
               </div>
             </div>
             
-            <div className="flex items-center gap-4" data-testid="contact-schedule">
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                <Calendar className="w-6 h-6 text-primary" />
+            <a
+              href={CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 hover:bg-primary/5 rounded-lg transition-colors group"
+              data-testid="contact-schedule"
+            >
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                <Calendar className="w-6 h-6 text-primary group-hover:text-primary-foreground" />
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-foreground">Schedule a Meeting</h3>
                 <p className="text-muted-foreground" data-testid="contact-schedule-description">Book a consultation call</p>
               </div>
-            </div>
-            
-            <div className="space-y-4">
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Button 
-                  onClick={openCalendlyPopup}
-                  className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 flex items-center justify-center gap-2"
-                  data-testid="button-schedule-popup"
-                >
-                  <Calendar className="w-5 h-5" />
-                  Quick Schedule (Popup)
-                </Button>
-                <Button 
-                  onClick={() => setShowInlineCalendly(!showInlineCalendly)}
-                  variant="outline"
-                  className="flex-1 border-primary text-primary hover:bg-primary hover:text-primary-foreground flex items-center justify-center gap-2"
-                  data-testid="button-schedule-inline"
-                >
-                  <Calendar className="w-5 h-5" />
-                  {showInlineCalendly ? 'Hide' : 'Show'} Calendar
-                </Button>
-              </div>
-              
-              {showInlineCalendly && (
-                <div className="bg-card rounded-lg border border-border overflow-hidden" data-testid="calendly-inline">
-                  {isCalendlyLoaded ? (
-                    <div 
-                      className="calendly-inline-widget" 
-                      data-url={CALENDLY_URL}
-                      style={{ minWidth: '320px', height: '630px' }}
-                    ></div>
-                  ) : (
-                    <div className="flex items-center justify-center h-96 text-muted-foreground">
-                      <div className="text-center">
-                        <Calendar className="w-12 h-12 mx-auto mb-4 animate-pulse" />
-                        <p>Loading calendar...</p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
+            </a>
             
             <div className="pt-6">
               <h3 className="text-lg font-semibold text-foreground mb-4">Connect with me</h3>
               <div className="flex gap-4">
                 <a 
-                  href="https://linkedin.com/in/srihari-sirisipalli" 
+                  href="https://www.linkedin.com/in/sri-hari-sirisipalli-8297a01b1/" 
                   className="w-12 h-12 bg-primary/10 hover:bg-primary hover:text-primary-foreground rounded-lg flex items-center justify-center transition-colors"
                   data-testid="contact-linkedin"
                   target="_blank"
@@ -182,7 +128,7 @@ export default function Contact() {
                   <Linkedin className="w-6 h-6" />
                 </a>
                 <a 
-                  href="https://github.com/srihari" 
+                  href="https://github.com/srihari-sirisipalli" 
                   className="w-12 h-12 bg-primary/10 hover:bg-primary hover:text-primary-foreground rounded-lg flex items-center justify-center transition-colors"
                   data-testid="contact-github"
                   target="_blank"
@@ -191,7 +137,7 @@ export default function Contact() {
                   <Github className="w-6 h-6" />
                 </a>
                 <a 
-                  href="https://sri-portfolio.com" 
+                  href="https://srihari-sirisipalli.github.io/" 
                   className="w-12 h-12 bg-primary/10 hover:bg-primary hover:text-primary-foreground rounded-lg flex items-center justify-center transition-colors"
                   data-testid="contact-portfolio"
                   target="_blank"

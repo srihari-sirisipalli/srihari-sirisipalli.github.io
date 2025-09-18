@@ -10,15 +10,15 @@ const rndProjects = [
     icon: Bot,
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400"
   },
-  {
-    id: "patent-similarity",
-    title: "Patent Similarity System",
-    category: "NLP • LLMs",
-    description: "Built patent similarity system using LLMs for prior art detection, novelty assessment, and infringement analysis with high accuracy.",
-    technologies: ["Python", "LLMs", "NLP", "Vector DB"],
-    icon: Search,
-    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400"
-  },
+  // {
+  //   id: "patent-similarity",
+  //   title: "Patent Similarity System",
+  //   category: "NLP • LLMs",
+  //   description: "Built patent similarity system using LLMs for prior art detection, novelty assessment, and infringement analysis with high accuracy.",
+  //   technologies: ["Python", "LLMs", "NLP", "Vector DB"],
+  //   icon: Search,
+  //   image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400"
+  // },
   {
     id: "predictive-maintenance",
     title: "Predictive Maintenance System",

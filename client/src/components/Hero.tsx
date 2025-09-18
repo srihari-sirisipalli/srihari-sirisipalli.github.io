@@ -7,10 +7,8 @@ export default function Hero() {
   const [isDeleting, setIsDeleting] = useState(false);
   
   const texts = [
-    'AI/ML Engineer & Cloud Infrastructure Specialist',
-    'Generative AI Expert',
-    'Cloud Architecture Consultant',
-    'R&D Innovation Leader'
+    'AI/ML Engineer',
+    'Cloud Infrastructure Engineer',
   ];
 
   useEffect(() => {
@@ -87,7 +85,7 @@ export default function Hero() {
           
           <div className="flex justify-center space-x-6 pt-8">
             <a 
-              href="https://linkedin.com/in/srihari-sirisipalli" 
+              href="https://www.linkedin.com/in/sri-hari-sirisipalli-8297a01b1/" 
               className="text-muted-foreground hover:text-primary transition-colors"
               data-testid="link-linkedin"
               target="_blank"
@@ -98,7 +96,7 @@ export default function Hero() {
               </svg>
             </a>
             <a 
-              href="https://github.com/srihari" 
+              href="https://github.com/srihari-sirisipalli" 
               className="text-muted-foreground hover:text-primary transition-colors"
               data-testid="link-github"
               target="_blank"
@@ -109,7 +107,7 @@ export default function Hero() {
               </svg>
             </a>
             <a 
-              href="https://sri-portfolio.com" 
+              href="https://srihari-sirisipalli.github.io/" 
               className="text-muted-foreground hover:text-primary transition-colors"
               data-testid="link-portfolio"
               target="_blank"
