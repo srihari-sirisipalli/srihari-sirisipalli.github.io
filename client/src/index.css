@@ -1,94 +1,142 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --radius: 0.5rem;
-  --background: hsl(210, 40%, 5%);
-  --foreground: hsl(210, 40%, 98%);
-  --card: hsl(210, 40%, 8%);
-  --card-foreground: hsl(210, 40%, 98%);
-  --popover: hsl(210, 40%, 8%);
-  --popover-foreground: hsl(210, 40%, 98%);
-  --primary: hsl(200, 100%, 55%);
-  --primary-foreground: hsl(210, 40%, 8%);
-  --secondary: hsl(210, 40%, 15%);
-  --secondary-foreground: hsl(210, 40%, 98%);
-  --muted: hsl(210, 40%, 10%);
-  --muted-foreground: hsl(210, 40%, 60%);
-  --accent: hsl(195, 100%, 65%);
-  --accent-foreground: hsl(210, 40%, 8%);
-  --destructive: hsl(0, 62%, 30%);
-  --destructive-foreground: hsl(210, 40%, 98%);
-  --border: hsl(210, 40%, 20%);
-  --input: hsl(210, 40%, 15%);
-  --ring: hsl(200, 100%, 55%);
-  --font-sans: 'Inter', sans-serif;
-  --font-mono: 'Fira Code', monospace;
+  --bg: #0a0a0f;
+  --bg-card: #12121a;
+  --bg-elevated: #1a1a2e;
+  --primary: #60a5fa;
+  --accent: #a78bfa;
 }
 
-.dark {
-  --background: hsl(210, 40%, 5%);
-  --foreground: hsl(210, 40%, 98%);
-  --card: hsl(210, 40%, 8%);
-  --card-foreground: hsl(210, 40%, 98%);
-  --popover: hsl(210, 40%, 8%);
-  --popover-foreground: hsl(210, 40%, 98%);
-  --primary: hsl(200, 100%, 55%);
-  --primary-foreground: hsl(210, 40%, 8%);
-  --secondary: hsl(210, 40%, 15%);
-  --secondary-foreground: hsl(210, 40%, 98%);
-  --muted: hsl(210, 40%, 10%);
-  --muted-foreground: hsl(210, 40%, 60%);
-  --accent: hsl(195, 100%, 65%);
-  --accent-foreground: hsl(210, 40%, 8%);
-  --destructive: hsl(0, 62%, 30%);
-  --destructive-foreground: hsl(210, 40%, 98%);
-  --border: hsl(210, 40%, 20%);
-  --input: hsl(210, 40%, 15%);
-  --ring: hsl(200, 100%, 55%);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(96, 165, 250, 0.3) transparent;
+}
 
-  body {
-    @apply bg-background text-foreground font-sans antialiased;
+body {
+  background-color: var(--bg);
+  color: #e2e8f0;
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(96, 165, 250, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(96, 165, 250, 0.5);
+}
+
+/* Custom cursor - hide default on desktop */
+@media (hover: hover) and (pointer: fine) {
+  body.custom-cursor,
+  body.custom-cursor * {
+    cursor: none !important;
   }
 }
 
-@layer components {
-  .typing-animation {
-    border-right: 2px solid hsl(200, 100%, 55%);
-    animation: blink 1s infinite;
-  }
-  
-  @keyframes blink {
-    0%, 50% { border-color: hsl(200, 100%, 55%); }
-    51%, 100% { border-color: transparent; }
-  }
-  
-  .skill-bar {
-    transition: width 2s ease-in-out;
-  }
-  
-  .project-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .project-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  .timeline-line {
-    background: linear-gradient(to bottom, hsl(200, 100%, 55%), hsl(195, 100%, 65%));
-  }
+::selection {
+  background: rgba(96, 165, 250, 0.3);
+  color: #fff;
+}
 
-  .bg-pattern {
-    background-image: radial-gradient(circle at 25% 25%, hsl(200, 100%, 55%) 1px, transparent 1px), radial-gradient(circle at 75% 75%, hsl(195, 100%, 65%) 1px, transparent 1px);
-    background-size: 50px 50px;
-  }
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #60a5fa, #a78bfa, #22d3ee, #60a5fa);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 6s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Glow border on hover */
+.glow-border {
+  position: relative;
+}
+
+.glow-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.4), rgba(167, 139, 250, 0.4));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.glow-border:hover::before {
+  opacity: 1;
+}
+
+/* Terminal */
+.terminal-window {
+  background: rgba(10, 10, 15, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+/* Section divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.3), transparent);
 }

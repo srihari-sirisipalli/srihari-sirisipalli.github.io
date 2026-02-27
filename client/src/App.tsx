@@ -1,31 +1,40 @@
-import { Switch, Route } from "wouter";
-import { queryClient } from "./lib/queryClient";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/not-found";
-import Home from "@/pages/Home";
+import CustomCursor from "@/components/layout/CustomCursor";
+import ScrollProgress from "@/components/layout/ScrollProgress";
+import Navigation from "@/components/layout/Navigation";
+import Footer from "@/components/layout/Footer";
+import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+import Experience from "@/components/sections/Experience";
+import Projects from "@/components/sections/Projects";
+import Skills from "@/components/sections/Skills";
+import Education from "@/components/sections/Education";
+import Leadership from "@/components/sections/Leadership";
+import Contact from "@/components/sections/Contact";
 
-function Router() {
+export default function App() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route component={NotFound} />
-    </Switch>
+    <>
+      <CustomCursor />
+      <ScrollProgress />
+      <Navigation />
+      <main>
+        <Hero />
+        <div className="section-divider" />
+        <About />
+        <div className="section-divider" />
+        <Experience />
+        <div className="section-divider" />
+        <Projects />
+        <div className="section-divider" />
+        <Skills />
+        <div className="section-divider" />
+        <Education />
+        <div className="section-divider" />
+        <Leadership />
+        <div className="section-divider" />
+        <Contact />
+      </main>
+      <Footer />
+    </>
   );
 }
-
-function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <div className="dark">
-          <Toaster />
-          <Router />
-        </div>
-      </TooltipProvider>
-    </QueryClientProvider>
-  );
-}
-
-export default App;
