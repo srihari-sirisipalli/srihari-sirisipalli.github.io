@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import CustomCursor from "@/components/layout/CustomCursor";
 import ScrollProgress from "@/components/layout/ScrollProgress";
 import Navigation from "@/components/layout/Navigation";
@@ -12,6 +13,16 @@ import Leadership from "@/components/sections/Leadership";
 import Contact from "@/components/sections/Contact";
 
 export default function App() {
+  // Scroll to hash section on initial load or shared URL
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (hash) {
+      // Small delay to let sections render
+      setTimeout(() => {
+        document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+      }, 300);
+    }
+  }, []);
   return (
     <>
       <CustomCursor />

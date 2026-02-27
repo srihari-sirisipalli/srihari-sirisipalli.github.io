@@ -27,8 +27,18 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
+  // Update URL hash when scroll spy detects section change
+  useEffect(() => {
+    if (activeId) {
+      window.history.replaceState(null, "", `#${activeId}`);
+    } else if (window.scrollY < 200) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+  }, [activeId]);
+
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    window.history.pushState(null, "", `#${id}`);
     setMobileOpen(false);
   };
 
@@ -44,7 +54,10 @@ export default function Navigation() {
     >
       <div className="max-w-6xl mx-auto px-4 md:px-8 flex items-center justify-between">
         <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            window.history.pushState(null, "", window.location.pathname);
+          }}
           className="text-lg font-semibold tracking-tight min-h-[44px] min-w-[44px] flex items-center"
         >
           <span className="text-primary font-mono">&gt;</span>{" "}
