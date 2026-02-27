@@ -66,7 +66,7 @@ export default function Projects() {
               setExpanded(null);
             }}
             className={cn(
-              "px-4 py-2 rounded-lg text-sm font-medium transition-all",
+              "px-4 py-2.5 rounded-lg text-sm font-medium transition-all",
               filter === f
                 ? "bg-primary/15 text-primary border border-primary/30"
                 : "text-text-muted hover:text-text border border-transparent hover:border-surface-border"
@@ -140,21 +140,21 @@ function PortfolioCard({
               <div>
                 <span
                   className={cn(
-                    "text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full",
+                    "text-[11px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full",
                     typeColor[project.type]
                   )}
                 >
                   {project.type === "rnd" ? "R&D" : project.type}
                 </span>
                 {project.company && (
-                  <span className="text-[10px] text-text-dim ml-2">
+                  <span className="text-[11px] text-text-dim ml-2">
                     {project.company}
                   </span>
                 )}
               </div>
             </div>
             {project.period && (
-              <span className="text-[10px] text-text-dim font-mono shrink-0 mt-1">
+              <span className="text-[11px] text-text-dim font-mono shrink-0 mt-1">
                 {project.period}
               </span>
             )}
@@ -172,7 +172,7 @@ function PortfolioCard({
           {/* Expand button */}
           <button
             onClick={onToggle}
-            className="flex items-center gap-1 text-xs text-primary/70 hover:text-primary transition-colors mb-3"
+            className="flex items-center gap-1 text-xs text-primary/70 hover:text-primary active:text-primary transition-colors mb-3 py-2 -my-1"
           >
             {isExpanded ? "Hide details" : "View details"}
             <ChevronDown

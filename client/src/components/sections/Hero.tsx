@@ -46,7 +46,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[100svh] min-h-screen flex items-center justify-center overflow-hidden">
       <ParticleField />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
@@ -134,13 +134,13 @@ export default function Hero() {
           <div className="flex flex-wrap gap-4 justify-center">
             <a
               href="#projects"
-              className="px-6 py-3 rounded-lg bg-primary text-bg font-semibold text-sm hover:bg-primary-bright transition-colors"
+              className="px-6 py-3.5 rounded-lg bg-primary text-bg font-semibold text-sm hover:bg-primary-bright transition-colors"
             >
               View My Work
             </a>
             <a
               href="#contact"
-              className="px-6 py-3 rounded-lg border border-surface-border text-text font-semibold text-sm hover:bg-surface-hover transition-colors"
+              className="px-6 py-3.5 rounded-lg border border-surface-border text-text font-semibold text-sm hover:bg-surface-hover transition-colors"
             >
               Get In Touch
             </a>
@@ -153,7 +153,7 @@ export default function Hero() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg text-text-muted hover:text-primary hover:bg-surface-hover transition-colors"
+                className="p-3 rounded-lg text-text-muted hover:text-primary hover:bg-surface-hover transition-colors"
               >
                 {iconMap[link.platform]}
               </a>
@@ -163,7 +163,7 @@ export default function Hero() {
 
         {/* Scroll indicator */}
         <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden sm:block"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >

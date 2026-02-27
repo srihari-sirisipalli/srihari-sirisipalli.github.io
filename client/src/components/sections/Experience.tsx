@@ -39,7 +39,7 @@ export default function Experience() {
               setExpanded(null);
             }}
             className={cn(
-              "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all",
+              "flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all",
               activeTab === tab.id
                 ? "bg-primary/15 text-primary border border-primary/30"
                 : "text-text-muted hover:text-text border border-transparent hover:border-surface-border"
@@ -124,7 +124,7 @@ function Timeline({
 }) {
   return (
     <motion.div
-      className="relative pl-6 border-l border-primary/20"
+      className="relative ml-1.5 pl-6 border-l border-primary/20"
       variants={staggerContainer}
       initial="hidden"
       animate="visible"
@@ -138,7 +138,7 @@ function Timeline({
             className="relative mb-8 last:mb-0"
           >
             {/* Timeline dot */}
-            <div className="absolute -left-[30.5px] top-1 w-3 h-3 rounded-full bg-primary/60 border-2 border-bg" />
+            <div className="absolute -left-[30px] top-[22px] w-3 h-3 rounded-full bg-primary/60 border-2 border-bg" />
 
             <button
               onClick={() => setExpanded(isOpen ? null : item.id)}
@@ -182,11 +182,9 @@ function Timeline({
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.05 }}
-                        className="flex items-start gap-2 text-sm text-text-muted"
+                        className="text-sm text-text-muted pl-5 relative leading-relaxed"
                       >
-                        <span className="text-primary mt-1.5 shrink-0">
-                          ▹
-                        </span>
+                        <span className="absolute left-0 top-0 text-primary">▹</span>
                         {b}
                       </motion.li>
                     ))}

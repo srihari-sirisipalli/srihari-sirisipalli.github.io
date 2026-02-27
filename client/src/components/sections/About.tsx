@@ -7,7 +7,7 @@ import { staggerContainer, fadeUp } from "@/lib/animations";
 export default function About() {
   return (
     <SectionWrapper id="about">
-      <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
         {/* Text */}
         <div>
           <h2 className="text-3xl md:text-4xl font-bold mb-2">
@@ -33,7 +33,7 @@ export default function About() {
             <motion.div
               key={stat.label}
               variants={fadeUp}
-              className="glass rounded-xl p-6 text-center hover:bg-surface-hover transition-colors"
+              className="glass rounded-xl p-4 sm:p-6 text-center hover:bg-surface-hover transition-colors"
             >
               <div className="text-3xl md:text-4xl font-bold text-primary mb-1">
                 <AnimatedCounter

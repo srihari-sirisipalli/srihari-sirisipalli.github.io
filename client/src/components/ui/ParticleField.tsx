@@ -13,6 +13,10 @@ export default function ParticleField() {
   const mouseRef = useRef({ x: -999, y: -999 });
 
   useEffect(() => {
+    // Skip animation if user prefers reduced motion
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -22,17 +26,25 @@ export default function ParticleField() {
     let particles: Particle[] = [];
 
     const resize = () => {
-      canvas.width = canvas.offsetWidth * devicePixelRatio;
-      canvas.height = canvas.offsetHeight * devicePixelRatio;
+      const w = canvas.offsetWidth;
+      const h = canvas.offsetHeight;
+      if (w === 0 || h === 0) return;
+      canvas.width = w * devicePixelRatio;
+      canvas.height = h * devicePixelRatio;
+      // Reset transform before scaling to avoid cumulative scaling on resize/orientation change
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(devicePixelRatio, devicePixelRatio);
     };
 
     const init = () => {
       resize();
-      const count = Math.min(80, Math.floor((canvas.offsetWidth * canvas.offsetHeight) / 12000));
+      const w = canvas.offsetWidth;
+      const h = canvas.offsetHeight;
+      if (w === 0 || h === 0) return;
+      const count = Math.min(80, Math.floor((w * h) / 12000));
       particles = Array.from({ length: count }, () => ({
-        x: Math.random() * canvas.offsetWidth,
-        y: Math.random() * canvas.offsetHeight,
+        x: Math.random() * w,
+        y: Math.random() * h,
         vx: (Math.random() - 0.5) * 0.4,
         vy: (Math.random() - 0.5) * 0.4,
         r: Math.random() * 1.5 + 0.5,
@@ -100,16 +112,35 @@ export default function ParticleField() {
       mouseRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
     };
 
+    // Also handle touch for mobile interaction
+    const handleTouch = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const rect = canvas.getBoundingClientRect();
+        mouseRef.current = {
+          x: e.touches[0].clientX - rect.left,
+          y: e.touches[0].clientY - rect.top,
+        };
+      }
+    };
+
+    const handleTouchEnd = () => {
+      mouseRef.current = { x: -999, y: -999 };
+    };
+
     init();
     draw();
 
     window.addEventListener("resize", init);
     canvas.addEventListener("mousemove", handleMouse);
+    canvas.addEventListener("touchmove", handleTouch, { passive: true });
+    canvas.addEventListener("touchend", handleTouchEnd);
 
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", init);
       canvas.removeEventListener("mousemove", handleMouse);
+      canvas.removeEventListener("touchmove", handleTouch);
+      canvas.removeEventListener("touchend", handleTouchEnd);
     };
   }, []);
 

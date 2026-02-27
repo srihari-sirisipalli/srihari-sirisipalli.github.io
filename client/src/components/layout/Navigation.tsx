@@ -45,7 +45,7 @@ export default function Navigation() {
       <div className="max-w-6xl mx-auto px-4 md:px-8 flex items-center justify-between">
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="text-lg font-semibold tracking-tight"
+          className="text-lg font-semibold tracking-tight min-h-[44px] min-w-[44px] flex items-center"
         >
           <span className="text-primary font-mono">&gt;</span>{" "}
           <span className="text-text">sri</span>
@@ -79,7 +79,7 @@ export default function Navigation() {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden p-2 text-text-muted"
+          className="md:hidden p-3 text-text-muted"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -102,7 +102,7 @@ export default function Navigation() {
                   <button
                     onClick={() => scrollTo(item.id)}
                     className={cn(
-                      "w-full text-left px-6 py-3 text-sm font-medium transition-colors",
+                      "w-full text-left px-6 py-3.5 text-sm font-medium transition-colors",
                       activeId === item.id
                         ? "text-primary bg-primary/5"
                         : "text-text-muted"

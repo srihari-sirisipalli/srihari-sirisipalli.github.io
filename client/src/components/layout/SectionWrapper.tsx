@@ -18,7 +18,7 @@ export default function SectionWrapper({
   return (
     <motion.section
       id={id}
-      className={cn("relative py-20 md:py-28 px-4 md:px-8", className)}
+      className={cn("relative py-16 sm:py-20 md:py-28 px-4 sm:px-6 md:px-8", className)}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}

@@ -37,7 +37,7 @@ export default function Contact() {
       <div className="flex flex-wrap items-center gap-3 mb-8">
         <a
           href={`mailto:${personal.email}`}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-lg glass text-sm text-text-muted hover:text-primary transition-colors"
+          className="flex items-center gap-2 px-3 py-2.5 rounded-lg glass text-sm text-text-muted hover:text-primary active:text-primary transition-colors"
         >
           <Mail size={14} />
           Send Email
@@ -46,7 +46,7 @@ export default function Contact() {
           href={personal.socialLinks[0].url}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-3 py-1.5 rounded-lg glass text-sm text-text-muted hover:text-primary transition-colors"
+          className="flex items-center gap-2 px-3 py-2.5 rounded-lg glass text-sm text-text-muted hover:text-primary active:text-primary transition-colors"
         >
           <Linkedin size={14} />
           LinkedIn
@@ -55,12 +55,12 @@ export default function Contact() {
           href={personal.socialLinks[1].url}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-3 py-1.5 rounded-lg glass text-sm text-text-muted hover:text-primary transition-colors"
+          className="flex items-center gap-2 px-3 py-2.5 rounded-lg glass text-sm text-text-muted hover:text-primary active:text-primary transition-colors"
         >
           <Github size={14} />
           GitHub
         </a>
-        <span className="flex items-center gap-2 px-3 py-1.5 text-sm text-text-dim">
+        <span className="flex items-center gap-2 px-3 py-2.5 text-sm text-text-dim">
           <MapPin size={14} />
           {personal.location}
         </span>
@@ -71,7 +71,7 @@ export default function Contact() {
         <button
           onClick={() => setMode("form")}
           className={cn(
-            "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all",
+            "flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all",
             mode === "form"
               ? "bg-primary/15 text-primary border border-primary/30"
               : "text-text-muted hover:text-text border border-transparent hover:border-surface-border"
@@ -83,7 +83,7 @@ export default function Contact() {
         <button
           onClick={() => setMode("calendly")}
           className={cn(
-            "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all",
+            "flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all",
             mode === "calendly"
               ? "bg-primary/15 text-primary border border-primary/30"
               : "text-text-muted hover:text-text border border-transparent hover:border-surface-border"
@@ -145,7 +145,8 @@ export default function Contact() {
                 <iframe
                   src={`${personal.calendlyUrl}?hide_gdpr_banner=1&background_color=0a0a0f&text_color=e2e8f0&primary_color=60a5fa`}
                   width="100%"
-                  height="630"
+                  height="700"
+                  style={{ minHeight: "500px", maxHeight: "80vh" }}
                   frameBorder="0"
                   title="Schedule a meeting"
                   className="w-full"
@@ -169,7 +170,7 @@ function ContactForm({ onSuccess }: { onSuccess: () => void }) {
   const onSubmit = async (data: FormData) => {
     const res = await fetch(personal.formspreeEndpoint, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { Accept: "application/json", "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
     if (res.ok) onSuccess();
@@ -206,7 +207,7 @@ function ContactForm({ onSuccess }: { onSuccess: () => void }) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-bg font-semibold text-sm hover:bg-primary-bright disabled:opacity-50 transition-colors"
+        className="flex items-center gap-2 px-6 py-3.5 rounded-lg bg-primary text-bg font-semibold text-sm hover:bg-primary-bright active:bg-primary-bright disabled:opacity-50 transition-colors"
       >
         <Send size={16} />
         {isSubmitting ? "Sending..." : "Send Message"}

@@ -12,7 +12,7 @@ export default function Education() {
       </h2>
       <div className="w-16 h-1 bg-primary rounded-full mb-10" />
 
-      <div className="grid lg:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* Degree */}
         <div className="glass rounded-xl p-6">
           <div className="flex items-center gap-3 mb-4">
@@ -54,7 +54,7 @@ export default function Education() {
                   href={cert.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-2 group text-sm"
+                  className="flex items-start gap-2 group text-sm py-2 active:text-primary"
                 >
                   <ExternalLink
                     size={14}
