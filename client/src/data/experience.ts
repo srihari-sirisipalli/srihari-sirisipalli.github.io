@@ -25,7 +25,7 @@ export const workExperience: ExperienceEntry[] = [
   {
     id: "vvs",
     title: "AI Systems Engineer – Offshore Digital Twin Systems",
-    company: "VVS Systems",
+    company: "Vaishvik Vertex Solutions",
     period: "Jun 2025 – Feb 2026",
     location: "Contract",
     achievements: [
@@ -118,15 +118,27 @@ export const rndExperience: RnDEntry[] = [
     ],
   },
   {
-    id: "offshore-riser",
-    title: "Offshore Riser Behavior Modeling",
+    id: "moses-automation",
+    title: "MOSES Marine Simulation Automation",
     description:
-      "AI-driven fatigue prediction for offshore structures",
+      "Automated parametric study generation and batch execution for Bentley MOSES offshore simulation software",
     achievements: [
-      "Engineered automated ML pipeline across 8 algorithms and 156 features",
-      "Built hierarchical quadrant cascade reducing max heading error to 12.5°",
-      "Achieved R² = 0.9992 on significant wave height prediction",
-      "Automated MOSES marine simulation parametric studies via Python",
+      "Built Python automation generating Cartesian product of parametric cases across wave heights, spectra (Pierson-Moskowitz, JONSWAP, ISSC, OCHI), headings, and weight groups",
+      "Implemented GL Noble Denton Tp derivation (√(13·Hs) to √(30·Hs)) for wave spectrum peak period calculation",
+      "Developed Excel-driven input parsing with template token replacement for MOSES .dat and .cif files",
+      "Automated batch MOSES execution with 6-DOF motion and acceleration extraction (surge, sway, heave, roll, pitch, yaw)",
+      "Built results aggregation pipeline with progress tracking, ETA estimation, and consolidated CSV summary",
+    ],
+  },
+  {
+    id: "ansys-apdl-automation",
+    title: "ANSYS APDL – Mono Pile Turbine Automation",
+    description:
+      "Automated structural finite element analysis for mono pile wind turbine generation using ANSYS APDL",
+    achievements: [
+      "Automated ANSYS APDL parametric model generation for mono pile wind turbine structures",
+      "Built scripted FEA workflows for structural analysis with configurable geometry and loading parameters",
+      "Developed batch execution pipeline for systematic parametric studies across design configurations",
     ],
   },
 ];

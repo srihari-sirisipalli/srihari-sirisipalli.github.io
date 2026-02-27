@@ -36,7 +36,7 @@ export const portfolio: PortfolioProject[] = [
     title: "Offshore Digital Twin ML Infrastructure",
     category: "ML Systems • Ocean Engineering",
     type: "professional",
-    company: "VVS Systems",
+    company: "Vaishvik Vertex Solutions",
     period: "2025 – 2026",
     description:
       "Automated ML pipeline infrastructure for offshore riser behavior modeling — fatigue prediction, wave height estimation, and circular wave heading prediction.",
