@@ -92,29 +92,24 @@ export default function Hero() {
             <p className="pl-4">
               <span className="text-terminal-cyan">experience</span>
               <span className="text-text-dim">:</span>{" "}
-              <span className="text-terminal-green">"4+ years"</span>
+              <span className="text-terminal-green">"3+ years"</span>
               <span className="text-text-dim">,</span>
             </p>
             <p className="pl-4">
               <span className="text-terminal-cyan">domains</span>
-              <span className="text-text-dim">:</span>{" "}
-              <span className="text-text-dim">[</span>
-              <span className="text-terminal-green">"GenAI"</span>
-              <span className="text-text-dim">,</span>{" "}
-              <span className="text-terminal-green">"Cloud"</span>
-              <span className="text-text-dim">,</span>{" "}
-              <span className="text-terminal-green">"Defense"</span>
-              <span className="text-text-dim">,</span>{" "}
-              <span className="text-terminal-green">"Offshore"</span>
-              <span className="text-text-dim">,</span>
+              <span className="text-text-dim">: [</span>
             </p>
+            {[
+              "GenAI", "Cloud Infrastructure", "Defense",
+              "Offshore Engineering", "Agritech",
+              "Biometrics", "Data Engineering",
+            ].map((d, i, arr) => (
+              <p key={d} className="pl-8">
+                <span className="text-terminal-green">"{d}"</span>
+                {i < arr.length - 1 && <span className="text-text-dim">,</span>}
+              </p>
+            ))}
             <p className="pl-4">
-              {"  "}
-              <span className="text-terminal-green">"Agritech"</span>
-              <span className="text-text-dim">,</span>{" "}
-              <span className="text-terminal-green">"Biometrics"</span>
-              <span className="text-text-dim">,</span>{" "}
-              <span className="text-terminal-green">"Data Eng"</span>
               <span className="text-text-dim">]</span>
             </p>
             <p>
@@ -132,18 +127,32 @@ export default function Hero() {
           transition={{ delay: 0.8, duration: 0.6 }}
         >
           <div className="flex flex-wrap gap-4 justify-center">
-            <a
-              href="#projects"
-              className="px-6 py-3.5 rounded-lg bg-primary text-bg font-semibold text-sm hover:bg-primary-bright transition-colors"
+            <button
+              onClick={() => {
+                const el = document.getElementById("projects");
+                if (el) {
+                  const y = el.getBoundingClientRect().top + window.scrollY - 70;
+                  window.scrollTo({ top: y, behavior: "smooth" });
+                  window.history.replaceState(null, "", "#projects");
+                }
+              }}
+              className="px-6 py-3.5 rounded-lg bg-primary text-bg font-semibold text-sm hover:bg-primary-bright active:bg-primary-bright transition-colors"
             >
               View My Work
-            </a>
-            <a
-              href="#contact"
-              className="px-6 py-3.5 rounded-lg border border-surface-border text-text font-semibold text-sm hover:bg-surface-hover transition-colors"
+            </button>
+            <button
+              onClick={() => {
+                const el = document.getElementById("contact");
+                if (el) {
+                  const y = el.getBoundingClientRect().top + window.scrollY - 70;
+                  window.scrollTo({ top: y, behavior: "smooth" });
+                  window.history.replaceState(null, "", "#contact");
+                }
+              }}
+              className="px-6 py-3.5 rounded-lg border border-surface-border text-text font-semibold text-sm hover:bg-surface-hover active:bg-surface-hover transition-colors"
             >
               Get In Touch
-            </a>
+            </button>
           </div>
 
           <div className="flex items-center gap-3">

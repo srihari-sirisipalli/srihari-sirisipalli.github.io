@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
@@ -16,6 +16,7 @@ const navItems = [
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const isScrollingTo = useRef(false);
   const activeId = useScrollSpy(
     navItems.map((n) => n.id),
     80
@@ -27,8 +28,9 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  // Update URL hash when scroll spy detects section change
+  // Update URL hash when scroll spy detects section change (but not during programmatic scroll)
   useEffect(() => {
+    if (isScrollingTo.current) return;
     if (activeId) {
       window.history.replaceState(null, "", `#${activeId}`);
     } else if (window.scrollY < 200) {
@@ -37,9 +39,33 @@ export default function Navigation() {
   }, [activeId]);
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    window.history.pushState(null, "", `#${id}`);
+    // Close mobile menu first, then scroll after a tick so layout settles
     setMobileOpen(false);
+    isScrollingTo.current = true;
+    window.history.replaceState(null, "", `#${id}`);
+
+    // Delay scroll slightly so mobile menu closes and doesn't block
+    requestAnimationFrame(() => {
+      const el = document.getElementById(id);
+      if (el) {
+        const navHeight = 70;
+        const y = el.getBoundingClientRect().top + window.scrollY - navHeight;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+      // Release lock after scroll completes
+      setTimeout(() => {
+        isScrollingTo.current = false;
+      }, 800);
+    });
+  };
+
+  const scrollToTop = () => {
+    isScrollingTo.current = true;
+    window.history.replaceState(null, "", window.location.pathname);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => {
+      isScrollingTo.current = false;
+    }, 800);
   };
 
   return (
@@ -54,10 +80,7 @@ export default function Navigation() {
     >
       <div className="max-w-6xl mx-auto px-4 md:px-8 flex items-center justify-between">
         <button
-          onClick={() => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-            window.history.pushState(null, "", window.location.pathname);
-          }}
+          onClick={scrollToTop}
           className="text-lg font-semibold tracking-tight min-h-[44px] min-w-[44px] flex items-center"
         >
           <span className="text-primary font-mono">&gt;</span>{" "}

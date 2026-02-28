@@ -19,7 +19,11 @@ export default function App() {
     if (hash) {
       // Small delay to let sections render
       setTimeout(() => {
-        document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+        const el = document.getElementById(hash);
+        if (el) {
+          const y = el.getBoundingClientRect().top + window.scrollY - 70;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
       }, 300);
     }
   }, []);
