@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Briefcase, FlaskConical, Lightbulb } from "lucide-react";
 import {
   workExperience,
-  rndExperience,
+  rndRole,
   advisoryExperience,
 } from "@/data/experience";
 import SectionWrapper from "@/components/layout/SectionWrapper";
@@ -74,17 +74,7 @@ export default function Experience() {
             />
           )}
           {activeTab === "rnd" && (
-            <Timeline
-              items={rndExperience.map((e) => ({
-                id: e.id,
-                title: e.title,
-                subtitle: e.description,
-                period: "",
-                bullets: e.achievements,
-              }))}
-              expanded={expanded}
-              setExpanded={setExpanded}
-            />
+            <RnDTimeline expanded={expanded} setExpanded={setExpanded} />
           )}
           {activeTab === "advisory" && (
             <Timeline
@@ -105,6 +95,98 @@ export default function Experience() {
   );
 }
 
+/* ── R&D Timeline with role header + project cards ── */
+function RnDTimeline({
+  expanded,
+  setExpanded,
+}: {
+  expanded: string | null;
+  setExpanded: (id: string | null) => void;
+}) {
+  return (
+    <motion.div variants={staggerContainer} initial="hidden" animate="visible">
+      {/* Role header */}
+      <motion.div variants={fadeUp} className="glass rounded-xl p-5 mb-6">
+        <h3 className="text-lg font-semibold text-text">
+          {rndRole.title}
+        </h3>
+        <p className="text-sm text-text-muted mt-1">
+          {rndRole.company} • {rndRole.location}
+        </p>
+        <p className="text-xs text-text-dim font-mono mt-1">
+          {rndRole.period}
+        </p>
+      </motion.div>
+
+      {/* Project timeline */}
+      <div className="relative ml-1.5 pl-6 border-l border-primary/20">
+        {rndRole.projects.map((project) => {
+          const isOpen = expanded === project.id;
+          return (
+            <motion.div
+              key={project.id}
+              variants={fadeUp}
+              className="relative mb-8 last:mb-0"
+            >
+              {/* Timeline dot */}
+              <div className="absolute -left-[30px] top-[22px] w-3 h-3 rounded-full bg-primary/60 border-2 border-bg" />
+
+              <button
+                onClick={() => setExpanded(isOpen ? null : project.id)}
+                className="w-full text-left glass rounded-xl p-5 hover:bg-surface-hover transition-colors group"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h3 className="text-lg font-semibold text-text group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-xs text-text-dim font-mono mt-1">
+                      {project.period}
+                    </p>
+                  </div>
+                  <ChevronDown
+                    size={18}
+                    className={cn(
+                      "text-text-dim transition-transform mt-1 shrink-0",
+                      isOpen && "rotate-180"
+                    )}
+                  />
+                </div>
+
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.ul
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="mt-4 space-y-2 overflow-hidden"
+                    >
+                      {project.achievements.map((b, i) => (
+                        <motion.li
+                          key={i}
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: i * 0.05 }}
+                          className="text-sm text-text-muted pl-5 relative leading-relaxed"
+                        >
+                          <span className="absolute left-0 top-0 text-primary">▹</span>
+                          {b}
+                        </motion.li>
+                      ))}
+                    </motion.ul>
+                  )}
+                </AnimatePresence>
+              </button>
+            </motion.div>
+          );
+        })}
+      </div>
+    </motion.div>
+  );
+}
+
+/* ── Generic Timeline (Work / Advisory) ── */
 interface TimelineItem {
   id: string;
   title: string;
