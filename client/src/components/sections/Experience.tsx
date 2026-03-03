@@ -1,20 +1,20 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Briefcase, FlaskConical, Lightbulb } from "lucide-react";
+import { ChevronDown, Briefcase, Building2, Lightbulb } from "lucide-react";
 import {
   workExperience,
-  rndRole,
+  consultingRole,
   advisoryExperience,
 } from "@/data/experience";
 import SectionWrapper from "@/components/layout/SectionWrapper";
 import { fadeUp, staggerContainer } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 
-type Tab = "work" | "rnd" | "advisory";
+type Tab = "work" | "consulting" | "advisory";
 
 const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = [
   { id: "work", label: "Work", icon: <Briefcase size={16} /> },
-  { id: "rnd", label: "R&D", icon: <FlaskConical size={16} /> },
+  { id: "consulting", label: "Consulting", icon: <Building2 size={16} /> },
   { id: "advisory", label: "Advisory", icon: <Lightbulb size={16} /> },
 ];
 
@@ -73,8 +73,8 @@ export default function Experience() {
               setExpanded={setExpanded}
             />
           )}
-          {activeTab === "rnd" && (
-            <RnDTimeline expanded={expanded} setExpanded={setExpanded} />
+          {activeTab === "consulting" && (
+            <ConsultingTimeline expanded={expanded} setExpanded={setExpanded} />
           )}
           {activeTab === "advisory" && (
             <Timeline
@@ -95,8 +95,8 @@ export default function Experience() {
   );
 }
 
-/* ── R&D Timeline with role header + project cards ── */
-function RnDTimeline({
+/* ── Consulting Timeline with role header + project cards ── */
+function ConsultingTimeline({
   expanded,
   setExpanded,
 }: {
@@ -108,19 +108,19 @@ function RnDTimeline({
       {/* Role header */}
       <motion.div variants={fadeUp} className="glass rounded-xl p-5 mb-6">
         <h3 className="text-lg font-semibold text-text">
-          {rndRole.title}
+          {consultingRole.title}
         </h3>
         <p className="text-sm text-text-muted mt-1">
-          {rndRole.company} • {rndRole.location}
+          {consultingRole.company} • {consultingRole.location}
         </p>
         <p className="text-xs text-text-dim font-mono mt-1">
-          {rndRole.period}
+          {consultingRole.period}
         </p>
       </motion.div>
 
       {/* Project timeline */}
       <div className="relative ml-1.5 pl-6 border-l border-primary/20">
-        {rndRole.projects.map((project) => {
+        {consultingRole.projects.map((project) => {
           const isOpen = expanded === project.id;
           return (
             <motion.div
@@ -140,9 +140,6 @@ function RnDTimeline({
                     <h3 className="text-lg font-semibold text-text group-hover:text-primary transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-xs text-text-dim font-mono mt-1">
-                      {project.period}
-                    </p>
                   </div>
                   <ChevronDown
                     size={18}

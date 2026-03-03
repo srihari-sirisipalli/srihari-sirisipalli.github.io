@@ -10,29 +10,16 @@ export interface ExperienceEntry {
 export const workExperience: ExperienceEntry[] = [
   {
     id: "pangeon",
-    title: "Software Engineer – GenAI & Cloud Infrastructure",
+    title: "Software Engineer – LLM & ML Infrastructure",
     company: "Pangeon",
     period: "Mar 2024 – Present",
-    location: "Remote",
-    achievements: [
-      "Built patent similarity system using LLMs for prior art detection, novelty assessment, and infringement analysis",
-      "Designed dynamic AWS architecture with EC2 autoscaling, reducing infrastructure costs by >30%",
-      "Migrated workloads to GPU-enabled Lambda, reducing EC2 dependency",
-      "Delivered end-to-end AWS infrastructure with Terraform (Amplify, IAM, monitoring, security)",
-      "Built custom Terraform GUI for simplified AWS resource management",
-    ],
-  },
-  {
-    id: "vvs",
-    title: "AI Systems Engineer – Offshore Digital Twin Systems",
-    company: "Vaishvik Vertex Solutions",
-    period: "Jun 2025 – Feb 2026",
     location: "Contract",
     achievements: [
-      "Engineered automated ML pipeline evaluating models across varying conditions, parameters, and architectures",
-      "Built 156-feature engineering pipeline with intelligent angle encoding, normality-based transforms, and adaptive scaling",
-      "Designed hierarchical classification-regression architecture for circular wave heading prediction",
-      "Built retrain-to-predict infrastructure automating the full experiment-to-production cycle",
+      "Developed and deployed high-throughput embedding pipelines integrated with LLM semantic scoring for automated prior-art ranking",
+      "Support 1,000+ patent similarity evaluations daily, enabling scalable semantic comparison across large patent datasets",
+      "Re-architected compute-intensive workloads from EC2 to AWS Lambda, reducing infrastructure costs by 30% and improving batch completion speed by 5–7x",
+      "Built asynchronous processing and multiprocessing frameworks to increase similarity evaluation throughput",
+      "Provisioned reproducible AWS infrastructure using Terraform to enable consistent cross-account deployments",
     ],
   },
   {
@@ -40,11 +27,11 @@ export const workExperience: ExperienceEntry[] = [
     title: "Data Engineer",
     company: "Sas2Py",
     period: "Mar 2023 – Jun 2023",
-    location: "Hyderabad",
+    location: "Full-Time",
     achievements: [
-      "Migrated SAS → PySpark pipelines, improving scalability & performance",
-      "Built automated validation scripts with HTML reports, ensuring >99% migration accuracy",
-      "Applied graph theory to map dependencies, uncovering pipeline bottlenecks",
+      "Led migration of legacy SAS data pipelines to PySpark, redesigning batch workflows for distributed execution and improved scalability",
+      "Built automated validation framework ensuring >99% functional parity between SAS and PySpark outputs across production workloads",
+      "Modeled job dependency graphs to eliminate scheduling bottlenecks and optimize distributed execution efficiency",
     ],
   },
   {
@@ -52,10 +39,11 @@ export const workExperience: ExperienceEntry[] = [
     title: "Machine Learning Intern",
     company: "Corteva Agriscience",
     period: "Jul 2022 – Dec 2022",
-    location: "Hyderabad",
+    location: "Internship",
     achievements: [
-      "Converted models across TensorFlow/PyTorch → ONNX for cross-platform deployment",
-      "Optimized computer vision models via compression, quantization, and pruning",
+      "Converted TensorFlow and PyTorch models to ONNX for cross-platform deployment compatibility",
+      "Optimized inference performance using structured pruning and post-training quantization",
+      "Validated numerical consistency across model formats to ensure reliable production deployment",
     ],
   },
   {
@@ -63,90 +51,83 @@ export const workExperience: ExperienceEntry[] = [
     title: "Software Engineer Intern",
     company: "Dojima Networks",
     period: "Jun 2022 – Dec 2022",
-    location: "Remote",
+    location: "Internship",
     achievements: [
-      "Integrated Polkadot ecosystem with Dojima blockchain for cross-chain interoperability",
-      "Built Prometheus–Grafana dashboards for real-time API monitoring",
+      "Integrated Polkadot ecosystem components to enable cross-chain interoperability within Dojima's blockchain infrastructure",
+      "Implemented cross-chain communication workflows for transaction routing and state synchronization",
+      "Deployed Prometheus–Grafana monitoring stack to provide real-time API observability and system health tracking",
     ],
   },
 ];
 
-export interface RnDProject {
+export interface ConsultingProject {
   id: string;
   title: string;
-  period: string;
   achievements: string[];
 }
 
-export interface RnDRole {
+export interface ConsultingRole {
   title: string;
   company: string;
   period: string;
   location: string;
-  projects: RnDProject[];
+  projects: ConsultingProject[];
 }
 
-export const rndRole: RnDRole = {
+export const consultingRole: ConsultingRole = {
   title: "AI Systems Engineer",
-  company: "Applied AI Research & Engineering",
-  period: "Jun 2023 – Feb 2025",
+  company: "Independent Consulting & R&D",
+  period: "Jun 2023 – Present",
   location: "Contract",
   projects: [
     {
-      id: "cattle-biometrics",
-      title: "Cattle Biometric R&D Platform (Goodhar)",
-      period: "Nov 2024 – Feb 2025",
+      id: "digital-twin",
+      title: "Digital Twin Systems – Offshore Riser Modeling",
       achievements: [
-        "Built complete R&D application: 16-stage modular pipeline from image input → preprocessing → feature extraction → FAISS indexing → retrieval → evaluation",
-        "Developed production ROI extractor using rembg (deep learning segmentation) with OpenCV GrabCut fallback, CLAHE contrast enhancement in LAB color space, and mask quality scoring",
-        "Engineered multi-view vector database system with separate FAISS indices per feature type and 6 fusion strategies (intersection, weighted voting, rank aggregation, cascade, union, dynamic adaptive)",
-        "Implemented deep feature extraction pipeline: ResNet, EfficientNet, ViT, ArcFace, and self-supervised models (DINO, SimCLR, MAE, MoCo, BYOL)",
-        "Designed 40+ image quality metrics across 7 categories (sharpness, exposure, noise, texture, color, muzzle-specific, technical) with configurable thresholds",
-        "Built parallel processing with ProcessPoolExecutor (up to 20 workers), Excel audit sheet generation, and debug visualization mode",
+        "Developed surrogate ML models trained on 88,560 simulated sea states for offshore motion and fatigue prediction",
+        "Executed 3,525 ML/DL experiments and ~1.08M model fits to identify optimal architecture and feature configurations",
+        "Processed 3,888 time-series simulation files (4 Hz sampling) to construct structured environmental prediction pipelines",
+        "Reduced worst-case angular prediction error by 41% through structured feature optimization and circular regression modeling",
+        "Established reproducible training and inference workflows with strict dataset partition control to eliminate leakage",
       ],
     },
     {
-      id: "ai-avatar",
-      title: "Real-Time AI Avatar System",
-      period: "2024",
+      id: "simulation-automation",
+      title: "Engineering Simulation Automation",
       achievements: [
-        "Built offline 3D avatar with Whisper STT, Ollama LLM, LangChain RAG, and Silero TTS lip-sync",
-        "Reduced STT latency by 75% and TTS latency by 52%",
-        "Deployed low-latency stack: FastAPI + React + Three.js",
-        "Designed RAG Control Gate ensuring accurate knowledge base retrieval",
+        "Built ANSYS APDL and MOSES batch execution pipelines to automate large-scale simulation data generation",
+        "Orchestrated structured extraction and transformation of simulation outputs into ML-ready datasets",
+        "Standardized execution workflows to improve experiment repeatability and reduce manual intervention",
       ],
     },
     {
-      id: "predictive-maintenance",
-      title: "Predictive Maintenance – Naval Systems",
-      period: "2023 – 2024",
+      id: "anomaly-detection",
+      title: "Anomaly Detection & Signal Processing",
       achievements: [
-        "Built anomaly detection pipelines from accelerometer data (RMS, FFT, kurtosis features)",
-        "Trained Random Forest, SVM, k-NN, and DL models with cross-validation",
-        "Enabled early fault detection, reducing downtime",
-        "Findings presented at defense R&D conference",
+        "Developed unsupervised vibration-based fault detection pipeline using 16+ time-domain and 11 frequency-domain features",
+        "Processed multi-day sensor time-series datasets to construct structured feature matrices for anomaly modeling",
+        "Applied PCA-based dimensionality reduction to enhance cluster separability prior to classification",
+        "Implemented clustering-based anomaly detection trained on normal operating data, achieving zero false positives during baseline validation",
+        "Quantified anomaly robustness using cluster compactness metrics (WCSS: 441.78) and distance thresholds",
       ],
     },
     {
-      id: "moses-automation",
-      title: "MOSES Marine Simulation Automation",
-      period: "2024 – 2025",
+      id: "retrieval-cv",
+      title: "Retrieval & Computer Vision Systems",
       achievements: [
-        "Built Python automation generating Cartesian product of parametric cases across wave heights, spectra (Pierson-Moskowitz, JONSWAP, ISSC, OCHI), headings, and weight groups",
-        "Implemented GL Noble Denton Tp derivation (√(13·Hs) to √(30·Hs)) for wave spectrum peak period calculation",
-        "Developed Excel-driven input parsing with template token replacement for MOSES .dat and .cif files",
-        "Automated batch MOSES execution with 6-DOF motion and acceleration extraction (surge, sway, heave, roll, pitch, yaw)",
-        "Built results aggregation pipeline with progress tracking, ETA estimation, and consolidated CSV summary",
+        "Architected multi-stage similarity pipeline across 100,000+ unique cattle images",
+        "Indexed 100K+ embeddings using FAISS multi-index vector structures and ranking fusion strategies",
+        "Distributed feature computation across 20 worker processes to support high-volume similarity evaluation",
       ],
     },
     {
-      id: "ansys-apdl-automation",
-      title: "ANSYS APDL – Mono Pile Turbine Automation",
-      period: "2023 – 2024",
+      id: "rag",
+      title: "Retrieval-Augmented Generation (RAG)",
       achievements: [
-        "Automated ANSYS APDL parametric model generation for mono pile wind turbine structures",
-        "Built scripted FEA workflows for structural analysis with configurable geometry and loading parameters",
-        "Developed batch execution pipeline for systematic parametric studies across design configurations",
+        "Implemented retrieval-augmented generation pipelines over multi-year internal technical report corpora",
+        "Designed embedding ingestion workflows including chunking, metadata filtering, and indexing strategies",
+        "Integrated FAISS-based similarity search into FastAPI backend services",
+        "Reduced transcription latency by 75% and synthesis time by 52% through backend optimization",
       ],
     },
   ],
