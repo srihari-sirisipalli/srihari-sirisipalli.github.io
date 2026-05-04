@@ -96,8 +96,10 @@ export const consultingRole: ConsultingRole = {
       title: "Engineering Simulation Automation",
       achievements: [
         "Built ANSYS APDL and MOSES batch execution pipelines to automate large-scale simulation data generation",
-        "Orchestrated structured extraction and transformation of simulation outputs into ML-ready datasets",
-        "Standardized execution workflows to improve experiment repeatability and reduce manual intervention",
+        "Designed stratified Latin Hypercube DOE generating 15,000 sea-transport cases over 80 input parameters",
+        "Parsed multi-format simulation outputs into per-case 12-sheet workbooks covering 6-DOF motions, structural loads, and intact/damage stability across 28 compartments",
+        "Built resumable orchestrator (CLI + PyQt5 GUI) with completion markers to skip already-run cases across long DOE sweeps",
+        "Layered ML surrogates (XGBoost, LightGBM, PyTorch), Sobol/Morris sensitivity (SALib), and Optuna/PyMoo optimization on top of generated datasets",
       ],
     },
     {

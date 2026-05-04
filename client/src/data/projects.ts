@@ -136,6 +136,108 @@ export const portfolio: PortfolioProject[] = [
     technologies: ["Python", "Random Forest", "SVM", "Signal Processing", "FFT"],
     icon: "Cog",
   },
+  {
+    id: "pynaos-fea",
+    title: "PyNAOS — Pure-Python FEA for Offshore Structures",
+    category: "Numerical Methods • Offshore Engineering",
+    type: "rnd",
+    description:
+      "Self-contained Python FEA engine for offshore platforms, monopiles, and jack-up rigs — six analysis drivers backed by a custom Skyline LDLᵀ solver, paired with a desktop workstation for end-to-end design.",
+    highlights: [
+      "Implemented six analysis drivers (linear/nonlinear static, eigenvalue, linear/nonlinear dynamic, buckling) over 3D Timoshenko beam, spring, damper, and mass elements with P-Δ effects",
+      "Built hydrodynamic and geotechnical modules: Airy/Stokes/Chakrabarti wave kinematics, Morison forces, depth-of-fixity, API RP 2A p-y/t-z curves",
+      "Authored a custom Skyline LDLᵀ direct solver and Lanczos eigenvalue routines — no external FEM dependencies",
+      "Shipped a PyQt5 + OpenGL desktop workstation with 7 analysis workspaces, 3D viewer, command palette, validation/readiness checks, and auto-save",
+      "Achieved 593 passing tests at 98.63% coverage with 10 reference scenarios for reproducibility",
+    ],
+    technologies: ["Python", "NumPy", "SciPy", "PyQt5", "PyOpenGL", "FEA"],
+    icon: "LayoutDashboard",
+  },
+  {
+    id: "dcdc-surrogate-pipeline",
+    title: "Multi-Input DC-DC Converter Surrogate & Inverse Design",
+    category: "ML Surrogates • Power Electronics R&D",
+    type: "rnd",
+    description:
+      "End-to-end ML surrogate pipeline for a dual-input DC-DC converter — replaces an analytical state-space solver with ~60 µs predictions (~10⁴× speedup), adds OOD detection, and inverts the model for parameter design.",
+    highlights: [
+      "Generated a 5,000-sample LHS dataset with 13 inputs (dual voltages, duty cycles, passives) → 12 outputs (steady-state, small-signal gain matrix, RGA)",
+      "Trained 4 formulations × 3 model families (Random Forest, XGBoost, MLP); best XGBoost reached R² = 0.985 on the held-out test set",
+      "Built a physics-informed network enforcing the RGA row-sum identity and a 5-layer OOD detector (Mahalanobis, ensemble variance, physics residuals, bounds, RGA consistency)",
+      "Implemented differential-evolution inverse design (~5–10 s per query) with a PyQt5 GUI for parameter pinning and target specification",
+      "Reproducible 16-script experiment suite producing 92 figures, 63 LaTeX tables, and 7 IEEE-Trans paper drafts",
+    ],
+    technologies: ["Python", "XGBoost", "PyTorch", "PINN", "scikit-learn", "PyQt5"],
+    icon: "Zap",
+  },
+  {
+    id: "naval-arch-studio",
+    title: "NavalArch Studio — Ship Design & Stability Suite",
+    category: "Naval Architecture • Marine Engineering",
+    type: "rnd",
+    description:
+      "Open-source naval architecture suite — Python library plus PyQt5 desktop GUI covering hydrostatics, stability, seakeeping, damage, structural strength, and classification rules end-to-end.",
+    highlights: [
+      "Built 13 domain subpackages (geometry, hydrostatics, stability, damage, tanks, resistance, seakeeping, diffraction, maneuvering, strength, classification) with ~450 tests",
+      "Hydrostatics module with 9 selectable integration methods and Bonjean curves; validated against Maxsurf (4,759 t displacement match)",
+      "Implemented IMO IS Code 2008 intact stability, weather criterion, and SOLAS probabilistic damage (attained subdivision index)",
+      "Codified IACS rule loads, hull-girder compliance, plate buckling, IRS Sec. 15.4–15.5 design motions, and DNV-GL fatigue (Palmgren-Miner + S-N curves)",
+      "Delivered 13 GUI workspaces with side-by-side loading-condition comparison and branded multi-page PDF reports",
+    ],
+    technologies: ["Python", "NumPy", "SciPy", "geomdl", "PyQt5", "PyOpenGL", "ReportLab"],
+    icon: "Waves",
+  },
+  {
+    id: "vibration-diagnostics",
+    title: "Vibration Diagnostics Rule Engine",
+    category: "Condition Monitoring • Signal Processing",
+    type: "rnd",
+    description:
+      "Transparent rule-based fault diagnostics for rotating machinery — ranks probable mechanical, bearing, and electrical faults with traceable for/against evidence rather than opaque ML predictions.",
+    highlights: [
+      "Implemented 13 diagnostic rules covering unbalance, misalignment, looseness, BPFO/BPFI/BSF bearing defects, rotor bar / stator eccentricity, and spectrogram-based transient faults",
+      "Extracted 30+ features per measurement: FFT, Hilbert envelope, crest factor, kurtosis, harmonic and sideband detection, STFT transients",
+      "Computed bearing defect frequencies (BPFO, BPFI, BSF, FTF) from geometry; bundled 12 pre-loaded SKF bearing profiles",
+      "Mapped overall vibration velocity to ISO 10816 severity zones with confidence/severity per diagnosis and traceable evidence chains",
+      "Shipped a PyQt5 6-tab workflow plus a headless Python API for integration",
+    ],
+    technologies: ["Python", "NumPy", "SciPy", "PyQt5", "Signal Processing", "FFT"],
+    icon: "Cog",
+  },
+  {
+    id: "ship-recycling-expert-system",
+    title: "Ship Recycling & Dismantling Expert System",
+    category: "Maritime Compliance • Expert Systems",
+    type: "rnd",
+    description:
+      "Multi-domain expert system that turns ship intake data into compliant, safe, economically viable recycling plans — combining hazmat tracking, structural cutting sequences, workflow DAG scheduling, and multi-framework regulatory checks.",
+    highlights: [
+      "Intake wizard captures 40+ ship parameters; hazard identification combines declared IHM with age/type/equipment inference across 15 hazmat categories",
+      "5-phase safe cutting sequence over a 4-tier component hierarchy (primary → secondary → tertiary → non-structural)",
+      "Workflow orchestration selects 204 applicable activities, builds a DAG, runs Kahn's topological sort, and identifies the critical path",
+      "Evaluates HKC, Basel Convention, EU SRR, and ILO Guidelines simultaneously; risk assessment over a 5×5 severity/probability matrix",
+      "Generates 7 report types (SRP, Compliance, Hazmat, Safety, Environmental, Economic, Workflow) with PDF export and interactive dashboards",
+    ],
+    technologies: ["Python", "Django", "HTMX", "Tailwind", "Chart.js", "WeasyPrint", "SQLite"],
+    icon: "LayoutDashboard",
+  },
+  {
+    id: "moses-doe-pipeline",
+    title: "MOSES Sea-Transport DOE Automation",
+    category: "Marine Hydrodynamics • Design of Experiments",
+    type: "rnd",
+    description:
+      "Parametric sea-transport and stability analysis platform that drives Bentley MOSES through 15,000 stratified DOE cases, then feeds outputs into ML surrogates, sensitivity analysis, and multi-objective optimization.",
+    highlights: [
+      "Stratified Latin Hypercube Sampling over 4 ballast zones produces 15,000 DOE cases from 80 input parameters",
+      "Automated MOSES workflow: template token replacement → model generation → physics simulation → multi-format output parsing",
+      "Per-case 12-sheet Excel workbooks: 6-DOF motions/accelerations at flotation and motion points, longitudinal bending moment / shear force, intact and damage stability across 28 compartments",
+      "Orchestrator supports CLI (case ranges, train/test split), PyQt5 GUI, and resume markers that skip completed cases",
+      "ML/surrogate platform with PyTorch, XGBoost, LightGBM, SHAP; Sobol/Morris sensitivity (SALib); Optuna and PyMoo optimization",
+    ],
+    technologies: ["Python", "MOSES", "PyTorch", "XGBoost", "SHAP", "Optuna", "SALib", "PyMoo"],
+    icon: "BarChart3",
+  },
   // Academic
   {
     id: "cfd-aircraft",
