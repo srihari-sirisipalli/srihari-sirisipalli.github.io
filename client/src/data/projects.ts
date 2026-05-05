@@ -1,3 +1,8 @@
+export interface PortfolioMetric {
+  value: string;
+  label: string;
+}
+
 export interface PortfolioProject {
   id: string;
   title: string;
@@ -6,6 +11,7 @@ export interface PortfolioProject {
   company?: string;
   period?: string;
   description: string;
+  metrics?: PortfolioMetric[];
   highlights: string[];
   technologies: string[];
   icon: string;
@@ -21,7 +27,12 @@ export const portfolio: PortfolioProject[] = [
     company: "Pangeon",
     period: "2024 – Present",
     description:
-      "LLM-powered patent analysis platform for prior art detection, novelty assessment, and infringement analysis with vector search retrieval.",
+      "Cut patent prior-art evaluation cost ~30% and lifted throughput 5–7× by re-architecting EC2 workloads onto Lambda + LLM-scored embeddings, supporting 1,000+ daily similarity evaluations.",
+    metrics: [
+      { value: "30%", label: "Infra cost ↓" },
+      { value: "5–7×", label: "Throughput ↑" },
+      { value: "1K+/day", label: "Patent evals" },
+    ],
     highlights: [
       "Built LLM-based similarity scoring for patent document comparison",
       "Integrated vector databases for efficient patent search and retrieval",
@@ -39,7 +50,12 @@ export const portfolio: PortfolioProject[] = [
     company: "Vaishvik Vertex Solutions",
     period: "2025 – 2026",
     description:
-      "Automated ML pipeline infrastructure for offshore riser behavior modeling — fatigue prediction, wave height estimation, and circular wave heading prediction.",
+      "Predicted significant wave height at R² = 0.9992 and reduced worst-case angular heading error 41% via a 156-feature retrain-to-predict pipeline driving offshore riser fatigue and motion models.",
+    metrics: [
+      { value: "R² 0.999", label: "Wave-height accuracy" },
+      { value: "12.5°", label: "Max heading error" },
+      { value: "156", label: "Features engineered" },
+    ],
     highlights: [
       "Engineered 156-feature pipeline with intelligent angle encoding and adaptive scaling",
       "Built retrain-to-predict infrastructure: automated experiment → evaluation → production cycle",
@@ -59,6 +75,9 @@ export const portfolio: PortfolioProject[] = [
     period: "2023",
     description:
       "Automated migration of legacy SAS pipelines to PySpark with validation, dependency mapping, and HTML reporting.",
+    metrics: [
+      { value: ">99%", label: "Output parity" },
+    ],
     highlights: [
       "Migrated SAS → PySpark achieving >99% validation accuracy",
       "Applied graph theory to map pipeline dependencies and uncover bottlenecks",
@@ -86,67 +105,21 @@ export const portfolio: PortfolioProject[] = [
   },
   // R&D
   {
-    id: "cattle-biometrics",
-    title: "Cattle Biometric R&D Platform (Goodhar)",
-    category: "Computer Vision • Biometrics",
-    type: "rnd",
-    period: "Nov 2024 – Feb 2025",
-    description:
-      "Complete R&D application for cattle biometric identification — 16-stage modular pipeline with production ROI extraction, multi-view vector search, and deep feature analysis.",
-    highlights: [
-      "Built production ROI extractor using rembg (DL segmentation) with OpenCV GrabCut fallback",
-      "CLAHE contrast enhancement in LAB color space + morphological mask cleaning + quality scoring (0-100)",
-      "Multi-view FAISS vector DB with 6 fusion strategies: intersection, weighted voting, rank aggregation, cascade, union, dynamic adaptive",
-      "Deep feature extraction: ResNet, EfficientNet, ViT, ArcFace, DINO, SimCLR, MAE, MoCo, BYOL",
-      "40+ quality metrics across 7 categories (sharpness, exposure, noise, texture, color, muzzle-specific, technical)",
-      "Parallel processing (ProcessPoolExecutor, 20 workers) with Excel audit sheets and debug visualization",
-    ],
-    technologies: ["Python", "FAISS", "PyTorch", "rembg", "OpenCV", "ArcFace", "YOLO"],
-    icon: "Fingerprint",
-  },
-  {
-    id: "ai-avatar",
-    title: "Real-Time 3D AI Avatar System",
-    category: "AI/ML • Real-time Systems",
-    type: "rnd",
-    description:
-      "Offline-capable 3D AI avatar for defense applications with real-time speech-to-text, LLM reasoning, RAG knowledge retrieval, and TTS lip-sync.",
-    highlights: [
-      "Built offline stack: Whisper STT → Ollama LLM → LangChain RAG → Silero TTS → 3D lip-sync",
-      "Reduced STT latency by 75% and TTS latency by 52%",
-      "Designed RAG Control Gate mechanism ensuring accurate knowledge base retrieval",
-      "Deployed low-latency architecture: FastAPI + React + Three.js",
-    ],
-    technologies: ["Python", "FastAPI", "React", "Three.js", "Whisper", "LangChain", "Ollama"],
-    icon: "Bot",
-  },
-  {
-    id: "predictive-maintenance",
-    title: "Predictive Maintenance – Naval Systems",
-    category: "Predictive Analytics • Defense",
-    type: "rnd",
-    description:
-      "Anomaly detection system for naval equipment health monitoring using accelerometer data and machine learning.",
-    highlights: [
-      "Built feature extraction pipelines: RMS, FFT, kurtosis, spectral features",
-      "Trained and evaluated RF, SVM, k-NN, and DL models with cross-validation + expert-in-the-loop",
-      "Enabled early fault detection, reducing equipment downtime",
-      "Findings presented at defense R&D conference",
-    ],
-    technologies: ["Python", "Random Forest", "SVM", "Signal Processing", "FFT"],
-    icon: "Cog",
-  },
-  {
     id: "pynaos-fea",
-    title: "PyNAOS — Pure-Python FEA for Offshore Structures",
+    title: "PyNAOS: Pure-Python FEA for Offshore Structures",
     category: "Numerical Methods • Offshore Engineering",
     type: "rnd",
     description:
-      "Self-contained Python FEA engine for offshore platforms, monopiles, and jack-up rigs — six analysis drivers backed by a custom Skyline LDLᵀ solver, paired with a desktop workstation for end-to-end design.",
+      "Self-contained Python FEA engine for offshore platforms, monopiles, and jack-up rigs. Six analysis drivers backed by a custom Skyline LDLᵀ solver, paired with a desktop workstation for end-to-end design.",
+    metrics: [
+      { value: "593", label: "Tests" },
+      { value: "98.6%", label: "Coverage" },
+      { value: "6", label: "Analysis drivers" },
+    ],
     highlights: [
       "Implemented six analysis drivers (linear/nonlinear static, eigenvalue, linear/nonlinear dynamic, buckling) over 3D Timoshenko beam, spring, damper, and mass elements with P-Δ effects",
       "Built hydrodynamic and geotechnical modules: Airy/Stokes/Chakrabarti wave kinematics, Morison forces, depth-of-fixity, API RP 2A p-y/t-z curves",
-      "Authored a custom Skyline LDLᵀ direct solver and Lanczos eigenvalue routines — no external FEM dependencies",
+      "Authored a custom Skyline LDLᵀ direct solver and Lanczos eigenvalue routines, with no external FEM dependencies",
       "Shipped a PyQt5 + OpenGL desktop workstation with 7 analysis workspaces, 3D viewer, command palette, validation/readiness checks, and auto-save",
       "Achieved 593 passing tests at 98.63% coverage with 10 reference scenarios for reproducibility",
     ],
@@ -159,7 +132,12 @@ export const portfolio: PortfolioProject[] = [
     category: "ML Surrogates • Power Electronics R&D",
     type: "rnd",
     description:
-      "End-to-end ML surrogate pipeline for a dual-input DC-DC converter — replaces an analytical state-space solver with ~60 µs predictions (~10⁴× speedup), adds OOD detection, and inverts the model for parameter design.",
+      "End-to-end ML surrogate pipeline for a dual-input DC-DC converter. Replaces an analytical state-space solver with ~60 µs predictions (~10⁴× speedup), adds OOD detection, and inverts the model for parameter design.",
+    metrics: [
+      { value: "~10⁴×", label: "Inference speedup" },
+      { value: "R² 0.985", label: "Held-out test" },
+      { value: "5K", label: "LHS samples" },
+    ],
     highlights: [
       "Generated a 5,000-sample LHS dataset with 13 inputs (dual voltages, duty cycles, passives) → 12 outputs (steady-state, small-signal gain matrix, RGA)",
       "Trained 4 formulations × 3 model families (Random Forest, XGBoost, MLP); best XGBoost reached R² = 0.985 on the held-out test set",
@@ -172,11 +150,16 @@ export const portfolio: PortfolioProject[] = [
   },
   {
     id: "naval-arch-studio",
-    title: "NavalArch Studio — Ship Design & Stability Suite",
+    title: "NavalArch Studio: Ship Design & Stability Suite",
     category: "Naval Architecture • Marine Engineering",
     type: "rnd",
     description:
-      "Open-source naval architecture suite — Python library plus PyQt5 desktop GUI covering hydrostatics, stability, seakeeping, damage, structural strength, and classification rules end-to-end.",
+      "Open-source naval architecture suite: Python library plus PyQt5 desktop GUI covering hydrostatics, stability, seakeeping, damage, structural strength, and classification rules end-to-end.",
+    metrics: [
+      { value: "13", label: "Domain modules" },
+      { value: "~450", label: "Tests" },
+      { value: "Maxsurf", label: "Validated against" },
+    ],
     highlights: [
       "Built 13 domain subpackages (geometry, hydrostatics, stability, damage, tanks, resistance, seakeeping, diffraction, maneuvering, strength, classification) with ~450 tests",
       "Hydrostatics module with 9 selectable integration methods and Bonjean curves; validated against Maxsurf (4,759 t displacement match)",
@@ -193,7 +176,12 @@ export const portfolio: PortfolioProject[] = [
     category: "Condition Monitoring • Signal Processing",
     type: "rnd",
     description:
-      "Transparent rule-based fault diagnostics for rotating machinery — ranks probable mechanical, bearing, and electrical faults with traceable for/against evidence rather than opaque ML predictions.",
+      "Transparent rule-based fault diagnostics for rotating machinery. Ranks probable mechanical, bearing, and electrical faults with traceable for/against evidence rather than opaque ML predictions.",
+    metrics: [
+      { value: "13", label: "Diagnostic rules" },
+      { value: "30+", label: "Features extracted" },
+      { value: "ISO 10816", label: "Severity standard" },
+    ],
     highlights: [
       "Implemented 13 diagnostic rules covering unbalance, misalignment, looseness, BPFO/BPFI/BSF bearing defects, rotor bar / stator eccentricity, and spectrogram-based transient faults",
       "Extracted 30+ features per measurement: FFT, Hilbert envelope, crest factor, kurtosis, harmonic and sideband detection, STFT transients",
@@ -210,7 +198,12 @@ export const portfolio: PortfolioProject[] = [
     category: "Maritime Compliance • Expert Systems",
     type: "rnd",
     description:
-      "Multi-domain expert system that turns ship intake data into compliant, safe, economically viable recycling plans — combining hazmat tracking, structural cutting sequences, workflow DAG scheduling, and multi-framework regulatory checks.",
+      "Multi-domain expert system that turns ship intake data into compliant, safe, economically viable recycling plans, combining hazmat tracking, structural cutting sequences, workflow DAG scheduling, and multi-framework regulatory checks.",
+    metrics: [
+      { value: "204", label: "Workflow activities" },
+      { value: "4", label: "Compliance frameworks" },
+      { value: "7", label: "Report types" },
+    ],
     highlights: [
       "Intake wizard captures 40+ ship parameters; hazard identification combines declared IHM with age/type/equipment inference across 15 hazmat categories",
       "5-phase safe cutting sequence over a 4-tier component hierarchy (primary → secondary → tertiary → non-structural)",
@@ -228,6 +221,11 @@ export const portfolio: PortfolioProject[] = [
     type: "rnd",
     description:
       "Parametric sea-transport and stability analysis platform that drives Bentley MOSES through 15,000 stratified DOE cases, then feeds outputs into ML surrogates, sensitivity analysis, and multi-objective optimization.",
+    metrics: [
+      { value: "15K", label: "DOE cases" },
+      { value: "80", label: "Input parameters" },
+      { value: "28", label: "Compartments" },
+    ],
     highlights: [
       "Stratified Latin Hypercube Sampling over 4 ballast zones produces 15,000 DOE cases from 80 input parameters",
       "Automated MOSES workflow: template token replacement → model generation → physics simulation → multi-format output parsing",
@@ -246,6 +244,11 @@ export const portfolio: PortfolioProject[] = [
     type: "academic",
     description:
       "Aerodynamic flow field simulation of DLR F11 commercial aircraft in landing configuration using ANSYS Fluent on Nvidia DGX-1 supercomputer.",
+    metrics: [
+      { value: "20M", label: "Mesh elements" },
+      { value: "Re=1.35M", label: "Reynolds" },
+      { value: "NASA", label: "Wind-tunnel validated" },
+    ],
     highlights: [
       "20M-element Mosaic Poly-Hexcore mesh with k-ω SST turbulence model",
       "Simulated at Re=1.35M, Ma=0.175, V=60 m/s with slats (26.5°) and flaps (32°)",
@@ -320,6 +323,9 @@ export const portfolio: PortfolioProject[] = [
     type: "academic",
     description:
       "Web application predicting wind turbine output power and energy using Random Forest with >92% R² accuracy.",
+    metrics: [
+      { value: ">92%", label: "R² accuracy" },
+    ],
     highlights: [
       "Built Flask web app with interactive prediction interface",
       "Random Forest Regressor achieving >92% R² on energy output",

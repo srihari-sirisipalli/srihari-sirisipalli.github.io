@@ -7,6 +7,7 @@ import {
   advisoryExperience,
 } from "@/data/experience";
 import SectionWrapper from "@/components/layout/SectionWrapper";
+import ExperienceTimeline from "@/components/sections/ExperienceTimeline";
 import { fadeUp, staggerContainer } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 
@@ -14,7 +15,7 @@ type Tab = "work" | "consulting" | "advisory";
 
 const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = [
   { id: "work", label: "Work", icon: <Briefcase size={16} /> },
-  { id: "consulting", label: "Consulting", icon: <Building2 size={16} /> },
+  { id: "consulting", label: "R&D", icon: <Building2 size={16} /> },
   { id: "advisory", label: "Advisory", icon: <Lightbulb size={16} /> },
 ];
 
@@ -28,6 +29,9 @@ export default function Experience() {
         <span className="gradient-text">Experience</span>
       </h2>
       <div className="w-16 h-1 bg-primary rounded-full mb-8" />
+
+      {/* Visual overview */}
+      <ExperienceTimeline />
 
       {/* Tabs */}
       <div className="flex gap-2 mb-10">

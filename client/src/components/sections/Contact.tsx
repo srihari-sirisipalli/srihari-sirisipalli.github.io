@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
 import {
   Mail, MapPin, Linkedin, Github, Calendar,
-  Send, MessageSquare,
+  Send, MessageSquare, Download,
 } from "lucide-react";
 import { personal } from "@/data/personal";
 import SectionWrapper from "@/components/layout/SectionWrapper";
@@ -33,7 +33,7 @@ export default function Contact() {
         connect.
       </p>
 
-      {/* Quick reference links — email (mailto), LinkedIn, GitHub, location */}
+      {/* Quick reference links: email (mailto), LinkedIn, GitHub, location */}
       <div className="flex flex-wrap items-center gap-3 mb-8">
         <a
           href={`mailto:${personal.email}`}
@@ -59,6 +59,14 @@ export default function Contact() {
         >
           <Github size={14} />
           GitHub
+        </a>
+        <a
+          href={personal.resumeUrl}
+          download
+          className="flex items-center gap-2 px-3 py-2.5 rounded-lg glass text-sm text-primary hover:bg-primary/10 active:bg-primary/10 transition-colors border border-primary/20"
+        >
+          <Download size={14} />
+          Download Resume
         </a>
         <span className="flex items-center gap-2 px-3 py-2.5 text-sm text-text-dim">
           <MapPin size={14} />

@@ -76,7 +76,7 @@ export interface ConsultingRole {
 
 export const consultingRole: ConsultingRole = {
   title: "AI Systems Engineer",
-  company: "Independent Consulting & R&D",
+  company: "Independent R&D",
   period: "Jun 2023 – Present",
   location: "Contract",
   projects: [

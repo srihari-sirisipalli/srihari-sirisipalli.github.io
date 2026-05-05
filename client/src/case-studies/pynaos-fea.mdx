@@ -1,0 +1,112 @@
+## The problem
+
+Off-the-shelf FEA packages for offshore structures are expensive, closed-source, and slow to iterate against. If you want to script a new analysis driver, embed FEA inside another tool, or even just check what a commercial solver actually computed, you cannot. The brief was to build a self-contained Python FEA engine that covers the analysis types offshore work actually needs (static, dynamic, eigenvalue, buckling, including non-linear variants), pairs them with offshore-specific physics (wave loading, geotechnical p-y curves, P-Δ effects), and ships with a desktop workstation that an analyst can drive without writing Python.
+
+## Constraints
+
+- **Pure Python**: no compiled FEM dependency, no native solver linkage. Portability and embeddability come first.
+- **Six analysis drivers minimum**: linear and non-linear static, eigenvalue, linear and non-linear dynamic, buckling. Each must share the same element library.
+- **Offshore physics is non-negotiable**: Airy, Stokes, and Chakrabarti wave kinematics; Morison forces; API RP 2A p-y and t-z geotechnical curves; P-Δ effects.
+- **Reproducibility**: results must be reproducible across cold installs. Reference scenarios committed alongside expected outputs.
+- **Usable by analysts who do not script**: a desktop GUI is not optional.
+
+## Architecture
+
+<Diagram caption="Element library and physics modules feed six analysis drivers behind a single GUI">
+<svg viewBox="0 0 720 400" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto" role="img" aria-label="Architecture diagram showing element library and physics modules feeding a Skyline solver, six analysis drivers, and a desktop GUI.">
+  <defs>
+    <marker id="arrPN" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#60a5fa"/>
+    </marker>
+  </defs>
+  <g fontFamily="Inter, system-ui" fontSize="13" fill="#e2e8f0">
+    <g>
+      <rect x="40"  y="20"  width="200" height="60" rx="8" fill="rgba(96,165,250,0.10)" stroke="#60a5fa"/>
+      <text x="140" y="48" textAnchor="middle" fontWeight="600">Element library</text>
+      <text x="140" y="68" textAnchor="middle" fill="#94a3b8" fontSize="11">3D Timoshenko beam, spring, damper, mass</text>
+    </g>
+    <g>
+      <rect x="40"  y="120" width="200" height="60" rx="8" fill="rgba(34,211,238,0.10)" stroke="#22d3ee"/>
+      <text x="140" y="148" textAnchor="middle" fontWeight="600">Hydrodynamics</text>
+      <text x="140" y="168" textAnchor="middle" fill="#94a3b8" fontSize="11">Airy / Stokes / Chakrabarti, Morison</text>
+    </g>
+    <g>
+      <rect x="40"  y="220" width="200" height="60" rx="8" fill="rgba(34,211,238,0.10)" stroke="#22d3ee"/>
+      <text x="140" y="248" textAnchor="middle" fontWeight="600">Geotechnics</text>
+      <text x="140" y="268" textAnchor="middle" fill="#94a3b8" fontSize="11">API RP 2A p-y / t-z, depth of fixity</text>
+    </g>
+    <g>
+      <rect x="290" y="120" width="180" height="60" rx="8" fill="rgba(167,139,250,0.10)" stroke="#a78bfa"/>
+      <text x="380" y="148" textAnchor="middle" fontWeight="600">Skyline LDLᵀ solver</text>
+      <text x="380" y="168" textAnchor="middle" fill="#94a3b8" fontSize="11">+ Lanczos eigenvalue routine</text>
+    </g>
+    <g>
+      <rect x="510" y="20"  width="180" height="80" rx="8" fill="rgba(74,222,128,0.10)" stroke="#4ade80"/>
+      <text x="600" y="48" textAnchor="middle" fontWeight="600">Six analysis drivers</text>
+      <text x="600" y="68" textAnchor="middle" fill="#94a3b8" fontSize="11">linear / non-linear static</text>
+      <text x="600" y="84" textAnchor="middle" fill="#94a3b8" fontSize="11">eigenvalue · dynamic · buckling</text>
+    </g>
+    <g>
+      <rect x="510" y="140" width="180" height="80" rx="8" fill="rgba(96,165,250,0.10)" stroke="#60a5fa"/>
+      <text x="600" y="168" textAnchor="middle" fontWeight="600">PyQt5 + OpenGL GUI</text>
+      <text x="600" y="188" textAnchor="middle" fill="#94a3b8" fontSize="11">7 workspaces, 3D viewer</text>
+      <text x="600" y="204" textAnchor="middle" fill="#94a3b8" fontSize="11">command palette, auto-save</text>
+    </g>
+    <g>
+      <rect x="290" y="280" width="180" height="60" rx="8" fill="rgba(255,255,255,0.04)" stroke="#94a3b8"/>
+      <text x="380" y="308" textAnchor="middle" fontWeight="600">Reference scenarios</text>
+      <text x="380" y="328" textAnchor="middle" fill="#94a3b8" fontSize="11">10 cases · 593 tests · 98.6% cov</text>
+    </g>
+
+    <line x1="240" y1="50"  x2="290" y2="140" stroke="#60a5fa" markerEnd="url(#arrPN)"/>
+    <line x1="240" y1="150" x2="290" y2="150" stroke="#22d3ee" markerEnd="url(#arrPN)"/>
+    <line x1="240" y1="250" x2="290" y2="160" stroke="#22d3ee" markerEnd="url(#arrPN)"/>
+    <line x1="470" y1="140" x2="510" y2="60"  stroke="#a78bfa" markerEnd="url(#arrPN)"/>
+    <line x1="470" y1="160" x2="510" y2="170" stroke="#a78bfa" markerEnd="url(#arrPN)"/>
+    <line x1="380" y1="220" x2="380" y2="280" stroke="#94a3b8" markerEnd="url(#arrPN)"/>
+  </g>
+</svg>
+</Diagram>
+
+## Approach
+
+**Skyline storage + LDLᵀ.** Offshore-structure connectivity is sparse but banded (jacket members tie back to a small number of nodes). Skyline storage matches that pattern: only the active band per column is stored, factorisation works in place, and triangular solves are just descents through the band. For the typical 3D Timoshenko beam meshes I was targeting it beat dense storage by an order of magnitude on memory and gave a useful constant-factor win on factor + back-substitute time.
+
+**Lanczos for eigenvalues.** First n modes are what offshore work actually needs (modal analysis for fatigue spectra, mass participation, buckling factors). Full factorisation is wasted work. Lanczos converges to the lowest-magnitude eigenvalues quickly, with a re-orthogonalisation pass to keep numerical drift from contaminating the basis.
+
+**Hydrodynamics module.** Airy works for linear shallow-water cases, Stokes 5th order extends into steeper non-linear waves, Chakrabarti for current-coupled regimes. Morison gives the force on slender members from the wave kinematics. The same wave-kinematics output drives both static-equivalent and time-domain dynamic loading paths.
+
+**Geotechnical foundations.** API RP 2A p-y and t-z curves wrap the soil-pile interaction. Depth-of-fixity gets computed from the p-y curve so the bottom of the structural model can be a clean fixed boundary at a realistic depth instead of dragging soil non-linearity through the whole solve.
+
+**Desktop workstation.** PyQt5 + OpenGL viewer over the Python core. Seven analysis workspaces (one per driver, plus model setup), validation and readiness checks before a run, command palette for power users, auto-save so an analyst never loses a half-set-up case.
+
+## Results
+
+<MetricRow metrics={[
+  { value: "593", label: "Tests" },
+  { value: "98.63%", label: "Coverage" },
+  { value: "6", label: "Analysis drivers" },
+  { value: "10", label: "Reference scenarios" },
+]} />
+
+<ResultsChart
+  kind="bar"
+  caption="Solver wall-clock vs problem size (illustrative, single-thread, Skyline LDLᵀ + back-substitute)"
+  yLabel="seconds"
+  data={[
+    { size: "Small (1K DOF)",   seconds: 0.18 },
+    { size: "Medium (10K DOF)", seconds: 1.6  },
+    { size: "Large (50K DOF)",  seconds: 9.4  },
+    { size: "Huge (150K DOF)",  seconds: 41   },
+  ]}
+  xKey="size"
+  series={[{ dataKey: "seconds", label: "Wall-clock (s)", color: "#60a5fa" }]}
+/>
+
+## What broke
+
+An early non-linear dynamic release silently used the small-strain assumption inside the P-Δ branch, which gave plausible-looking but slightly under-conservative top-of-jacket displacements. Caught it because a reference scenario flagged a regression at the 4th decimal place between releases. The fix was small. The real lesson was that reference scenarios committed to git **with their expected outputs** are the cheapest insurance you can buy on a numerics codebase. Inputs alone do not catch this class of bug.
+
+## What I would do differently
+
+Start with the hydrodynamics module instead of the structural core. The structural core could have been bootstrapped from existing primitives in any number of libraries; the hydrodynamics + geotechnical layer is what makes this engine actually useful for offshore work, and getting that right earlier would have surfaced API decisions in the rest of the stack sooner.

@@ -24,7 +24,7 @@ export default function SectionWrapper({
       viewport={{ once: true, margin: "-80px" }}
       variants={variants}
     >
-      <div className="max-w-6xl mx-auto">{children}</div>
+      <div className="max-w-7xl mx-auto">{children}</div>
     </motion.section>
   );
 }

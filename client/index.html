@@ -6,16 +6,63 @@
     <meta name="theme-color" content="#0a0a0f" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <title>Sri Hari Sirisipalli - AI Systems Engineer</title>
+    <title>Sri Hari Sirisipalli | AI Systems Engineer</title>
     <meta name="description" content="AI Systems Engineer with 3+ years building production ML systems, LLM infrastructure, and automated experimentation platforms across defense, offshore, and agritech domains.">
     <meta name="keywords" content="AI Systems Engineer, ML Infrastructure, LLM, RAG, Cloud, AWS, Python, Terraform">
     <meta name="author" content="Sri Hari Sirisipalli">
+    <link rel="canonical" href="https://srihari-sirisipalli.github.io/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Sri Hari Sirisipalli - AI Systems Engineer">
-    <meta property="og:description" content="AI Systems Engineer building production ML systems, LLM infrastructure, and automated experimentation platforms.">
+    <meta property="og:title" content="Sri Hari Sirisipalli | AI Systems Engineer">
+    <meta property="og:description" content="3+ years building production ML systems, LLM infrastructure, and automated experimentation platforms across defense, offshore, and agritech.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://srihari-sirisipalli.github.io">
+    <meta property="og:url" content="https://srihari-sirisipalli.github.io/">
+    <meta property="og:image" content="https://srihari-sirisipalli.github.io/og-image.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Sri Hari Sirisipalli">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sri Hari Sirisipalli | AI Systems Engineer">
+    <meta name="twitter:description" content="3+ years building production ML systems, LLM infrastructure, and automated experimentation platforms.">
+    <meta name="twitter:image" content="https://srihari-sirisipalli.github.io/og-image.svg">
+
+    <!-- JSON-LD Person schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Sri Hari Sirisipalli",
+      "jobTitle": "AI Systems Engineer",
+      "url": "https://srihari-sirisipalli.github.io/",
+      "image": "https://srihari-sirisipalli.github.io/og-image.svg",
+      "email": "mailto:sriharisirisipalli0@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Visakhapatnam",
+        "addressCountry": "IN"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/sri-hari-sirisipalli-8297a01b1/",
+        "https://github.com/srihari-sirisipalli"
+      ],
+      "knowsAbout": [
+        "Machine Learning Infrastructure",
+        "Large Language Models",
+        "Retrieval-Augmented Generation",
+        "AWS Cloud Architecture",
+        "Terraform",
+        "ML Surrogate Modeling",
+        "Offshore Engineering",
+        "Computer Vision"
+      ]
+    }
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,6 +70,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
   </head>
   <body>
+    <!-- SPA redirect decoder. Partner of public/404.html. Restores the original path
+         from the ?/ query string before React mounts so the router sees the real URL. -->
+    <script>
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search.slice(1).split('&').map(function (s) {
+            return s.replace(/~and~/g, '&');
+          }).join('?');
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      })(window.location);
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

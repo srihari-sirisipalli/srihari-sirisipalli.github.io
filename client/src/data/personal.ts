@@ -8,7 +8,7 @@ export const personal = {
   ],
   bio: [
     "AI Systems Engineer with 3+ years building production ML systems, LLM infrastructure, and automated experimentation platforms. I design retrain-to-predict pipelines, offline RAG architectures, and end-to-end ML infrastructure across defense, offshore, and agritech domains.",
-    "I specialize in bridging the gap between ML research and production — from building offline AI avatars with real-time lip-sync to engineering automated ML pipelines that evaluate hundreds of model configurations across varying conditions and parameters.",
+    "I specialize in bridging the gap between ML research and production. That looks like building offline AI avatars with real-time lip-sync, or engineering automated ML pipelines that evaluate hundreds of model configurations across varying conditions and parameters.",
   ],
   stats: [
     { value: 3, suffix: "+", label: "Years Experience" },

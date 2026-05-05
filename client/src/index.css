@@ -53,14 +53,6 @@ body {
   background: rgba(96, 165, 250, 0.5);
 }
 
-/* Custom cursor - hide default on desktop */
-@media (hover: hover) and (pointer: fine) {
-  body.custom-cursor,
-  body.custom-cursor * {
-    cursor: none !important;
-  }
-}
-
 ::selection {
   background: rgba(96, 165, 250, 0.3);
   color: #fff;
@@ -128,34 +120,123 @@ body {
   opacity: 1;
 }
 
-/* Terminal */
-.terminal-window {
-  background: rgba(10, 10, 15, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-}
-
-.terminal-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.03);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.terminal-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
-
 /* Section divider */
 .section-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.3), transparent);
+}
+
+/* Case-study MDX prose */
+.case-study-prose {
+  color: #94a3b8;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.case-study-prose > * + * {
+  margin-top: 1rem;
+}
+.case-study-prose h2 {
+  color: #e2e8f0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-top: 3rem;
+  margin-bottom: 0.75rem;
+  scroll-margin-top: 5rem;
+}
+.case-study-prose h3 {
+  color: #e2e8f0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  scroll-margin-top: 5rem;
+}
+.case-study-prose p {
+  color: #94a3b8;
+}
+.case-study-prose strong {
+  color: #e2e8f0;
+  font-weight: 600;
+}
+.case-study-prose a {
+  color: #60a5fa;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(96, 165, 250, 0.4);
+}
+.case-study-prose a:hover {
+  text-decoration-color: #60a5fa;
+}
+.case-study-prose ul,
+.case-study-prose ol {
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.case-study-prose ul {
+  list-style: none;
+}
+.case-study-prose ul > li {
+  position: relative;
+  padding-left: 1rem;
+}
+.case-study-prose ul > li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: #60a5fa;
+}
+.case-study-prose ol {
+  list-style: decimal;
+}
+.case-study-prose ol > li::marker {
+  color: #60a5fa;
+  font-family: "Fira Code", monospace;
+}
+.case-study-prose code {
+  background: rgba(255, 255, 255, 0.06);
+  color: #c4b5fd;
+  font-family: "Fira Code", Consolas, monospace;
+  font-size: 0.875em;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+.case-study-prose pre {
+  background: #12121a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.case-study-prose pre code {
+  background: transparent;
+  color: #e2e8f0;
+  padding: 0;
+}
+.case-study-prose blockquote {
+  border-left: 2px solid #60a5fa;
+  padding-left: 1rem;
+  color: #cbd5e1;
+  font-style: italic;
+}
+.case-study-prose hr {
+  border: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 2.5rem 0;
+}
+.case-study-prose .not-prose,
+.case-study-prose .not-prose * {
+  /* Allow custom MDX components to opt out of prose defaults */
+}
+.case-study-prose .not-prose + * {
+  margin-top: 0;
 }
 
 /* Reduce motion for accessibility */

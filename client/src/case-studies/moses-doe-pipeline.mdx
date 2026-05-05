@@ -1,0 +1,119 @@
+## The problem
+
+Bentley MOSES is the offshore-engineering standard for sea-transport hydrodynamics, but it's a single-case GUI tool. To explore design space at any meaningful resolution you need to drive it programmatically across thousands of parameter combinations, parse its multi-format outputs, and feed the results into something that lets you ask new questions without re-running the simulator. None of that is built in.
+
+The brief was: characterise stability and motions for a large barge across a wide ballast envelope, then train surrogate models so engineers can iterate at design time instead of waiting for the next simulation queue.
+
+## Constraints
+
+- **MOSES is licensed**: every case spends a license-second. The pipeline must skip already-completed work after any restart and never accidentally re-run.
+- **Outputs are text + Excel + binary**: you can't just pickle them. The parser has to be defensive against MOSES warning lines, layout changes, and partial completions.
+- **The DOE has to actually cover** the operational envelope. Naive uniform sampling misclusters. Stratification matters.
+- **15,000 cases × dozens of derived quantities** is enough that orchestration and storage need to be deliberate, not improvised.
+
+## Architecture
+
+<Diagram caption="MOSES DOE → ML surrogate pipeline">
+<svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto" role="img" aria-label="Pipeline diagram showing stratified LHS sampling feeding into MOSES batch execution, output parsing, and downstream ML and sensitivity analysis modules.">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#60a5fa"/>
+    </marker>
+  </defs>
+  <g fontFamily="Inter, system-ui" fontSize="13" fill="#e2e8f0">
+    <g>
+      <rect x="40"  y="20"  width="180" height="60" rx="8" fill="rgba(96,165,250,0.10)" stroke="#60a5fa"/>
+      <text x="130" y="48" textAnchor="middle" fontWeight="600">Stratified LHS</text>
+      <text x="130" y="68" textAnchor="middle" fill="#94a3b8" fontSize="11">80 inputs · 4 ballast zones</text>
+    </g>
+    <g>
+      <rect x="270" y="20"  width="180" height="60" rx="8" fill="rgba(96,165,250,0.10)" stroke="#60a5fa"/>
+      <text x="360" y="48" textAnchor="middle" fontWeight="600">Template render</text>
+      <text x="360" y="68" textAnchor="middle" fill="#94a3b8" fontSize="11">15K MOSES input decks</text>
+    </g>
+    <g>
+      <rect x="500" y="20"  width="180" height="60" rx="8" fill="rgba(96,165,250,0.10)" stroke="#60a5fa"/>
+      <text x="590" y="48" textAnchor="middle" fontWeight="600">Resumable orchestrator</text>
+      <text x="590" y="68" textAnchor="middle" fill="#94a3b8" fontSize="11">CLI · GUI · markers</text>
+    </g>
+    <g>
+      <rect x="270" y="120" width="180" height="60" rx="8" fill="rgba(167,139,250,0.10)" stroke="#a78bfa"/>
+      <text x="360" y="148" textAnchor="middle" fontWeight="600">MOSES execution</text>
+      <text x="360" y="168" textAnchor="middle" fill="#94a3b8" fontSize="11">Bentley MOSES 2024</text>
+    </g>
+    <g>
+      <rect x="270" y="220" width="180" height="60" rx="8" fill="rgba(34,211,238,0.10)" stroke="#22d3ee"/>
+      <text x="360" y="248" textAnchor="middle" fontWeight="600">Output parser</text>
+      <text x="360" y="268" textAnchor="middle" fill="#94a3b8" fontSize="11">12-sheet workbook / case</text>
+    </g>
+    <g>
+      <rect x="40"  y="320" width="200" height="80" rx="8" fill="rgba(74,222,128,0.10)" stroke="#4ade80"/>
+      <text x="140" y="350" textAnchor="middle" fontWeight="600">ML surrogates</text>
+      <text x="140" y="372" textAnchor="middle" fill="#94a3b8" fontSize="11">XGBoost · LightGBM · PyTorch</text>
+      <text x="140" y="388" textAnchor="middle" fill="#94a3b8" fontSize="11">stability classifier · motion regressor</text>
+    </g>
+    <g>
+      <rect x="265" y="320" width="200" height="80" rx="8" fill="rgba(74,222,128,0.10)" stroke="#4ade80"/>
+      <text x="365" y="350" textAnchor="middle" fontWeight="600">Sensitivity</text>
+      <text x="365" y="372" textAnchor="middle" fill="#94a3b8" fontSize="11">Sobol · Morris (SALib)</text>
+      <text x="365" y="388" textAnchor="middle" fill="#94a3b8" fontSize="11">SHAP attribution</text>
+    </g>
+    <g>
+      <rect x="490" y="320" width="200" height="80" rx="8" fill="rgba(74,222,128,0.10)" stroke="#4ade80"/>
+      <text x="590" y="350" textAnchor="middle" fontWeight="600">Optimization</text>
+      <text x="590" y="372" textAnchor="middle" fill="#94a3b8" fontSize="11">Optuna · PyMoo NSGA-II</text>
+      <text x="590" y="388" textAnchor="middle" fill="#94a3b8" fontSize="11">multi-objective ballast plans</text>
+    </g>
+
+    <line x1="220" y1="50"  x2="270" y2="50"  stroke="#60a5fa" markerEnd="url(#arr)"/>
+    <line x1="450" y1="50"  x2="500" y2="50"  stroke="#60a5fa" markerEnd="url(#arr)"/>
+    <line x1="590" y1="80"  x2="450" y2="150" stroke="#60a5fa" markerEnd="url(#arr)"/>
+    <line x1="360" y1="180" x2="360" y2="220" stroke="#22d3ee" markerEnd="url(#arr)"/>
+    <line x1="320" y1="280" x2="180" y2="320" stroke="#4ade80" markerEnd="url(#arr)"/>
+    <line x1="360" y1="280" x2="365" y2="320" stroke="#4ade80" markerEnd="url(#arr)"/>
+    <line x1="400" y1="280" x2="540" y2="320" stroke="#4ade80" markerEnd="url(#arr)"/>
+  </g>
+</svg>
+</Diagram>
+
+## Approach
+
+**Sampling.** Uniform Latin Hypercube over 80 inputs leaves the operational corners under-sampled because MOSES outcomes are non-linear in ballast distribution. The fix was 4-zone stratification (Light / Medium / Heavy / Mixed) with per-zone LHS, then concatenation and shuffling. The same code path generates train/test splits at sample time so downstream surrogate training is leakage-controlled.
+
+**Orchestration.** Each case writes a marker file when it finishes parsing. Restarting the orchestrator skips any case whose marker exists. That single primitive cost an afternoon to implement and saved every subsequent re-run.
+
+**Parsing.** Per-case output landed as one 12-sheet `.xlsx` workbook covering 6-DOF motions and accelerations at flotation and motion points, longitudinal bending moment / shear force, intact and damage stability across 28 compartments, and weight distribution. The parser is paranoid by design: bad cases are quarantined, never silently dropped.
+
+**Surrogates.** Two heads were trained: a stability classifier (passes IMO criteria yes/no) and a motion regressor (peak-period responses). XGBoost and LightGBM as the workhorses; a small PyTorch MLP for the motion targets where smoothness mattered. SHAP for feature attribution.
+
+**Optimisation.** Optuna for single-objective ballast tuning, PyMoo NSGA-II for the multi-objective stability-vs-motion frontier. Both run on top of the surrogate, not the simulator, so design iterations cost milliseconds instead of minutes.
+
+## Results
+
+<MetricRow metrics={[
+  { value: "15,000", label: "DOE cases automated" },
+  { value: "0", label: "Cases re-run on restart" },
+  { value: "12", label: "Output sheets / case" },
+  { value: "ms", label: "Surrogate inference" },
+]} />
+
+<ResultsChart
+  kind="bar"
+  caption="Per-case wall-clock: analytical MOSES run vs surrogate inference (log scale, illustrative)"
+  yLabel="seconds (log)"
+  data={[
+    { stage: "MOSES sim",    seconds: 240 },
+    { stage: "Output parse", seconds: 6   },
+    { stage: "Surrogate",    seconds: 0.001 },
+  ]}
+  xKey="stage"
+  series={[{ dataKey: "seconds", label: "wall-clock (s)", color: "#60a5fa" }]}
+/>
+
+## What broke
+
+The first parser was naive about MOSES warning lines. Three of them shifted column offsets in a way that silently produced offset bending-moment values for ~40 cases. Caught it during sensitivity analysis when SHAP flagged a feature whose physical relationship made no sense. Lesson: parser tests using known-good reference cases should run *before* a long DOE batch, not after. The parser now re-validates against six reference checksums on every cold start.
+
+## What I'd do differently
+
+Push more of the DOE-side metadata (zone, seed, generation timestamp) directly into the case marker file instead of recomputing from the case index. Ten minutes of work that would have made a couple of post-hoc analyses much cleaner.

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="nameGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="50%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+    <radialGradient id="bgGlow1" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#0a0a0f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bgGlow2" cx="80%" cy="80%" r="50%">
+      <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#0a0a0f" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0a0a0f"/>
+  <rect width="1200" height="630" fill="url(#bgGlow1)"/>
+  <rect width="1200" height="630" fill="url(#bgGlow2)"/>
+
+  <g font-family="Inter, system-ui, sans-serif">
+    <text x="80" y="140" font-size="22" fill="#60a5fa" font-family="Fira Code, Consolas, monospace">$ whoami</text>
+
+    <text x="80" y="240" font-size="78" font-weight="700" fill="url(#nameGrad)">Sri Hari Sirisipalli</text>
+
+    <text x="80" y="305" font-size="36" font-weight="500" fill="#94a3b8">AI Systems Engineer</text>
+
+    <text x="80" y="380" font-size="26" fill="#e2e8f0">Production ML systems · LLM infrastructure</text>
+    <text x="80" y="418" font-size="26" fill="#e2e8f0">Automated experimentation · Defense · Offshore · Agritech</text>
+
+    <g transform="translate(80, 490)" font-family="Fira Code, Consolas, monospace">
+      <g transform="translate(0, 0)">
+        <rect width="240" height="80" rx="8" fill="rgba(96,165,250,0.10)" stroke="rgba(96,165,250,0.30)"/>
+        <text x="20" y="36" font-size="28" font-weight="700" fill="#60a5fa">30%</text>
+        <text x="20" y="62" font-size="13" fill="#94a3b8" letter-spacing="1.5">INFRA COST DOWN</text>
+      </g>
+      <g transform="translate(260, 0)">
+        <rect width="240" height="80" rx="8" fill="rgba(96,165,250,0.10)" stroke="rgba(96,165,250,0.30)"/>
+        <text x="20" y="36" font-size="28" font-weight="700" fill="#60a5fa">R² 0.999</text>
+        <text x="20" y="62" font-size="13" fill="#94a3b8" letter-spacing="1.5">WAVE-HEIGHT MODEL</text>
+      </g>
+      <g transform="translate(520, 0)">
+        <rect width="240" height="80" rx="8" fill="rgba(96,165,250,0.10)" stroke="rgba(96,165,250,0.30)"/>
+        <text x="20" y="36" font-size="28" font-weight="700" fill="#60a5fa">15K</text>
+        <text x="20" y="62" font-size="13" fill="#94a3b8" letter-spacing="1.5">DOE CASES AUTOMATED</text>
+      </g>
+      <g transform="translate(780, 0)">
+        <rect width="240" height="80" rx="8" fill="rgba(96,165,250,0.10)" stroke="rgba(96,165,250,0.30)"/>
+        <text x="20" y="36" font-size="28" font-weight="700" fill="#60a5fa">5–7×</text>
+        <text x="20" y="62" font-size="13" fill="#94a3b8" letter-spacing="1.5">LLM THROUGHPUT UP</text>
+      </g>
+    </g>
+  </g>
+</svg>

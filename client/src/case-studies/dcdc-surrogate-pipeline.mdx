@@ -1,0 +1,118 @@
+## The problem
+
+The dual-input DC-DC converter has an analytical state-space description that is correct but slow. Forward evaluation costs hundreds of milliseconds. For inverse design (pick parameters that hit a target steady-state and gain matrix), you need somewhere between 10⁴ and 10⁵ forward evaluations per query, which puts the round-trip in the hours. The fix was an ML surrogate that approximates the analytical solver in tens of microseconds, plus an out-of-distribution gate so the surrogate refuses to answer where it should not be trusted, plus a differential-evolution loop that uses the surrogate as the inner-loop oracle for inverse design.
+
+## Constraints
+
+- **Match the analytical solver tightly**: targeting R² > 0.95 on the held-out test, ideally above 0.98.
+- **Fail loudly out of distribution**: a silent bad surrogate is worse than no surrogate at all.
+- **Respect the physics**: outputs include a 4×4 gain matrix whose rows must sum to a known constant (the Relative Gain Array identity). The model has to satisfy that, not just statistically approach it.
+- **Reproducibility for publication**: the entire pipeline, from dataset generation through paper-ready figures and tables, has to run end-to-end from a single script suite.
+
+## Architecture
+
+<Diagram caption="LHS dataset feeds model training, OOD detection, and a differential-evolution inverse-design loop">
+<svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto" role="img" aria-label="Architecture diagram showing LHS dataset generation feeding model training, a 5-layer OOD detector, and a differential-evolution inverse-design GUI.">
+  <defs>
+    <marker id="arrDC" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#60a5fa"/>
+    </marker>
+  </defs>
+  <g fontFamily="Inter, system-ui" fontSize="13" fill="#e2e8f0">
+    <g>
+      <rect x="40"  y="20"  width="200" height="60" rx="8" fill="rgba(96,165,250,0.10)" stroke="#60a5fa"/>
+      <text x="140" y="48" textAnchor="middle" fontWeight="600">LHS dataset</text>
+      <text x="140" y="68" textAnchor="middle" fill="#94a3b8" fontSize="11">5,000 samples · 13 inputs → 12 outputs</text>
+    </g>
+    <g>
+      <rect x="40"  y="120" width="200" height="80" rx="8" fill="rgba(167,139,250,0.10)" stroke="#a78bfa"/>
+      <text x="140" y="148" textAnchor="middle" fontWeight="600">Model training</text>
+      <text x="140" y="168" textAnchor="middle" fill="#94a3b8" fontSize="11">4 formulations × 3 families</text>
+      <text x="140" y="184" textAnchor="middle" fill="#94a3b8" fontSize="11">RF · XGBoost · MLP</text>
+    </g>
+    <g>
+      <rect x="290" y="120" width="180" height="80" rx="8" fill="rgba(34,211,238,0.10)" stroke="#22d3ee"/>
+      <text x="380" y="148" textAnchor="middle" fontWeight="600">PINN constraint</text>
+      <text x="380" y="168" textAnchor="middle" fill="#94a3b8" fontSize="11">RGA row-sum identity</text>
+      <text x="380" y="184" textAnchor="middle" fill="#94a3b8" fontSize="11">enforced in loss</text>
+    </g>
+    <g>
+      <rect x="510" y="120" width="180" height="80" rx="8" fill="rgba(74,222,128,0.10)" stroke="#4ade80"/>
+      <text x="600" y="148" textAnchor="middle" fontWeight="600">5-layer OOD gate</text>
+      <text x="600" y="168" textAnchor="middle" fill="#94a3b8" fontSize="11">Mahalanobis · ensemble var</text>
+      <text x="600" y="184" textAnchor="middle" fill="#94a3b8" fontSize="11">physics residual · bounds · RGA</text>
+    </g>
+    <g>
+      <rect x="290" y="240" width="180" height="60" rx="8" fill="rgba(96,165,250,0.10)" stroke="#60a5fa"/>
+      <text x="380" y="268" textAnchor="middle" fontWeight="600">Forward surrogate</text>
+      <text x="380" y="288" textAnchor="middle" fill="#94a3b8" fontSize="11">~60 µs per call</text>
+    </g>
+    <g>
+      <rect x="290" y="340" width="180" height="60" rx="8" fill="rgba(167,139,250,0.10)" stroke="#a78bfa"/>
+      <text x="380" y="368" textAnchor="middle" fontWeight="600">Differential evolution</text>
+      <text x="380" y="388" textAnchor="middle" fill="#94a3b8" fontSize="11">5–10 s per inverse query</text>
+    </g>
+    <g>
+      <rect x="510" y="340" width="180" height="60" rx="8" fill="rgba(255,255,255,0.04)" stroke="#94a3b8"/>
+      <text x="600" y="368" textAnchor="middle" fontWeight="600">PyQt5 GUI</text>
+      <text x="600" y="388" textAnchor="middle" fill="#94a3b8" fontSize="11">parameter pinning, target spec</text>
+    </g>
+
+    <line x1="140" y1="80"  x2="140" y2="120" stroke="#60a5fa" markerEnd="url(#arrDC)"/>
+    <line x1="240" y1="160" x2="290" y2="160" stroke="#a78bfa" markerEnd="url(#arrDC)"/>
+    <line x1="470" y1="160" x2="510" y2="160" stroke="#22d3ee" markerEnd="url(#arrDC)"/>
+    <line x1="380" y1="200" x2="380" y2="240" stroke="#4ade80" markerEnd="url(#arrDC)"/>
+    <line x1="600" y1="200" x2="450" y2="240" stroke="#4ade80" markerEnd="url(#arrDC)"/>
+    <line x1="380" y1="300" x2="380" y2="340" stroke="#60a5fa" markerEnd="url(#arrDC)"/>
+    <line x1="470" y1="370" x2="510" y2="370" stroke="#a78bfa" markerEnd="url(#arrDC)"/>
+  </g>
+</svg>
+</Diagram>
+
+## Approach
+
+**LHS dataset.** Latin Hypercube Sampling over 13 inputs (dual voltages, duty cycles, passive component values) gives 5,000 samples with even coverage across the design space. Labels are 12 outputs from the analytical solver: steady-state values, the small-signal gain matrix, and the Relative Gain Array (RGA).
+
+**Model bake-off.** 4 formulations × 3 model families. The formulations differ in how outputs are factored (joint vs decomposed, normalised vs raw). The families are Random Forest, XGBoost, and a tabular MLP. Best XGBoost hit R² = 0.985 on the held-out test set. The other families came within striking distance, and the choice rested on consistency, not raw peak.
+
+**PINN for the row-sum identity.** The RGA is a 4×4 matrix whose rows are guaranteed to sum to 1 by the underlying physics. A pure data-driven model gets close but not identical; that residual is uncomfortable for downstream users. Adding a soft penalty term in the MLP loss for row-sum deviation pushed the violation below 1e-6 without measurably hurting R² on the other outputs.
+
+**5-layer OOD detection.** Five independent signals fire when the surrogate should not be trusted: (1) Mahalanobis distance from training covariance, (2) ensemble variance across model families, (3) physics residual (RGA row-sum, gain symmetry), (4) hard input bounds, (5) RGA consistency check between predicted RGA and analytically derived RGA from predicted gains. Any layer can veto. False-positive rate is acceptable; false-negative cost is not.
+
+**Inverse design.** Differential evolution drives the inner loop with the surrogate as the oracle. Five to ten seconds per query for typical targets, multi-thousands of forward evaluations per query, all of which would have been hours on the analytical solver. The PyQt5 GUI lets the user pin some inputs and let DE search over the rest.
+
+## Results
+
+<MetricRow metrics={[
+  { value: "R² 0.985", label: "Best XGBoost" },
+  { value: "~10⁴×", label: "Inference speedup" },
+  { value: "~60 µs", label: "Per call" },
+  { value: "5K", label: "LHS samples" },
+  { value: "7", label: "IEEE-Trans drafts" },
+]} />
+
+<ResultsChart
+  kind="bar"
+  caption="R² on the held-out test set across model families and formulations"
+  yLabel="R²"
+  data={[
+    { model: "RF",      m1: 0.94,  m2: 0.95,  m3: 0.96,  m4: 0.96  },
+    { model: "XGBoost", m1: 0.97,  m2: 0.98,  m3: 0.985, m4: 0.985 },
+    { model: "MLP",     m1: 0.95,  m2: 0.96,  m3: 0.97,  m4: 0.98  },
+  ]}
+  xKey="model"
+  series={[
+    { dataKey: "m1", label: "M1", color: "#60a5fa" },
+    { dataKey: "m2", label: "M2", color: "#a78bfa" },
+    { dataKey: "m3", label: "M3", color: "#22d3ee" },
+    { dataKey: "m4", label: "M4", color: "#4ade80" },
+  ]}
+/>
+
+## What broke
+
+First inverse-design results converged to non-physical parameter settings near the boundary of the input space. The OOD detector at that point only had three layers (Mahalanobis, ensemble variance, physics residual). Adding the bounds-check (layer 4) and the RGA-consistency check (layer 5) caught those cases. After the addition, no inverse-design run produced a surrogate-blessed parameter set that the analytical solver later rejected.
+
+## What I would do differently
+
+Design the OOD layer **before** model selection, not after. Surrogate accuracy buys nothing if you cannot tell when to trust the surrogate, and the OOD layer ends up shaping which families are even worth training (ensembles are an OOD signal source, not just a metric improvement).

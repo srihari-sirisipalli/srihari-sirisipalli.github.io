@@ -1,0 +1,99 @@
+## The problem
+
+Patent prior-art search at scale is two coupled problems: (1) you need semantically meaningful similarity between long, jargon-heavy documents, and (2) you need to evaluate thousands of pairs per day without paying enterprise-grade infrastructure rates. The original system at Pangeon ran the embedding + scoring stack on always-on EC2 instances. Throughput was bounded by node count, costs were bounded by node uptime, and both were higher than they should have been for a workload that's bursty by nature.
+
+## Constraints
+
+- **Throughput floor**: 1,000+ similarity evaluations per day, with day-of bursts well above that.
+- **Latency ceiling**: humans wait on this. First results must surface in seconds, not minutes.
+- **Cost ceiling**: trim infra spend without making the system fragile under burst.
+- **Reproducibility**: cross-account deploys for client environments. IaC must be the source of truth.
+
+## Architecture
+
+<Diagram caption="Embedding + LLM-scored similarity pipeline on AWS Lambda">
+<svg viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto" role="img" aria-label="Architecture diagram showing client request fanning into a coordinator Lambda which queries a FAISS vector store and dispatches scoring Lambdas, with results aggregated and returned.">
+  <defs>
+    <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#60a5fa"/>
+    </marker>
+  </defs>
+  <g fontFamily="Inter, system-ui" fontSize="13" fill="#e2e8f0">
+    <g>
+      <rect x="40" y="160" width="140" height="60" rx="8" fill="rgba(255,255,255,0.04)" stroke="#94a3b8"/>
+      <text x="110" y="188" textAnchor="middle" fontWeight="600">Client</text>
+      <text x="110" y="208" textAnchor="middle" fill="#94a3b8" fontSize="11">React UI · API call</text>
+    </g>
+    <g>
+      <rect x="240" y="160" width="180" height="60" rx="8" fill="rgba(96,165,250,0.10)" stroke="#60a5fa"/>
+      <text x="330" y="188" textAnchor="middle" fontWeight="600">Coordinator λ</text>
+      <text x="330" y="208" textAnchor="middle" fill="#94a3b8" fontSize="11">embed query · top-k retrieval</text>
+    </g>
+    <g>
+      <rect x="480" y="40" width="200" height="60" rx="8" fill="rgba(34,211,238,0.10)" stroke="#22d3ee"/>
+      <text x="580" y="68" textAnchor="middle" fontWeight="600">FAISS vector store</text>
+      <text x="580" y="88" textAnchor="middle" fill="#94a3b8" fontSize="11">millions of patent abstracts</text>
+    </g>
+    <g>
+      <rect x="480" y="160" width="200" height="60" rx="8" fill="rgba(167,139,250,0.10)" stroke="#a78bfa"/>
+      <text x="580" y="188" textAnchor="middle" fontWeight="600">LLM scoring λ × N</text>
+      <text x="580" y="208" textAnchor="middle" fill="#94a3b8" fontSize="11">parallel per-pair semantic score</text>
+    </g>
+    <g>
+      <rect x="240" y="280" width="180" height="60" rx="8" fill="rgba(74,222,128,0.10)" stroke="#4ade80"/>
+      <text x="330" y="308" textAnchor="middle" fontWeight="600">Aggregator</text>
+      <text x="330" y="328" textAnchor="middle" fill="#94a3b8" fontSize="11">rank · merge · return</text>
+    </g>
+
+    <line x1="180" y1="190" x2="240" y2="190" stroke="#60a5fa" markerEnd="url(#arr2)"/>
+    <line x1="420" y1="180" x2="480" y2="80"  stroke="#22d3ee" markerEnd="url(#arr2)"/>
+    <line x1="480" y1="80"  x2="420" y2="180" stroke="#22d3ee" markerEnd="url(#arr2)"/>
+    <line x1="420" y1="195" x2="480" y2="190" stroke="#a78bfa" markerEnd="url(#arr2)"/>
+    <line x1="480" y1="200" x2="420" y2="200" stroke="#a78bfa" markerEnd="url(#arr2)"/>
+    <line x1="330" y1="220" x2="330" y2="280" stroke="#4ade80" markerEnd="url(#arr2)"/>
+    <line x1="240" y1="305" x2="180" y2="220" stroke="#4ade80" markerEnd="url(#arr2)"/>
+  </g>
+</svg>
+</Diagram>
+
+## Approach
+
+**Re-architecting onto Lambda.** The dominant cost on EC2 was idle capacity. Instances sized for peak burst sat near-empty 80%+ of the time. Re-shaping the workload as a coordinator Lambda + a fan-out of scoring Lambdas matched the bursty traffic pattern directly. Cold starts for the embedding container were the obvious risk; pre-warmed concurrency on the coordinator path solved the user-perceived latency without paying for permanent capacity on the scoring path.
+
+**Vector retrieval.** FAISS index built over patent abstract embeddings, sharded by classification block. Top-k retrieval on the coordinator side narrows the candidate set before LLM scoring is paid for. The LLM is the unit-cost driver, so anything that reduces its call count compounds.
+
+**Async + multiprocessing.** Per-request, the scoring fan-out is async to AWS; per-Lambda, the inner loop uses multiprocessing for batch scoring of the candidate window. Two independent levels of parallelism, both bounded by configuration, both visible in CloudWatch.
+
+**Terraform IaC.** Every account gets the same stack via Terraform: Amplify front, Lambda compute, IAM, monitoring, security baseline. New client environments are a `terraform apply` away, not a runbook.
+
+## Results
+
+<MetricRow metrics={[
+  { value: "30%", label: "Infra cost ↓" },
+  { value: "5–7×", label: "Throughput ↑" },
+  { value: "1K+/day", label: "Patent evals" },
+]} />
+
+<ResultsChart
+  kind="bar"
+  caption="Cost per 1,000 evaluations and end-to-end batch wall-time, before vs after the Lambda re-architecture"
+  data={[
+    { metric: "Cost / 1K evals (rel.)", before: 100, after: 70 },
+    { metric: "Batch wall-time (rel.)", before: 100, after: 18 },
+  ]}
+  xKey="metric"
+  series={[
+    { dataKey: "before", label: "EC2 baseline", color: "#94a3b8" },
+    { dataKey: "after",  label: "Lambda + IaC", color: "#60a5fa" },
+  ]}
+/>
+
+## What broke
+
+Initial Lambda concurrency limits clipped the scoring fan-out under burst. The queue grew faster than the function scaled. Catching it required a CloudWatch dashboard that explicitly tracked invocations vs concurrency cap rather than just function errors. Once the cap was raised and a fall-through to async invocation was added, peak-day throughput stopped degrading.
+
+The vector store also needed re-sharding twice as the corpus grew. The first split was by classification chunk and got hot for a couple of common classes; the second pass added a secondary hash dimension. Worth doing earlier next time.
+
+## What I'd do differently
+
+Bake batch-mode evaluation into the API from day one. The system was built for interactive scoring and grew batch endpoints later, which would have been simpler if planned alongside the original design.

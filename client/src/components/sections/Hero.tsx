@@ -1,168 +1,123 @@
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowDown, Linkedin, Github } from "lucide-react";
+import { ArrowDown, Download, Linkedin, Github } from "lucide-react";
 import { personal } from "@/data/personal";
-import ParticleField from "@/components/ui/ParticleField";
+
+const heroStats: { value: string; label: string }[] = [
+  { value: "30%", label: "Infra cost reduced" },
+  { value: "5–7×", label: "Throughput gain" },
+  { value: "R² 0.999", label: "Wave-height accuracy" },
+  { value: "15K", label: "DOE cases automated" },
+];
+
+function scrollToId(id: string) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const y = el.getBoundingClientRect().top + window.scrollY - 70;
+  window.scrollTo({ top: y, behavior: "smooth" });
+  window.history.replaceState(null, "", `#${id}`);
+}
 
 export default function Hero() {
-  const [displayText, setDisplayText] = useState("");
-  const [lineIndex, setLineIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  const lines = personal.roles;
-
-  useEffect(() => {
-    const currentLine = lines[lineIndex];
-
-    if (!isDeleting && charIndex < currentLine.length) {
-      const timer = setTimeout(() => setCharIndex((c) => c + 1), 60);
-      return () => clearTimeout(timer);
-    }
-
-    if (!isDeleting && charIndex === currentLine.length) {
-      const timer = setTimeout(() => setIsDeleting(true), 2000);
-      return () => clearTimeout(timer);
-    }
-
-    if (isDeleting && charIndex > 0) {
-      const timer = setTimeout(() => setCharIndex((c) => c - 1), 30);
-      return () => clearTimeout(timer);
-    }
-
-    if (isDeleting && charIndex === 0) {
-      setIsDeleting(false);
-      setLineIndex((i) => (i + 1) % lines.length);
-    }
-  }, [charIndex, isDeleting, lineIndex, lines]);
-
-  useEffect(() => {
-    setDisplayText(lines[lineIndex].slice(0, charIndex));
-  }, [charIndex, lineIndex, lines]);
-
   const iconMap: Record<string, React.ReactNode> = {
-    LinkedIn: <Linkedin size={18} />,
-    GitHub: <Github size={18} />,
+    LinkedIn: <Linkedin size={18} aria-hidden="true" />,
+    GitHub: <Github size={18} aria-hidden="true" />,
   };
 
   return (
-    <section className="relative min-h-[100svh] min-h-screen flex items-center justify-center overflow-hidden">
-      <ParticleField />
+    <section className="relative min-h-[100svh] min-h-screen flex items-center overflow-hidden">
+      {/* Static gradient backdrop, replaces particle field */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% 30%, rgba(96,165,250,0.08), transparent 60%), radial-gradient(ellipse 60% 50% at 80% 80%, rgba(167,139,250,0.06), transparent 60%)",
+        }}
+      />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-        {/* Terminal window */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-24">
+        {/* Identity */}
         <motion.div
-          className="terminal-window max-w-2xl mx-auto text-left mb-10"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.6 }}
         >
-          <div className="terminal-header">
-            <div className="terminal-dot bg-terminal-red" />
-            <div className="terminal-dot bg-terminal-yellow" />
-            <div className="terminal-dot bg-terminal-green" />
-            <span className="ml-2 text-xs text-text-dim font-mono">
-              sri_hari@portfolio ~ $
-            </span>
-          </div>
-          <div className="p-5 md:p-6 font-mono text-sm md:text-base leading-relaxed">
-            <p className="text-text-dim">
-              <span className="text-terminal-purple">const</span>{" "}
-              <span className="text-terminal-blue">engineer</span>{" "}
-              <span className="text-text-dim">=</span>{" "}
-              <span className="text-terminal-yellow">{"{"}</span>
-            </p>
-            <p className="pl-4">
-              <span className="text-terminal-cyan">name</span>
-              <span className="text-text-dim">:</span>{" "}
-              <span className="text-terminal-green">
-                "{personal.name}"
-              </span>
-              <span className="text-text-dim">,</span>
-            </p>
-            <p className="pl-4">
-              <span className="text-terminal-cyan">role</span>
-              <span className="text-text-dim">:</span>{" "}
-              <span className="text-terminal-green">
-                "{displayText}
-                <span className="animate-blink text-primary">|</span>"
-              </span>
-              <span className="text-text-dim">,</span>
-            </p>
-            <p className="pl-4">
-              <span className="text-terminal-cyan">experience</span>
-              <span className="text-text-dim">:</span>{" "}
-              <span className="text-terminal-green">"3+ years"</span>
-              <span className="text-text-dim">,</span>
-            </p>
-            <p className="pl-4">
-              <span className="text-terminal-cyan">domains</span>
-              <span className="text-text-dim">: [</span>
-            </p>
-            {[
-              "GenAI", "Cloud Infrastructure", "Defense",
-              "Offshore Engineering", "Agritech",
-              "Biometrics", "Data Engineering",
-            ].map((d, i, arr) => (
-              <p key={d} className="pl-8">
-                <span className="text-terminal-green">"{d}"</span>
-                {i < arr.length - 1 && <span className="text-text-dim">,</span>}
-              </p>
-            ))}
-            <p className="pl-4">
-              <span className="text-text-dim">]</span>
-            </p>
-            <p>
-              <span className="text-terminal-yellow">{"}"}</span>
-              <span className="text-text-dim">;</span>
-            </p>
-          </div>
+          <p className="font-mono text-sm text-primary mb-4">
+            <span className="text-text-dim">$</span> whoami
+          </p>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-3">
+            <span className="gradient-text">{personal.name}</span>
+          </h1>
+          <p className="text-xl sm:text-2xl text-text-muted font-medium mb-4">
+            {personal.title}
+          </p>
+          <p className="max-w-2xl text-base sm:text-lg text-text-muted leading-relaxed">
+            I build production ML systems, LLM infrastructure, and automated
+            experimentation platforms across defense, offshore, and agritech.
+          </p>
         </motion.div>
 
-        {/* CTA + social */}
+        {/* Outcome stat strip */}
         <motion.div
-          className="flex flex-col items-center gap-6"
+          className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+        >
+          {heroStats.map((s) => (
+            <div
+              key={s.label}
+              className="glass rounded-lg px-4 py-4 sm:py-5 text-left border-l-2 border-l-primary/60"
+            >
+              <div className="text-2xl sm:text-3xl font-bold text-primary font-mono leading-none mb-1.5">
+                {s.value}
+              </div>
+              <div className="text-[11px] sm:text-xs text-text-muted uppercase tracking-wider">
+                {s.label}
+              </div>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* CTAs */}
+        <motion.div
+          className="mt-10 flex flex-wrap items-center gap-3"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
         >
-          <div className="flex flex-wrap gap-4 justify-center">
-            <button
-              onClick={() => {
-                const el = document.getElementById("projects");
-                if (el) {
-                  const y = el.getBoundingClientRect().top + window.scrollY - 70;
-                  window.scrollTo({ top: y, behavior: "smooth" });
-                  window.history.replaceState(null, "", "#projects");
-                }
-              }}
-              className="px-6 py-3.5 rounded-lg bg-primary text-bg font-semibold text-sm hover:bg-primary-bright active:bg-primary-bright transition-colors"
-            >
-              View My Work
-            </button>
-            <button
-              onClick={() => {
-                const el = document.getElementById("contact");
-                if (el) {
-                  const y = el.getBoundingClientRect().top + window.scrollY - 70;
-                  window.scrollTo({ top: y, behavior: "smooth" });
-                  window.history.replaceState(null, "", "#contact");
-                }
-              }}
-              className="px-6 py-3.5 rounded-lg border border-surface-border text-text font-semibold text-sm hover:bg-surface-hover active:bg-surface-hover transition-colors"
-            >
-              Get In Touch
-            </button>
-          </div>
+          <button
+            onClick={() => scrollToId("projects")}
+            className="px-5 py-3 rounded-lg bg-primary text-bg font-semibold text-sm hover:bg-primary-bright active:bg-primary-bright transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+          >
+            View Work
+          </button>
+          <a
+            href={personal.resumeUrl}
+            download
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-primary/40 text-primary font-semibold text-sm hover:bg-primary/10 active:bg-primary/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+          >
+            <Download size={16} aria-hidden="true" />
+            Download Resume
+          </a>
+          <button
+            onClick={() => scrollToId("contact")}
+            className="px-5 py-3 rounded-lg border border-surface-border text-text font-semibold text-sm hover:bg-surface-hover active:bg-surface-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+          >
+            Get In Touch
+          </button>
 
-          <div className="flex items-center gap-3">
+          <span className="hidden sm:inline-block w-px h-6 bg-surface-border mx-2" />
+
+          <div className="flex items-center gap-1">
             {personal.socialLinks.map((link) => (
               <a
                 key={link.platform}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-lg text-text-muted hover:text-primary hover:bg-surface-hover transition-colors"
+                aria-label={link.platform}
+                className="p-2.5 rounded-lg text-text-muted hover:text-primary hover:bg-surface-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
                 {iconMap[link.platform]}
               </a>
@@ -172,11 +127,13 @@ export default function Hero() {
 
         {/* Scroll indicator */}
         <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden sm:block"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 items-center gap-2 text-text-dim text-xs font-mono"
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 2.4, repeat: Infinity }}
+          aria-hidden="true"
         >
-          <ArrowDown size={20} className="text-text-dim" />
+          <ArrowDown size={14} />
+          scroll
         </motion.div>
       </div>
     </section>

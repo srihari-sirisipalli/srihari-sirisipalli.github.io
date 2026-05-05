@@ -28,9 +28,9 @@ export default function Skills() {
       <h2 className="text-3xl md:text-4xl font-bold mb-2">
         <span className="gradient-text">Skills & Expertise</span>
       </h2>
-      <div className="w-16 h-1 bg-primary rounded-full mb-10" />
+      <div className="w-16 h-1 bg-primary rounded-full mb-8" />
 
-      {/* Areas of Expertise — detailed cards */}
+      {/* Areas of Expertise: detailed cards */}
       <h3 className="text-xl font-semibold text-text mb-6">Areas of Expertise</h3>
       <motion.div
         className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16"
@@ -58,7 +58,7 @@ export default function Skills() {
         ))}
       </motion.div>
 
-      {/* Technical Skills — tag-based */}
+      {/* Technical Skills: tag-based */}
       <h3 className="text-xl font-semibold text-text mb-6">Technical Skills</h3>
       <motion.div
         className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
