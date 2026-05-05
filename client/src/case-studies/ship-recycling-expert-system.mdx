@@ -28,7 +28,7 @@ Ship recycling has to satisfy multiple regulatory frameworks (Hong Kong Conventi
     <g>
       <rect x="40"  y="120" width="200" height="60" rx="8" fill="rgba(34,211,238,0.10)" stroke="#22d3ee"/>
       <text x="140" y="148" textAnchor="middle" fontWeight="600">Hazmat ID</text>
-      <text x="140" y="168" textAnchor="middle" fill="#94a3b8" fontSize="11">15 categories, declared + inferred</text>
+      <text x="140" y="168" textAnchor="middle" fill="#94a3b8" fontSize="11">15 categories · IHM + inferred</text>
     </g>
     <g>
       <rect x="40"  y="200" width="200" height="60" rx="8" fill="rgba(34,211,238,0.10)" stroke="#22d3ee"/>
@@ -38,7 +38,7 @@ Ship recycling has to satisfy multiple regulatory frameworks (Hong Kong Conventi
     <g>
       <rect x="40"  y="280" width="200" height="60" rx="8" fill="rgba(34,211,238,0.10)" stroke="#22d3ee"/>
       <text x="140" y="308" textAnchor="middle" fontWeight="600">Workflow DAG</text>
-      <text x="140" y="328" textAnchor="middle" fill="#94a3b8" fontSize="11">204 activities, Kahn's sort, critical path</text>
+      <text x="140" y="328" textAnchor="middle" fill="#94a3b8" fontSize="11">204 activities · Kahn's sort</text>
     </g>
 
     <g>
@@ -54,7 +54,7 @@ Ship recycling has to satisfy multiple regulatory frameworks (Hong Kong Conventi
     <g>
       <rect x="290" y="280" width="200" height="60" rx="8" fill="rgba(167,139,250,0.10)" stroke="#a78bfa"/>
       <text x="390" y="308" textAnchor="middle" fontWeight="600">Economic analysis</text>
-      <text x="390" y="328" textAnchor="middle" fill="#94a3b8" fontSize="11">recovery revenue · ±30% sensitivity</text>
+      <text x="390" y="328" textAnchor="middle" fill="#94a3b8" fontSize="11">revenue · ±30% sensitivity</text>
     </g>
 
     <g>
@@ -71,12 +71,20 @@ Ship recycling has to satisfy multiple regulatory frameworks (Hong Kong Conventi
       <text x="620" y="312" textAnchor="middle" fill="#94a3b8" fontSize="11">via WeasyPrint</text>
     </g>
 
-    <line x1="140" y1="80"  x2="140" y2="120" stroke="#60a5fa" markerEnd="url(#arrSR)"/>
-    <line x1="140" y1="80"  x2="140" y2="200" stroke="#60a5fa" markerEnd="url(#arrSR)"/>
-    <line x1="140" y1="80"  x2="140" y2="280" stroke="#60a5fa" markerEnd="url(#arrSR)"/>
+    {/* Intake fans out to all three column-1 boxes via a left-side rail */}
+    <line x1="140" y1="80"  x2="140" y2="95"  stroke="#60a5fa"/>
+    <line x1="140" y1="95"  x2="20"  y2="95"  stroke="#60a5fa"/>
+    <line x1="20"  y1="95"  x2="20"  y2="310" stroke="#60a5fa"/>
+    <line x1="20"  y1="150" x2="40"  y2="150" stroke="#60a5fa" markerEnd="url(#arrSR)"/>
+    <line x1="20"  y1="230" x2="40"  y2="230" stroke="#60a5fa" markerEnd="url(#arrSR)"/>
+    <line x1="20"  y1="310" x2="40"  y2="310" stroke="#60a5fa" markerEnd="url(#arrSR)"/>
+
+    {/* Column 1 → Column 2 (lateral pairs) */}
     <line x1="240" y1="150" x2="290" y2="150" stroke="#22d3ee" markerEnd="url(#arrSR)"/>
     <line x1="240" y1="230" x2="290" y2="230" stroke="#22d3ee" markerEnd="url(#arrSR)"/>
     <line x1="240" y1="310" x2="290" y2="310" stroke="#22d3ee" markerEnd="url(#arrSR)"/>
+
+    {/* Column 2 → Reports column */}
     <line x1="490" y1="150" x2="540" y2="180" stroke="#a78bfa" markerEnd="url(#arrSR)"/>
     <line x1="490" y1="230" x2="540" y2="230" stroke="#a78bfa" markerEnd="url(#arrSR)"/>
     <line x1="490" y1="310" x2="540" y2="280" stroke="#a78bfa" markerEnd="url(#arrSR)"/>
