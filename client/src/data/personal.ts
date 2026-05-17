@@ -1,15 +1,15 @@
 export const personal = {
   name: "Sri Hari Sirisipalli",
-  title: "AI Systems Engineer",
-  subtitle: "Scalable ML & Retrieval Architectures · Mechanical Engineering R&D",
+  title: "AI Systems Engineer + Mechanical Engineering R&D",
+  subtitle: "Scalable ML Systems · LLM Infrastructure · CFD · FEA · Hydrodynamics",
   roles: [
     "AI Systems Engineer",
+    "Mechanical Engineering R&D",
     "ML Infrastructure Engineer",
-    "Cloud & GenAI Engineer",
   ],
   bio: [
-    "AI Systems Engineer with mechanical engineering foundations, specializing in scalable retrieval systems, digital twin modeling, and signal-driven anomaly detection. I work where ML meets physics simulation: training surrogate models on top of FEA and hydrodynamics solvers, automating offshore-engineering DOE pipelines, and shipping production retrieval systems on cloud-native infrastructure.",
-    "In practice that looks like high-throughput embedding pipelines supporting 1,000+ daily evaluations, experimentation sweeps across 88,560 simulated sea states, and 15,000 automated MOSES DOE cases feeding ML surrogates. My mechanical engineering background (CFD, FEA, naval architecture, hydrodynamics) lets me operate fluently on either side of the ML-vs-physics boundary.",
+    "AI Systems Engineer and Mechanical Engineering R&D, focused on scalable ML systems and LLM infrastructure built on top of physics simulation. I build structured experimentation pipelines, surrogate models over CFD / FEA / hydrodynamics solvers, and retrieval-based LLM architectures with production-aware design.",
+    "Experience spans large-scale model evaluation, feature reduction at scale, and reproducible retrain-to-predict workflows. I have built offline RAG systems integrating embeddings, vector search, and real-time speech interfaces, designed digital twin ML infrastructure for offshore and marine environments, and architected AWS-based ML platforms with infrastructure automation and cost optimization. Mechanical engineering depth (ANSYS Fluent, naval architecture, FEA, Bentley MOSES) keeps the modeling honest where physics meets ML.",
   ],
   stats: [
     { value: 3, suffix: "+", label: "Years Experience" },

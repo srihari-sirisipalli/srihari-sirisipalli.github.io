@@ -57,10 +57,10 @@ export default function Hero() {
             </p>
           )}
           <p className="max-w-2xl text-base sm:text-lg text-text-muted leading-relaxed">
-            ML systems on top of physics simulation: surrogate models over FEA
-            and hydrodynamics, retrieval architectures at production scale,
-            automated experimentation across offshore, maritime, defense, and
-            agritech.
+            Scalable ML systems and LLM infrastructure on top of mechanical
+            engineering simulation. Surrogate models over CFD, FEA, and
+            hydrodynamics; retrieval-based LLM architectures; production-aware
+            experimentation pipelines.
           </p>
         </motion.div>
 
