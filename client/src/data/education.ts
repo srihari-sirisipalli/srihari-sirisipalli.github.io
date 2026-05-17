@@ -3,7 +3,10 @@ export const education = {
   specialization: "Mechanical Engineering",
   university: "Mahindra University",
   location: "Hyderabad",
-  period: "2018 – 2022",
+  period: "08/2018 – 06/2022",
+  cgpa: "7.5",
+  focus:
+    "Focused on computational modeling, numerical methods, and systems analysis, forming the foundation for applied AI and large-scale modeling systems.",
 };
 
 export interface Certification {

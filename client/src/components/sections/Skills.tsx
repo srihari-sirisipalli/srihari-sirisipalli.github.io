@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import {
   Brain, MessageSquare, Cloud, Database, Code, Wrench, Cpu,
-  Sparkles, GitBranch, Eye, Zap, TrendingUp,
+  Sparkles, GitBranch, Eye, Zap, TrendingUp, Waves, Cog, Plane,
 } from "lucide-react";
 import { skillCategories, expertiseAreas } from "@/data/skills";
 import SectionWrapper from "@/components/layout/SectionWrapper";
@@ -20,6 +20,9 @@ const iconMap: Record<string, React.ReactNode> = {
   Eye: <Eye size={22} />,
   Zap: <Zap size={22} />,
   TrendingUp: <TrendingUp size={22} />,
+  Waves: <Waves size={22} />,
+  Cog: <Cog size={22} />,
+  Plane: <Plane size={22} />,
 };
 
 export default function Skills() {

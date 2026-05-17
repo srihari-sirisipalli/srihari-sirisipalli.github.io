@@ -4,9 +4,9 @@ import { personal } from "@/data/personal";
 
 const heroStats: { value: string; label: string }[] = [
   { value: "30%", label: "Infra cost reduced" },
-  { value: "5–7×", label: "Throughput gain" },
   { value: "R² 0.999", label: "Wave-height accuracy" },
   { value: "15K", label: "DOE cases automated" },
+  { value: "20M", label: "CFD mesh elements" },
 ];
 
 function scrollToId(id: string) {
@@ -48,12 +48,19 @@ export default function Hero() {
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-3">
             <span className="gradient-text">{personal.name}</span>
           </h1>
-          <p className="text-xl sm:text-2xl text-text-muted font-medium mb-4">
+          <p className="text-xl sm:text-2xl text-text-muted font-medium mb-1">
             {personal.title}
           </p>
+          {personal.subtitle && (
+            <p className="text-sm sm:text-base text-text-dim font-mono mb-4">
+              {personal.subtitle}
+            </p>
+          )}
           <p className="max-w-2xl text-base sm:text-lg text-text-muted leading-relaxed">
-            I build production ML systems, LLM infrastructure, and automated
-            experimentation platforms across defense, offshore, and agritech.
+            ML systems on top of physics simulation: surrogate models over FEA
+            and hydrodynamics, retrieval architectures at production scale,
+            automated experimentation across offshore, maritime, defense, and
+            agritech.
           </p>
         </motion.div>
 

@@ -29,10 +29,17 @@ export default function AboutPage() {
           <h1 className="text-3xl md:text-4xl font-bold mb-2">
             About <span className="gradient-text">Me</span>
           </h1>
+          {personal.subtitle && (
+            <p className="text-sm text-text-dim font-mono mb-3">
+              {personal.subtitle}
+            </p>
+          )}
           <div className="w-16 h-1 bg-primary rounded-full mb-3" />
           <p className="text-text-muted max-w-2xl mb-6">
             Background, capability surface, education, and the public side of
-            the work.
+            the work. I sit at the intersection of mechanical engineering and
+            AI systems: physics simulators on one side, ML pipelines and
+            retrieval architectures on the other.
           </p>
 
           <div className="flex flex-wrap items-center gap-3 text-sm text-text-muted">

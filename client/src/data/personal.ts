@@ -1,20 +1,21 @@
 export const personal = {
   name: "Sri Hari Sirisipalli",
   title: "AI Systems Engineer",
+  subtitle: "Scalable ML & Retrieval Architectures · Mechanical Engineering R&D",
   roles: [
     "AI Systems Engineer",
     "ML Infrastructure Engineer",
     "Cloud & GenAI Engineer",
   ],
   bio: [
-    "AI Systems Engineer with 3+ years building production ML systems, LLM infrastructure, and automated experimentation platforms. I design retrain-to-predict pipelines, offline RAG architectures, and end-to-end ML infrastructure across defense, offshore, and agritech domains.",
-    "I specialize in bridging the gap between ML research and production. That looks like building offline AI avatars with real-time lip-sync, or engineering automated ML pipelines that evaluate hundreds of model configurations across varying conditions and parameters.",
+    "AI Systems Engineer with mechanical engineering foundations, specializing in scalable retrieval systems, digital twin modeling, and signal-driven anomaly detection. I work where ML meets physics simulation: training surrogate models on top of FEA and hydrodynamics solvers, automating offshore-engineering DOE pipelines, and shipping production retrieval systems on cloud-native infrastructure.",
+    "In practice that looks like high-throughput embedding pipelines supporting 1,000+ daily evaluations, experimentation sweeps across 88,560 simulated sea states, and 15,000 automated MOSES DOE cases feeding ML surrogates. My mechanical engineering background (CFD, FEA, naval architecture, hydrodynamics) lets me operate fluently on either side of the ML-vs-physics boundary.",
   ],
   stats: [
     { value: 3, suffix: "+", label: "Years Experience" },
     { value: 10, suffix: "+", label: "Projects Shipped" },
     { value: 6, suffix: "+", label: "Companies" },
-    { value: 3, suffix: "", label: "Industry Domains" },
+    { value: 4, suffix: "+", label: "Industry Domains" },
   ],
   email: "sriharisirisipalli0@gmail.com",
   location: "Visakhapatnam, India",

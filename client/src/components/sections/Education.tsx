@@ -24,6 +24,9 @@ export default function Education() {
           <h4 className="text-text font-medium">{education.degree}</h4>
           <p className="text-sm text-text-muted mt-1">
             {education.specialization}
+            {education.cgpa && (
+              <span className="text-text-dim"> · CGPA {education.cgpa}</span>
+            )}
           </p>
           <p className="text-sm text-text-muted">
             {education.university}
@@ -31,6 +34,11 @@ export default function Education() {
           <p className="text-xs text-text-dim font-mono mt-2">
             {education.period}
           </p>
+          {education.focus && (
+            <p className="text-xs text-text-muted mt-4 leading-relaxed italic">
+              {education.focus}
+            </p>
+          )}
         </div>
 
         {/* Certifications */}

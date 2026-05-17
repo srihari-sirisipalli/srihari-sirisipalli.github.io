@@ -13,7 +13,8 @@ const matrix: MatrixData = {
     "Signal processing",
     "Computer vision",
     "Data engineering",
-    "Numerics & simulation",
+    "Hydrodynamics & CFD",
+    "FEA & numerics",
   ],
   cols: [
     "Patents",
@@ -30,7 +31,8 @@ const matrix: MatrixData = {
     /* Signal processing */    [0, 3, 2, 1, 0, 1],
     /* Computer vision */      [0, 0, 2, 0, 3, 0],
     /* Data engineering */     [2, 2, 1, 1, 1, 1],
-    /* Numerics & simulation */[0, 3, 0, 1, 0, 3],
+    /* Hydrodynamics & CFD */  [0, 3, 1, 0, 0, 3],
+    /* FEA & numerics */       [0, 2, 1, 2, 0, 3],
   ],
 };
 
