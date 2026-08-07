@@ -1,0 +1,13 @@
+body{max-width:900px;margin:2em auto;padding:0 1em;font-family:Georgia,'Times New Roman',serif;line-height:1.5;color:#222}
+h1{color:#0b2545;border-bottom:2px solid #0b2545;padding-bottom:.3em;margin-bottom:.1em}
+h1 + p{color:#555;font-size:1.05em;margin-top:0}
+h2{color:#0b2545;margin-top:1.8em;border-bottom:1px solid #ccc;padding-bottom:.2em;font-size:1.15em}
+h3{color:#1b3a6b;margin-top:1.4em;margin-bottom:.1em;font-size:1.05em}
+h3 + p{color:#555;font-size:.9em;margin-top:0;font-style:italic}
+a{color:#0b66c2;text-decoration:none}
+a:hover{text-decoration:underline}
+li{margin-bottom:.35em}
+strong{color:#0b2545}
+hr{border:none;border-top:1px solid #ddd;margin:1.5em 0}
+@page{margin:0.6in}
+@media print{body{max-width:none;margin:0}h1{page-break-after:avoid}h2{page-break-after:avoid}h3{page-break-after:avoid}}
