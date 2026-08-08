@@ -44,13 +44,33 @@ export const portfolio: PortfolioProject[] = [
   },
   {
     id: "cattle-biometric",
-    title: "Cattle Biometric Identification at Scale",
+    title: "Cattle Biometric Identification System",
     category: "Computer Vision",
     type: "work",
     tags: ["SimCLR", "FAISS", "Multi-view", "Distributed", "Agritech"],
     description:
-      "Multi-view biometric retrieval pipeline for cattle identification. 100,000+ images indexed with contrastive embeddings, FAISS multi-index search, and distributed image processing across worker pools.",
+      "Multi-view biometric retrieval system for cattle identification. 100,000+ images indexed with contrastive embeddings, FAISS multi-index search, and distributed feature extraction across worker pools.",
     image: "/work/cattle.svg",
+  },
+  {
+    id: "cattle-ai-tracking",
+    title: "Cattle Detection & Tracking (Cattle AI)",
+    category: "Computer Vision",
+    type: "work",
+    tags: ["YOLO", "BoT-SORT", "OpenCV", "Streamlit", "Docker"],
+    description:
+      "Live cattle detection and tracking app. Ultralytics YOLO for detection, BoT-SORT for stable per-animal IDs, Streamlit for the operator UI, containerised for Hugging Face Spaces deployment.",
+    image: "/work/cattle-ai.svg",
+  },
+  {
+    id: "sccl-mining-cv",
+    title: "Computer Vision for SCCL Mining Operations",
+    category: "Computer Vision",
+    type: "work",
+    tags: ["Video Analytics", "PPE", "ANPR", "Dash", "Mining"],
+    description:
+      "End-to-end computer vision system for SCCL mining operations: strategy documents, technical architecture, a Python analytics backend across 11 features, and a Dash NOC dashboard for live operator use.",
+    image: "/work/sccl-mining.svg",
   },
   {
     id: "zapstays-platform",

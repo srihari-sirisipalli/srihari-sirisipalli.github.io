@@ -1,0 +1,25 @@
+## What it is
+
+A live cattle detection and tracking app. Upload a video, get annotated frames with per-animal IDs, along with a JSON report and per-frame metrics.
+
+## The pipeline
+
+**Detection.** Ultralytics YOLO handles per-frame cattle detection. Class filtering pins the model to cattle-relevant classes (cow, cattle, bull, calf, buffalo, bovine) so an off-the-shelf COCO model does not chase every dog and cat in the frame.
+
+**Tracking.** BoT-SORT provides multi-object tracking with a cattle-tuned configuration. Raw tracker IDs get remapped into stable `Cow ID N` labels using recent box-overlap heuristics, which cuts down duplicate IDs when an animal is briefly occluded or missed.
+
+**Speed.** A faster default preset (`yolo26s.pt`, image size 640, video stride 2) runs live in the browser. Higher-accuracy presets (`yolo26m.pt`, image size 960, ReID tracking) are one field-change away for offline batch runs. FP16 kicks in automatically on CUDA GPUs.
+
+**Outputs.** Every run writes an annotated video, a JSON report, and per-frame metrics CSV under `runs/`.
+
+## Interface
+
+Streamlit UI in front. Docker container behind. Deploys straight to Hugging Face Spaces from the repository, no extra plumbing. Users upload a video, tweak a few sliders, watch the annotated frames stream and the live analysis update on the right.
+
+## Where custom models fit
+
+The default COCO model handles the easy cases. For dense herds, unusual camera angles, buffalo, calves, or night video, a custom cattle-trained YOLO model dropped into the model field gives a bigger accuracy jump than any config tuning.
+
+## Where it fits
+
+Livestock counting, herd behaviour observation, welfare monitoring, and inventory verification. Any setting where you have video of cattle and need reliable per-animal identification over time.

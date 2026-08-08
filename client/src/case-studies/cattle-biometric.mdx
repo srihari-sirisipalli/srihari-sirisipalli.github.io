@@ -1,25 +1,21 @@
 ## The problem
 
-Individual cattle identification is a real bottleneck for livestock traceability, insurance, health records, and supply-chain verification. Ear tags fall off. RFID is expensive and manual. But every cow has a distinctive muzzle print and coat pattern, and that pattern is stable over the animal's life. The question was whether you could reliably identify individual animals from photos at herd scale.
+Individual cattle identification is a hard technical problem: no two animals are the same, muzzle prints and coat patterns are visually distinctive but noisy, and any workable system has to run at herd scale with low query latency.
 
 ## What I built
 
-A multi-view biometric retrieval pipeline. Give it a photo of a cow. It returns the most similar animals from an index of over one hundred thousand images, ranked by confidence.
+A multi-view biometric retrieval system for cattle. Given a query image, it returns the most visually similar animals from an index of over one hundred thousand images, ranked by embedding distance.
 
-## How it works
+## Technical design
 
-**Multi-view capture.** Individual animals are represented by multiple views (muzzle, side, face) so a single-angle query still has a chance of matching.
+**Multi-view representation.** Each animal is represented by several views (muzzle, side, face). Single-angle queries still match reliably because the index contains multiple canonical views per identity.
 
-**Contrastive embeddings.** SimCLR-style contrastive training produces an embedding space where images of the same animal cluster tight and images of different animals separate.
+**Contrastive embeddings.** SimCLR-style self-supervised training produces an embedding space where images of the same animal cluster tightly and images of different animals separate. No hand-labelled pairs required beyond identity tags.
 
-**FAISS multi-index.** The embedding index is sharded and combined with ranking fusion so query latency stays reasonable at scale.
+**FAISS multi-index retrieval.** The embedding index is sharded and combined with ranking fusion so top-k retrieval stays sub-second at 100K+ scale. Multi-index handles the trade-off between recall and query latency.
 
-**Distributed pipeline.** Feature computation is fanned out across a worker pool for high-volume ingestion. New animals can be enrolled in batch without blocking retrieval.
+**Distributed feature extraction.** Enrolment throughput is fanned out across a 20-worker process pool. New animals are indexed in batch without blocking retrieval traffic.
 
-## Why it matters
+## What generalises
 
-Once identification is cheap and reliable, everything downstream gets easier: health tracking, insurance claims, provenance certificates, herd management, breed programmes. The identification problem was the bottleneck.
-
-## Where it fits
-
-Agritech is the obvious home. The same pipeline shape works for any biometric retrieval where you have consistent visual features, need to scale to hundreds of thousands of entities, and want low-latency top-k retrieval.
+The same pipeline shape works for any biometric retrieval problem with a stable visual signature: consistent multi-view capture, contrastive embedding training, FAISS at scale, distributed enrolment. The specifics of muzzle prints are a detail; the retrieval architecture is transferable.
