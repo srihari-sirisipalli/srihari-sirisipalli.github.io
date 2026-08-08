@@ -155,12 +155,12 @@ export const portfolio: PortfolioProject[] = [
   },
   {
     id: "auv-programme",
-    title: "Autonomous Underwater Vehicle Programme",
+    title: "Autonomous Underwater Vehicle Design & Development",
     category: "Underwater Systems",
     type: "work",
-    tags: ["AUV", "Product Development", "Marine", "Team Lead"],
+    tags: ["Autonomous Underwater Vehicle", "Product Development", "Marine", "Team Lead"],
     description:
-      "Ongoing product development on autonomous underwater vehicles. Led an engineering team across mechanical, structural, and systems work, from concept through vehicle delivery.",
+      "Currently leading an engineering team on Autonomous Underwater Vehicle design and development. Mechanical, structural, and systems work, from concept through vehicle delivery.",
     image: "/work/auv.svg",
   },
   {
