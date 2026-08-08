@@ -1,16 +1,17 @@
 export const personal = {
   name: "Sri Hari Sirisipalli",
   title: "Fractional CTO",
-  subtitle: "AI, Digital Twins, Apps & Backend for Engineering R&D",
+  subtitle: "End-to-End Software & Product Development · AI, Digital Twins, Apps, Backend, Automations for Engineering R&D",
   roles: [
     "Fractional CTO",
+    "End-to-End Software & Product Developer",
     "AI Systems Engineer",
     "Digital Twin Architect",
-    "Mobile & Backend Lead",
+    "Automation Specialist",
   ],
   bio: [
-    "I ship production systems for engineering and industrial R&D, where the software sits on top of real physics, real sensors, and real budgets.",
-    "Fractional CTO at Openct. Independent engineering practice building end-to-end systems across AI, digital twins, mobile & web apps, backend, cloud, computer vision, and core engineering. Clients hire me when a project needs hard engineering depth and production software delivery in one place.",
+    "I ship end-to-end software and product for engineering and industrial R&D, where the software sits on top of real physics, real sensors, and real budgets.",
+    "Fractional CTO at Openct. Independent engineering practice building end-to-end systems across software and product development, AI, digital twins, mobile & web apps, backend, cloud, computer vision, automations, and core engineering. Clients hire me when a project needs hard engineering depth and production software delivery in one place.",
   ],
   stats: [
     { value: 3, suffix: "+", label: "Years Experience" },
