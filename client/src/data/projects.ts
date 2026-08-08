@@ -43,6 +43,37 @@ export const portfolio: PortfolioProject[] = [
     image: "/work/ai-avatar.svg",
   },
   {
+    id: "cattle-biometric",
+    title: "Cattle Biometric Identification at Scale",
+    category: "Computer Vision",
+    type: "research",
+    tags: ["SimCLR", "FAISS", "Multi-view", "Distributed", "Agritech"],
+    description:
+      "Multi-view biometric retrieval pipeline for cattle identification. 100,000+ images indexed with contrastive embeddings, FAISS multi-index search, and distributed image processing across worker pools.",
+    image: "/work/cattle.svg",
+  },
+  {
+    id: "zapstays-platform",
+    title: "zapstays.in: Hostel & Co-Living Platform",
+    category: "Apps & Platforms",
+    type: "work",
+    tags: ["PHP 8", "MySQL", "Full-Stack", "Live"],
+    description:
+      "Full-stack hostel and co-living platform for verified travelers and owners across India. Quote-based flow, real-time chat, three-role codebase, and admin power-tools. Live production.",
+    image: "/work/zapstays.svg",
+    links: [{ label: "Live", url: "https://zapstays.in" }],
+  },
+  {
+    id: "vibration-diagnostics",
+    title: "Vibration Diagnostics Rule Engine",
+    category: "ML for Engineering R&D",
+    type: "research",
+    tags: ["Python", "Signal Processing", "PyQt5", "ISO 10816"],
+    description:
+      "Transparent rule-based fault diagnostics for rotating machinery. Ranks probable mechanical, bearing, and electrical faults with traceable evidence rather than opaque ML predictions.",
+    image: "/work/vibration.svg",
+  },
+  {
     id: "docforge",
     title: "DocForge: Offline Document Intelligence",
     category: "AI & GenAI",

@@ -1,0 +1,25 @@
+## The problem
+
+Individual cattle identification is a real bottleneck for livestock traceability, insurance, health records, and supply-chain verification. Ear tags fall off. RFID is expensive and manual. But every cow has a distinctive muzzle print and coat pattern, and that pattern is stable over the animal's life. The question was whether you could reliably identify individual animals from photos at herd scale.
+
+## What I built
+
+A multi-view biometric retrieval pipeline. Give it a photo of a cow. It returns the most similar animals from an index of over one hundred thousand images, ranked by confidence.
+
+## How it works
+
+**Multi-view capture.** Individual animals are represented by multiple views (muzzle, side, face) so a single-angle query still has a chance of matching.
+
+**Contrastive embeddings.** SimCLR-style contrastive training produces an embedding space where images of the same animal cluster tight and images of different animals separate.
+
+**FAISS multi-index.** The embedding index is sharded and combined with ranking fusion so query latency stays reasonable at scale.
+
+**Distributed pipeline.** Feature computation is fanned out across a worker pool for high-volume ingestion. New animals can be enrolled in batch without blocking retrieval.
+
+## Why it matters
+
+Once identification is cheap and reliable, everything downstream gets easier: health tracking, insurance claims, provenance certificates, herd management, breed programmes. The identification problem was the bottleneck.
+
+## Where it fits
+
+Agritech is the obvious home. The same pipeline shape works for any biometric retrieval where you have consistent visual features, need to scale to hundreds of thousands of entities, and want low-latency top-k retrieval.

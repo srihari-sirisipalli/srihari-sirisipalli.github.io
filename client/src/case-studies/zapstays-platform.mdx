@@ -1,0 +1,33 @@
+## What it is
+
+A hostel and co-living platform connecting travelers with verified owners across India. Live at zapstays.in. Built as a solo full-stack project from empty repository to production.
+
+## The shape of it
+
+**Not a booking engine, a quote engine.** Travelers browse listings, request quotes with their dates and preferences, and chat directly with owners to finalise terms. Payments happen offline between the two parties. That single design choice removes a lot of infrastructure and a lot of trust problems in one go.
+
+**Three roles, one codebase.** Traveler, Owner, Admin. Same PHP stack, different views, different permissions. Admin has power tools: bulk approve, CSV export, review moderation, impersonation, audit log.
+
+## What's in it
+
+- Real-time chat with typing indicators, read receipts, and file attachments (3-second polling — no websockets needed)
+- Google OAuth for painless sign-in
+- Session-authenticated JSON APIs
+- Security defaults out of the box: bcrypt cost 12, CSRF on every POST, file-based rate limiter, account lockout after 5 failed logins, CSP + HSTS + X-Frame
+- Email flows via native PHP mail plus cPanel SMTP
+- Notifications with in-app bell and unread count
+- Imagick-resized hostel photos and avatars
+- Full SEO stack: dynamic sitemap, robots, OG/Twitter meta, schema.org LodgingBusiness JSON-LD
+- Map view via Leaflet and OpenStreetMap
+- Migration runner auto-applies pending SQL files and tracks in a schema_migrations table
+- City synonym search: "Vizag" finds "Visakhapatnam," "Bombay" finds "Mumbai"
+
+## Design choices
+
+**No Composer, no Node in production.** Vanilla PHP 8 with hand-rolled dependencies. Drop it on cPanel, import the SQL, go. The deployment story stays simple because the runtime stays simple.
+
+**Quote-based over booking.** Owners set expectations directly, travelers get real answers, the platform doesn't need to hold funds. Different from Airbnb by design.
+
+## Where to see it
+
+Live production: [zapstays.in](https://zapstays.in)
