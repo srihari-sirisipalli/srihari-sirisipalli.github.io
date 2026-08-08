@@ -33,6 +33,16 @@ export const portfolio: PortfolioProject[] = [
     ],
   },
   {
+    id: "vhop",
+    title: "VHop: Nightlife & Clubbing Platform",
+    category: "Apps & Platforms",
+    type: "work",
+    tags: ["In Development", "Mobile", "Events", "Community", "India"],
+    description:
+      "Mobile-first clubbing and nightlife platform for India. Club discovery, event booking, table reservations, community squads, paid host events, verified chat, and a platform-token rewards system. Currently building.",
+    image: "/work/vhop.svg",
+  },
+  {
     id: "real-time-ai-avatar",
     title: "Real-Time Offline 3D AI Avatar",
     category: "AI & GenAI",
