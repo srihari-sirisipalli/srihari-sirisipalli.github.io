@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"><rect width="1600" height="900" fill="#0B1930"/>
+  <!-- Site header -->
+  <rect x="0" y="0" width="1600" height="80" fill="#FFFFFF"/>
+  <rect x="0" y="79" width="1600" height="1" fill="#EEEAE1"/>
+  <text x="60" y="50" fill="#0F1620" font-family="Fraunces, Georgia, serif" font-size="26" font-weight="600">zapstays.in</text>
+  
+    <text x="380" y="50" fill="#4A4A4A" font-family="Inter, sans-serif" font-size="14">Hostels</text>
+  
+    <text x="500" y="50" fill="#4A4A4A" font-family="Inter, sans-serif" font-size="14">Cities</text>
+  
+    <text x="620" y="50" fill="#4A4A4A" font-family="Inter, sans-serif" font-size="14">Owners</text>
+  
+    <text x="740" y="50" fill="#4A4A4A" font-family="Inter, sans-serif" font-size="14">About</text>
+  
+  <rect x="1380" y="24" width="160" height="36" rx="18" fill="#B04A2A"/>
+  <text x="1460" y="47" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="13" font-weight="600" text-anchor="middle">List your place</text>
+
+  <!-- Hero -->
+  <rect x="0" y="80" width="1600" height="500" fill="#F7F3EC"/>
+  <text x="60" y="180" fill="#E4572E" font-family="Inter, sans-serif" font-size="13" letter-spacing="3" font-weight="600">HOSTELS &#183; CO-LIVING &#183; VERIFIED</text>
+  <text x="60" y="280" fill="#0F1620" font-family="Fraunces, Georgia, serif" font-size="88" font-weight="500">Stay smart.</text>
+  <text x="60" y="380" font-family="Fraunces, Georgia, serif" font-size="88" font-weight="500" font-style="italic" fill="#B04A2A">Wherever India takes you.</text>
+  <text x="60" y="440" fill="#4A4A4A" font-family="Inter, sans-serif" font-size="20">Real stays, verified owners, quote-based booking.</text>
+  <text x="60" y="466" fill="#4A4A4A" font-family="Inter, sans-serif" font-size="20">Real-time chat before you commit.</text>
+
+  <!-- Search bar -->
+  <rect x="60" y="500" width="720" height="60" rx="30" fill="#FFFFFF" stroke="#DDD5C6"/>
+  <text x="90" y="527" fill="#8A857A" font-family="Inter, sans-serif" font-size="11" letter-spacing="1">CITY</text>
+  <text x="90" y="547" fill="#0F1620" font-family="Inter, sans-serif" font-size="14" font-weight="500">Visakhapatnam</text>
+  <line x1="270" y1="516" x2="270" y2="544" stroke="#DDD5C6"/>
+  <text x="290" y="527" fill="#8A857A" font-family="Inter, sans-serif" font-size="11" letter-spacing="1">DATES</text>
+  <text x="290" y="547" fill="#0F1620" font-family="Inter, sans-serif" font-size="14" font-weight="500">Aug 12 – Aug 18</text>
+  <line x1="500" y1="516" x2="500" y2="544" stroke="#DDD5C6"/>
+  <text x="520" y="527" fill="#8A857A" font-family="Inter, sans-serif" font-size="11" letter-spacing="1">GUESTS</text>
+  <text x="520" y="547" fill="#0F1620" font-family="Inter, sans-serif" font-size="14" font-weight="500">1 traveller</text>
+  <rect x="680" y="510" width="88" height="40" rx="20" fill="#B04A2A"/>
+  <text x="724" y="536" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="14" font-weight="600" text-anchor="middle">Search</text>
+
+  <!-- Property cards row -->
+  <text x="60" y="640" fill="#0F1620" font-family="Fraunces, Georgia, serif" font-size="28" font-weight="500">Verified stays in Vizag</text>
+  
+      <rect x="60" y="670" width="340" height="200" rx="10" fill="#FFFFFF"/>
+      <rect x="60" y="670" width="340" height="120" rx="10" fill="#DDD5C6"/>
+      <!-- fake photo abstract -->
+      <rect x="90" y="700" width="80" height="60" fill="#8A857A" opacity="0.5"/>
+      <rect x="190" y="690" width="100" height="80" fill="#8A857A" opacity="0.4"/>
+      <rect x="310" y="720" width="70" height="50" fill="#8A857A" opacity="0.5"/>
+      <text x="80" y="820" fill="#0F1620" font-family="Inter, sans-serif" font-size="15" font-weight="600">Beach Road Hostel</text>
+      <text x="80" y="842" fill="#8A857A" font-family="Inter, sans-serif" font-size="11">Vizag &#183; verified owner</text>
+      <text x="380" y="820" fill="#E4572E" font-family="Inter, sans-serif" font-size="15" font-weight="600" text-anchor="end">₹ 480<tspan fill="#8A857A" font-size="10"> /night</tspan></text>
+      <text x="380" y="842" fill="#8A857A" font-family="Inter, sans-serif" font-size="11" text-anchor="end">★ 4.7</text>
+    
+      <rect x="440" y="670" width="340" height="200" rx="10" fill="#FFFFFF"/>
+      <rect x="440" y="670" width="340" height="120" rx="10" fill="#DDD5C6"/>
+      <!-- fake photo abstract -->
+      <rect x="470" y="700" width="80" height="60" fill="#8A857A" opacity="0.5"/>
+      <rect x="570" y="690" width="100" height="80" fill="#8A857A" opacity="0.4"/>
+      <rect x="690" y="720" width="70" height="50" fill="#8A857A" opacity="0.5"/>
+      <text x="460" y="820" fill="#0F1620" font-family="Inter, sans-serif" font-size="15" font-weight="600">RK Beach Coliving</text>
+      <text x="460" y="842" fill="#8A857A" font-family="Inter, sans-serif" font-size="11">Vizag &#183; verified owner</text>
+      <text x="760" y="820" fill="#E4572E" font-family="Inter, sans-serif" font-size="15" font-weight="600" text-anchor="end">₹ 720<tspan fill="#8A857A" font-size="10"> /night</tspan></text>
+      <text x="760" y="842" fill="#8A857A" font-family="Inter, sans-serif" font-size="11" text-anchor="end">★ 4.9</text>
+    
+      <rect x="820" y="670" width="340" height="200" rx="10" fill="#FFFFFF"/>
+      <rect x="820" y="670" width="340" height="120" rx="10" fill="#DDD5C6"/>
+      <!-- fake photo abstract -->
+      <rect x="850" y="700" width="80" height="60" fill="#8A857A" opacity="0.5"/>
+      <rect x="950" y="690" width="100" height="80" fill="#8A857A" opacity="0.4"/>
+      <rect x="1070" y="720" width="70" height="50" fill="#8A857A" opacity="0.5"/>
+      <text x="840" y="820" fill="#0F1620" font-family="Inter, sans-serif" font-size="15" font-weight="600">The Waves House</text>
+      <text x="840" y="842" fill="#8A857A" font-family="Inter, sans-serif" font-size="11">Vizag &#183; verified owner</text>
+      <text x="1140" y="820" fill="#E4572E" font-family="Inter, sans-serif" font-size="15" font-weight="600" text-anchor="end">₹ 550<tspan fill="#8A857A" font-size="10"> /night</tspan></text>
+      <text x="1140" y="842" fill="#8A857A" font-family="Inter, sans-serif" font-size="11" text-anchor="end">★ 4.6</text>
+    
+      <rect x="1200" y="670" width="340" height="200" rx="10" fill="#FFFFFF"/>
+      <rect x="1200" y="670" width="340" height="120" rx="10" fill="#DDD5C6"/>
+      <!-- fake photo abstract -->
+      <rect x="1230" y="700" width="80" height="60" fill="#8A857A" opacity="0.5"/>
+      <rect x="1330" y="690" width="100" height="80" fill="#8A857A" opacity="0.4"/>
+      <rect x="1450" y="720" width="70" height="50" fill="#8A857A" opacity="0.5"/>
+      <text x="1220" y="820" fill="#0F1620" font-family="Inter, sans-serif" font-size="15" font-weight="600">Rushikonda Nest</text>
+      <text x="1220" y="842" fill="#8A857A" font-family="Inter, sans-serif" font-size="11">Vizag &#183; verified owner</text>
+      <text x="1520" y="820" fill="#E4572E" font-family="Inter, sans-serif" font-size="15" font-weight="600" text-anchor="end">₹ 620<tspan fill="#8A857A" font-size="10"> /night</tspan></text>
+      <text x="1520" y="842" fill="#8A857A" font-family="Inter, sans-serif" font-size="11" text-anchor="end">★ 4.8</text>
+    
+</svg>

@@ -1,16 +1,103 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
-  <rect width="640" height="400" fill="#FCE7DF"/>
-  <g fill="#E4572E" opacity="0.35">
-    <path d="M320 100 L340 130 L370 130 L346 148 L356 178 L320 160 L284 178 L294 148 L270 130 L300 130 Z"/>
-  </g>
-  <g fill="none" stroke="#B4421F" stroke-width="1" opacity="0.6">
-    <circle cx="200" cy="240" r="80" stroke-dasharray="4 4"/>
-    <circle cx="440" cy="240" r="80" stroke-dasharray="4 4"/>
-    <path d="M180 250 L220 220 L260 250 L220 280 Z"/>
-    <path d="M420 250 L460 220 L500 250 L460 280 Z"/>
-    <path d="M320 260 L340 240 L360 260 L340 280 Z"/>
-    <line x1="220" y1="250" x2="340" y2="260"/>
-    <line x1="340" y1="260" x2="460" y2="250"/>
-    <line x1="220" y1="250" x2="460" y2="250" stroke-dasharray="2 3"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"><rect width="1600" height="900" fill="#0B1930"/>
+  
+  <rect x="0" y="0" width="1600" height="64" fill="#132340"/>
+  <rect x="0" y="63" width="1600" height="1" fill="#2A3E62"/>
+  <rect x="24" y="20" width="24" height="24" rx="4" fill="#B04A2A"/>
+  <text x="60" y="40" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="18" font-weight="600">ADMOS &#183; Dual-Mode Swarm Simulator</text>
+  
+    <text x="380" y="40" fill="#B5BFD1" font-family="Inter, sans-serif" font-size="14" font-weight="400">Scenario</text>
+    
+  
+    <text x="510" y="40" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="14" font-weight="600">Trajectories</text>
+    <rect x="500" y="55" width="70" height="2" fill="#B04A2A"/>
+  
+    <text x="640" y="40" fill="#B5BFD1" font-family="Inter, sans-serif" font-size="14" font-weight="400">Metrics</text>
+    
+  
+    <text x="770" y="40" fill="#B5BFD1" font-family="Inter, sans-serif" font-size="14" font-weight="400">Paper</text>
+    
+  
+  <circle cx="1560" cy="32" r="14" fill="#1B2C4E"/>
+  <text x="1560" y="37" fill="#B5BFD1" font-family="Inter, sans-serif" font-size="11" font-weight="600" text-anchor="middle">SS</text>
+
+  <!-- Left: trajectory plot -->
+  <rect x="24" y="88" width="1000" height="788" rx="8" fill="#1B2C4E" stroke="#2A3E62"/>
+  <text x="46" y="120" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="13" font-weight="600">Swarm trajectory &#183; asset defence under jamming</text>
+  <text x="46" y="140" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11">t = 0 &#8594; 240 s &#183; 12 UAVs &#183; 2 jammer nodes</text>
+  <!-- axes -->
+  <line x1="80" y1="770" x2="1000" y2="770" stroke="#7B87A0" stroke-width="1"/>
+  <line x1="80" y1="180" x2="80" y2="770" stroke="#7B87A0" stroke-width="1"/>
+  <text x="500" y="795" fill="#7B87A0" font-family="Inter, sans-serif" font-size="10" text-anchor="middle">x [m]</text>
+  <text x="60" y="475" fill="#7B87A0" font-family="Inter, sans-serif" font-size="10" text-anchor="middle" transform="rotate(-90 60 475)">y [m]</text>
+  <!-- grid -->
+  <line x1="80" y1="180" x2="1000" y2="180" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="80" y1="240" x2="1000" y2="240" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="80" y1="300" x2="1000" y2="300" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="80" y1="360" x2="1000" y2="360" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="80" y1="420" x2="1000" y2="420" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="80" y1="480" x2="1000" y2="480" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="80" y1="540" x2="1000" y2="540" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="80" y1="600" x2="1000" y2="600" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="80" y1="660" x2="1000" y2="660" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="80" y1="720" x2="1000" y2="720" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/>
+  <line x1="80" y1="180" x2="80" y2="770" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="140" y1="180" x2="140" y2="770" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="200" y1="180" x2="200" y2="770" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="260" y1="180" x2="260" y2="770" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="320" y1="180" x2="320" y2="770" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="380" y1="180" x2="380" y2="770" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="440" y1="180" x2="440" y2="770" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="500" y1="180" x2="500" y2="770" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="560" y1="180" x2="560" y2="770" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="620" y1="180" x2="620" y2="770" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="680" y1="180" x2="680" y2="770" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="740" y1="180" x2="740" y2="770" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="800" y1="180" x2="800" y2="770" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="860" y1="180" x2="860" y2="770" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="920" y1="180" x2="920" y2="770" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/><line x1="980" y1="180" x2="980" y2="770" stroke="#2A3E62" stroke-width="0.5" opacity="0.5"/>
+  <!-- asset (centre) -->
+  <circle cx="540" cy="475" r="18" fill="#B04A2A"/>
+  <text x="540" y="513" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="10" text-anchor="middle" font-weight="600">ASSET</text>
+  <!-- jammer nodes -->
+  <polygon points="200,300 220,290 220,320 200,310" fill="#D4A02E"/>
+  <text x="180" y="285" fill="#D4A02E" font-family="Inter, sans-serif" font-size="10">JAM 1</text>
+  <polygon points="880,650 900,640 900,670 880,660" fill="#D4A02E"/>
+  <text x="920" y="655" fill="#D4A02E" font-family="Inter, sans-serif" font-size="10">JAM 2</text>
+  <!-- jam radius (dashed) -->
+  <circle cx="210" cy="305" r="140" fill="none" stroke="#D4A02E" stroke-width="1" stroke-dasharray="6 6" opacity="0.6"/>
+  <circle cx="890" cy="655" r="140" fill="none" stroke="#D4A02E" stroke-width="1" stroke-dasharray="6 6" opacity="0.6"/>
+  <!-- UAV trajectories (cooperative curves) -->
+  <path d="M 100 400 Q 300 350 540 460 T 900 380" fill="none" stroke="#4A8F6B" stroke-width="2" opacity="0.75"/><path d="M 900 220 Q 720 320 560 450 T 220 700" fill="none" stroke="#4A8F6B" stroke-width="2" opacity="0.75"/><path d="M 120 700 Q 320 620 540 490 T 950 500" fill="none" stroke="#4A8F6B" stroke-width="2" opacity="0.75"/><path d="M 720 200 Q 620 300 540 470 T 400 720" fill="none" stroke="#4A8F6B" stroke-width="2" opacity="0.75"/><path d="M 400 220 Q 470 320 540 480 T 760 720" fill="none" stroke="#4A8F6B" stroke-width="2" opacity="0.75"/>
+  <!-- UAV markers at t_final -->
+  
+    <polygon points="900,372 908,386 892,386" fill="#5E82B8"/>
+  
+    <polygon points="220,692 228,706 212,706" fill="#5E82B8"/>
+  
+    <polygon points="950,492 958,506 942,506" fill="#5E82B8"/>
+  
+    <polygon points="400,712 408,726 392,726" fill="#5E82B8"/>
+  
+    <polygon points="760,712 768,726 752,726" fill="#5E82B8"/>
+  
+  <!-- Legend -->
+  <rect x="700" y="200" width="290" height="120" rx="4" fill="#132340" opacity="0.9"/>
+  <line x1="710" y1="220" x2="740" y2="220" stroke="#4A8F6B" stroke-width="2"/>
+  <text x="750" y="224" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="11">Cooperative mode (agree)</text>
+  <line x1="710" y1="245" x2="740" y2="245" stroke="#B04A2A" stroke-width="2" stroke-dasharray="4 3"/>
+  <text x="750" y="249" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="11">Autonomous fallback (jammed)</text>
+  <polygon points="720,270 730,278 710,278" fill="#5E82B8"/>
+  <text x="750" y="278" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="11">UAV terminal position</text>
+  <polygon points="710,295 730,285 730,305 710,300" fill="#D4A02E"/>
+  <text x="750" y="304" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="11">Jammer + effective radius</text>
+
+  <!-- Right: metrics panel -->
+  <rect x="1048" y="88" width="528" height="788" rx="8" fill="#1B2C4E" stroke="#2A3E62"/>
+  <text x="1070" y="120" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="13" font-weight="600">Run summary</text>
+  <text x="1070" y="140" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11">Rev-3 baseline &#183; adaptive dual-mode</text>
+  <line x1="1070" y1="160" x2="1556" y2="160" stroke="#2A3E62"/>
+  
+  <rect x="1070" y="180" width="340" height="120" rx="8" fill="#1B2C4E" stroke="#2A3E62"/>
+  <text x="1094" y="212" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11" letter-spacing="1.5">ASSET SURVIVAL</text>
+  <text x="1094" y="262" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="40" font-weight="600">96.7%</text>
+  <text x="1094" y="286" fill="#4A8F6B" font-family="Inter, sans-serif" font-size="12">+18.4 vs. static</text>
+
+  
+  <rect x="1070" y="320" width="340" height="120" rx="8" fill="#1B2C4E" stroke="#2A3E62"/>
+  <text x="1094" y="352" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11" letter-spacing="1.5">MODE SWITCHES</text>
+  <text x="1094" y="402" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="40" font-weight="600">7 &#215; 12</text>
+  <text x="1094" y="426" fill="#4A8F6B" font-family="Inter, sans-serif" font-size="12">per UAV, avg 3.4</text>
+
+  
+  <rect x="1070" y="460" width="340" height="120" rx="8" fill="#1B2C4E" stroke="#2A3E62"/>
+  <text x="1094" y="492" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11" letter-spacing="1.5">END TIME</text>
+  <text x="1094" y="542" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="40" font-weight="600">184 s</text>
+  <text x="1094" y="566" fill="#4A8F6B" font-family="Inter, sans-serif" font-size="12">target 240 s</text>
+
+  <text x="1070" y="620" fill="#7B87A0" font-family="Inter, sans-serif" font-size="10" letter-spacing="1.5">MODE OCCUPANCY</text>
+  <rect x="1070" y="640" width="486" height="24" rx="4" fill="#132340"/>
+  <rect x="1070" y="640" width="316" height="24" rx="4" fill="#4A8F6B"/>
+  <rect x="1386" y="640" width="170" height="24" fill="#B04A2A"/>
+  <text x="1080" y="656" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="11" font-weight="600">Cooperative 65%</text>
+  <text x="1396" y="656" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="11" font-weight="600">Auto 35%</text>
+  <text x="1070" y="720" fill="#7B87A0" font-family="Inter, sans-serif" font-size="10" letter-spacing="1.5">PREPRINT</text>
+  <text x="1070" y="750" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="13">Research Square &#183; rs-9957095</text>
+  <text x="1070" y="770" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11">Under review at Discover Vehicles (Springer)</text>
 </svg>

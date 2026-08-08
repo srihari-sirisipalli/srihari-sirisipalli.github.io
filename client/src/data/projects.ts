@@ -54,12 +54,12 @@ export const portfolio: PortfolioProject[] = [
   },
   {
     id: "cattle-biometric",
-    title: "Cattle Biometric Identification System",
+    title: "Goodhar: Cattle Biometric Identification",
     category: "Computer Vision",
     type: "work",
-    tags: ["SimCLR", "FAISS", "Multi-view", "Distributed", "Agritech"],
+    tags: ["Goodhar", "On Hold", "Data Collection", "SimCLR", "FAISS", "Agritech"],
     description:
-      "Multi-view biometric retrieval for individual cattle identification. Contrastive embeddings, FAISS multi-index at 100K+ image scale, distributed feature extraction across worker pools.",
+      "Large-scale cattle biometric identification for a state agritech initiative. Pipelines, model benchmarking, and the retrieval stack are built. Currently on hold, an image-filtering and registration app is in the field while training data is collected.",
     image: "/work/cattle.svg",
   },
   {
@@ -77,10 +77,10 @@ export const portfolio: PortfolioProject[] = [
     title: "Computer Vision for SCCL Mining Operations",
     category: "Computer Vision",
     type: "work",
-    tags: ["Video Analytics", "PPE", "ANPR", "Dash", "Mining"],
+    tags: ["Upcoming", "Video Analytics", "PPE", "ANPR", "Dash", "Mining"],
     description:
-      "End-to-end computer vision system for SCCL mining operations. Strategy documents, technical architecture, a Python analytics backend across 11 detection features, and a Dash NOC dashboard for live operators.",
-    image: "/work/sccl-mining.png",
+      "Upcoming end-to-end computer vision system for SCCL mining operations. Eleven detection features (PPE, ANPR, perimeter, dust, conveyor flow, stockpile, thermal, drone playback and more) wired into a live Dash NOC dashboard. Currently in the pre-implementation phase.",
+    image: "/work/sccl-mining.svg",
   },
   {
     id: "zapstays-platform",
@@ -90,7 +90,7 @@ export const portfolio: PortfolioProject[] = [
     tags: ["PHP 8", "MySQL", "Full-Stack", "Live"],
     description:
       "Full-stack hostel and co-living platform for verified travelers and owners across India. Quote-based booking flow, real-time chat, three-role codebase, admin power-tools. Live in production.",
-    image: "/work/zapstays.png",
+    image: "/work/zapstays-mock.svg",
     links: [{ label: "Live", url: "https://zapstays.in" }],
   },
   {
@@ -133,15 +133,16 @@ export const portfolio: PortfolioProject[] = [
     description:
       "Offline PDF organiser that reads each page with a local vision-language model and generates clean descriptive filenames and folder structures. Zero cloud calls. Nothing leaves the machine.",
     image: "/work/docforge.svg",
+    links: [{ label: "GitHub", url: "https://github.com/srihari-sirisipalli/DocForge" }],
   },
   {
     id: "patent-similarity",
     title: "Patent Similarity & Prior Art LLM",
     category: "AI & GenAI",
     type: "work",
-    tags: ["LLMs", "FAISS", "AWS Lambda", "Terraform"],
+    tags: ["LLMs", "FAISS", "AWS Lambda", "Terraform", "Pangeon"],
     description:
-      "LLM-based patent similarity and prior-art system for Pangeon. Embedding retrieval, semantic scoring, and reproducible AWS provisioning across client accounts.",
+      "LLM-based patent similarity and prior-art system. Built at Pangeon (startup studio) for Intellipat, one of their portfolio startups. Embedding retrieval, semantic scoring, and reproducible AWS provisioning across client accounts.",
     image: "/work/patent-similarity.svg",
   },
   {
@@ -152,7 +153,7 @@ export const portfolio: PortfolioProject[] = [
     tags: ["Python", "MOSES", "Scikit-learn", "Signal Processing"],
     description:
       "End-to-end ML infrastructure for offshore riser fatigue, vessel motion, wave height, and heading. Retrain-to-predict pipeline over automated Bentley MOSES studies.",
-    image: "/work/offshore-dt.svg",
+    image: "/work/offshore-dt.png",
   },
   {
     id: "pynaos-fea",
@@ -205,14 +206,14 @@ export const portfolio: PortfolioProject[] = [
     image: "/work/dcdc.png",
   },
   {
-    id: "auv-programme",
+    id: "auv-underwater-vehicle",
     title: "Autonomous Underwater Vehicle Design & Development",
     category: "Underwater Systems",
     type: "work",
     tags: ["Autonomous Underwater Vehicle", "Product Development", "Marine", "Team Lead"],
     description:
       "Currently leading an engineering team on Autonomous Underwater Vehicle design and development. Mechanical, structural, and systems work, from concept through vehicle delivery.",
-    image: "/work/auv.png",
+    image: "/work/auv-mock.svg",
   },
   {
     id: "underwater-reliability",

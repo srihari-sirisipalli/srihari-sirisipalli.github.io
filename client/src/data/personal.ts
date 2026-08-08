@@ -1,18 +1,18 @@
 export const personal = {
   name: "Sri Hari Sirisipalli",
-  title: "Product Developer",
+  title: "Lead Engineer & AI Systems Engineer",
   subtitle:
-    "I build products end-to-end. Industry Software, AI, Automation, Apps, Websites. Fractional CTO for teams that need one person who can ship all of it.",
+    "Lead Engineer and AI Systems Engineer. Leading engineering on projects like Autonomous Underwater Vehicle (AUV) design, ship design, and offshore structures. Building AI systems, apps, platforms, and industry software end-to-end. Fractional CTO at Openct.",
   roles: [
-    "Product Developer",
+    "Lead Engineer",
+    "AI Systems Engineer",
     "Fractional CTO",
-    "AI Systems Builder",
-    "Automation Architect",
+    "AUV Project Lead",
     "Researcher",
   ],
   bio: [
-    "I build products. Industry Software, AI Systems, Automation, Apps, and Websites. Whatever the surface, I ship it end-to-end.",
-    "Fractional CTO at Openct. Independent product development practice hired when a team wants product thinking, engineering depth, and production delivery from the same person.",
+    "AI, computer vision, GenAI, apps, and industry software, built end-to-end. Digital twins, CFD, FEA, and reliability where the work needs deep engineering. Cloud, DevOps, and product delivery to ship it. Marine, offshore, and naval domain when the project sits there.",
+    "The bet the practice is built on: engineering depth and product delivery are more useful together than apart. No handoff between the person doing the analysis and the person doing the app. Same engineer, both halves.",
   ],
   stats: [
     { value: 3, suffix: "+", label: "Years Experience" },

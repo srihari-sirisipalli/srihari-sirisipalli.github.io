@@ -1,41 +1,21 @@
-## The problem
+## What it is
 
-Analytical state-space solvers for multi-input DC-DC power converters are accurate and slow. Slow enough that design-space exploration and inverse design (given a target performance envelope, back out the passives and duty cycles) is impractical at any meaningful resolution.
+A machine-learning surrogate for a dual-input DC-DC power converter. The classical solver is accurate but slow. The surrogate predicts the same behaviour in microseconds so an engineer can actually explore the design space, or specify a target and get a candidate design back.
 
-The brief: build an ML surrogate that predicts converter steady-state and small-signal behaviour in microseconds, add uncertainty quantification so it can be trusted at the edges of its training envelope, and wire an inverse-design loop on top so engineers can specify a target and get a candidate design back.
+## Why it matters
 
-## Dataset
+Sweeping the converter's design space with the analytical solver is painful. Inverse design, where you fix the outcome and ask what components deliver it, is worse. The surrogate turns both into interactive work.
 
-Five thousand samples via Latin Hypercube over 13 inputs (dual voltages, duty cycles, passive component values). Twelve outputs per sample: steady-state operating point, small-signal gain matrix entries, and the relative gain array. Every sample comes from the analytical solver, so ground truth is definitionally correct.
+## What I built
 
-## Model comparison
+**A predictive model.** Trained on samples from the analytical solver, so ground truth is definitionally correct. XGBoost held the strongest test performance among the models I tried; a physics-informed MLP came very close and generalises better at the edges.
 
-Four problem formulations crossed with three model families (Random Forest, XGBoost, MLP). Twelve variants total, each swept over depth and regularisation. XGBoost won on the held-out test. The MLP came within a whisker with a physics-informed twist described below.
+**A physics-informed loss.** The relative gain array should satisfy a row-sum identity. Adding that as a soft constraint kept the network from drifting into physically impossible territory in the undersampled corners of the input space.
 
-## Physics-informed network
+**An out-of-distribution gate.** The surrogate is a fast approximator, not an oracle. Predictions pass through a small stack of trust checks: Mahalanobis distance in the input space, ensemble variance across model heads, a physics residual on the RGA identity, bounds on each input, and a consistency check between predicted and reconstructed outputs. Fail two, and the prediction is flagged.
 
-A physics-informed MLP enforces the relative gain array row-sum identity as a soft constraint in the loss. That single constraint keeps the network from drifting into physically impossible predictions in undersampled regions of the input space, which happens more often than the aggregate error metric suggests.
+**Inverse design.** Differential evolution over the surrogate. You specify a target output vector, you get a candidate parameter set back in a handful of seconds. A small PyQt GUI wraps it for engineers who want to pin some parameters and search over the rest.
 
-## Five-layer OOD detector
+## What I learned
 
-The surrogate is only trustworthy inside the training envelope. A five-layer out-of-distribution detector wraps every prediction:
-
-- **Mahalanobis distance** in the input feature space
-- **Ensemble variance** across model heads
-- **Physics residuals** from the RGA constraint
-- **Bounds checks** on each input feature
-- **RGA consistency** between predicted and reconstructed
-
-Any prediction that fails two or more layers is flagged. The surrogate is a fast approximator, not an oracle.
-
-## Inverse design
-
-Differential evolution over the surrogate: specify a target output vector, get back a candidate parameter set in around 5 to 10 seconds per query. PyQt5 GUI wraps the loop for engineers who want to pin some parameters and search over the rest.
-
-## Reproducibility
-
-A 16-script experiment suite reproduces every result from raw dataset through paper-ready outputs (92 figures, 63 LaTeX tables, seven IEEE-Transactions paper drafts). Reproducibility is the point: an ML paper without a reproducible pipeline is a claim, not a result.
-
-## What broke
-
-The first surrogate looked great on average error and poor on the RGA identity. Aggregate metrics hid a physics violation that a small check caught in one pass. The RGA constraint went into the loss the same day. Lesson: physical invariants belong in the loss function, not in the post-hoc audit.
+The first model looked great on average error and quietly violated the physics. Aggregate metrics can hide a lot. Once the physical invariant went into the loss, the failures stopped. Physical constraints belong in the training signal, not in the post-hoc audit.

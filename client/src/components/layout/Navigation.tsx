@@ -6,7 +6,7 @@ import { personal } from "@/data/personal";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { href: "/work", label: "Products" },
+  { href: "/work", label: "Work" },
   { href: "/research", label: "Research" },
   { href: "/experience", label: "Experience" },
   { href: "/blog", label: "Writing" },
@@ -29,8 +29,8 @@ export default function Navigation() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
       className={cn(
-        "fixed top-0 left-0 right-0 z-40 transition-colors duration-300",
-        scrolled ? "bg-bg/90 backdrop-blur-sm border-b border-rule" : "bg-transparent",
+        "fixed top-0 left-0 right-0 z-40 transition-shadow duration-300 bg-bg/95 backdrop-blur-sm border-b border-rule",
+        scrolled && "shadow-sm",
       )}
     >
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
@@ -62,13 +62,23 @@ export default function Navigation() {
             </a>
           </nav>
 
-          <button
-            className="md:hidden p-2 -m-2 text-ink"
-            onClick={() => setOpen((v) => !v)}
-            aria-label={open ? "Close menu" : "Open menu"}
-          >
-            {open ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          <div className="md:hidden flex items-center gap-3">
+            <a
+              href={personal.calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-medium text-bg bg-ink px-3 py-2 rounded-full hover:bg-accent transition-colors"
+            >
+              Book a call
+            </a>
+            <button
+              className="p-2 -m-2 text-ink"
+              onClick={() => setOpen((v) => !v)}
+              aria-label={open ? "Close menu" : "Open menu"}
+            >
+              {open ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
 
         {open && (
@@ -83,19 +93,11 @@ export default function Navigation() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="text-base text-ink-soft hover:text-accent"
+                className="text-base text-ink-soft hover:text-accent py-2"
               >
                 {link.label}
               </Link>
             ))}
-            <a
-              href={personal.calendlyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-medium text-bg bg-ink px-4 py-2 rounded-full self-start hover:bg-accent transition-colors"
-            >
-              Book a call
-            </a>
           </motion.nav>
         )}
       </div>

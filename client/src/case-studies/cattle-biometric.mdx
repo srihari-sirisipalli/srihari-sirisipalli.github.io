@@ -1,21 +1,29 @@
-## The problem
+## What it is
 
-Individual cattle identification is a hard technical problem: no two animals are the same, muzzle prints and coat patterns are visually distinctive but noisy, and any workable system has to run at herd scale with low query latency.
+Goodhar. A cattle biometric identification system built for a state agritech initiative, at herd scale. The system identifies individual animals from images so that ownership, health records, and subsidy tracking can attach to a specific animal instead of a tag or a form.
 
-## What I built
+## Status
 
-A multi-view biometric retrieval system for cattle. Given a query image, it returns the most visually similar animals from an index of over one hundred thousand images, ranked by embedding distance.
+Currently on hold, in the data-collection phase.
 
-## Technical design
+Field teams are running a companion app for image capture. The app handles image filtering (quality, angle, lighting checks) and per-animal registration, so the dataset that will train the production models comes in clean. Retrieval, pipelines, and model benchmarking are already built and validated on the pilot corpus. Work resumes at full scale once the collection window closes.
 
-**Multi-view representation.** Each animal is represented by several views (muzzle, side, face). Single-angle queries still match reliably because the index contains multiple canonical views per identity.
+## What is already built
 
-**Contrastive embeddings.** SimCLR-style self-supervised training produces an embedding space where images of the same animal cluster tightly and images of different animals separate. No hand-labelled pairs required beyond identity tags.
+**Multi-view representation.** Each animal is represented by several canonical views (muzzle, side, face). Single-angle queries still match reliably because the index carries multiple views per identity.
 
-**FAISS multi-index retrieval.** The embedding index is sharded and combined with ranking fusion so top-k retrieval stays sub-second at 100K+ scale. Multi-index handles the trade-off between recall and query latency.
+**Contrastive embeddings.** SimCLR-style self-supervised training produces an embedding space where images of the same animal cluster tightly and different animals separate. No hand-labelled pairs required beyond identity tags.
 
-**Distributed feature extraction.** Enrolment throughput is fanned out across a 20-worker process pool. New animals are indexed in batch without blocking retrieval traffic.
+**FAISS multi-index retrieval.** The embedding index is sharded and combined with ranking fusion so top-k retrieval stays sub-second at 100K+ scale. Multi-index handles the recall-vs-latency trade-off.
+
+**Distributed feature extraction.** Enrolment throughput is fanned out across a 20-worker process pool. New animals index in batch without blocking retrieval traffic.
+
+**Model benchmarking.** Backbone comparisons, augmentation ablations, and retrieval-metric sweeps done end to end. The winning configuration is frozen and waiting for the full dataset.
+
+## The field app
+
+The registration app is the piece that is live right now. Operators capture animals in the field, the app runs quality gates (blur, angle, occlusion, lighting), and only accepted frames enter the enrolment queue. Bad data does not get into training, which is the whole point of running collection this way.
 
 ## What generalises
 
-The same pipeline shape works for any biometric retrieval problem with a stable visual signature: consistent multi-view capture, contrastive embedding training, FAISS at scale, distributed enrolment. The specifics of muzzle prints are a detail; the retrieval architecture is transferable.
+The same pipeline shape works for any biometric retrieval problem with a stable visual signature: consistent multi-view capture, contrastive embedding training, FAISS at scale, distributed enrolment, and a strict field-side quality gate. The specifics of muzzle prints are a detail; the retrieval architecture is transferable.

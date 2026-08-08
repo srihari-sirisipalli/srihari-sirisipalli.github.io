@@ -1,10 +1,44 @@
 import { motion } from "framer-motion";
 
 const items = [
-  "Flutter", "Python", "React", "TypeScript", "FastAPI", "Django",
-  "AWS Lambda", "DigitalOcean", "Terraform", "Docker", "Redis", "PostgreSQL",
-  "LangChain", "FAISS", "PyTorch", "Scikit-learn", "ANSYS Fluent", "Bentley MOSES",
-  "PyQt5", "Whisper", "Ollama",
+  // AI / ML / DL — first
+  "AI", "Machine Learning", "Deep Learning",
+  "PyTorch", "TensorFlow", "Keras", "Scikit-learn", "XGBoost", "LightGBM", "Optuna",
+  "Hugging Face", "Transformers", "ONNX",
+  // GenAI / LLMs
+  "GenAI", "LLMs", "RAG", "Embeddings",
+  "OpenAI", "Anthropic", "LangChain", "LlamaIndex", "Ollama", "vLLM", "Whisper",
+  // Computer vision
+  "Computer Vision", "OpenCV", "YOLO", "BoT-SORT", "SimCLR", "Tesseract", "MediaPipe",
+  // Digital Twins, Simulation, Reliability
+  "Digital Twins", "Simulations", "CFD", "FEA", "Reliability Analysis",
+  "Physics-Informed ML", "ML Surrogates", "DOE", "Optimisation",
+  // Engineering CAD/CAE tools
+  "ANSYS Fluent", "ANSYS APDL", "ANSYS Mechanical",
+  "OpenFOAM", "Bentley MOSES", "Autodesk Inventor", "SolidWorks",
+  "FreeCAD", "Fusion 360", "AutoCAD", "Maxsurf", "Rhino",
+  // App / product / frontend
+  "App Development", "Flutter", "React Native",
+  "React", "Next.js", "Vite", "Tailwind",
+  "PyQt5", "PyQt6", "Streamlit",
+  // Backend / API
+  "FastAPI", "Django", "Flask", "Node.js", "Express", "WebSockets", "REST", "GraphQL",
+  // DevOps / Cloud
+  "DevOps", "AWS", "AWS Lambda", "AWS EC2", "AWS S3", "DigitalOcean", "GCP",
+  "Docker", "Terraform", "GitHub Actions", "CI/CD", "Nginx",
+  // Databases / storage / vector
+  "PostgreSQL", "MySQL", "Redis", "SQLite", "FAISS", "ChromaDB",
+  // Data / pipelines
+  "NumPy", "SciPy", "Pandas", "Polars", "Dask", "PySpark", "Airflow",
+  // 3D / graphics
+  "Three.js", "PyOpenGL", "WebGL",
+  // Ops / observability
+  "Prometheus", "Grafana", "Weights & Biases", "MLflow",
+  // Languages
+  "Python", "TypeScript", "JavaScript", "Dart", "C++", "MATLAB", "SQL", "HTML", "CSS",
+  // Marine / naval domain — last
+  "Naval Architecture", "Ship Design", "Offshore Structures", "AUV",
+  "Hydrodynamics", "Seakeeping", "Mooring", "Stability",
 ];
 
 export default function TechMarquee() {
@@ -20,7 +54,7 @@ export default function TechMarquee() {
           className="flex gap-12 whitespace-nowrap"
           animate={{ x: ["0%", "-50%"] }}
           transition={{
-            duration: 45,
+            duration: 180,
             repeat: Infinity,
             ease: "linear",
           }}

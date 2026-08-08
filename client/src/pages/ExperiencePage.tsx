@@ -27,7 +27,7 @@ export default function ExperiencePage() {
           Where I&apos;ve <em className="italic text-accent">built</em>.
         </h1>
         <p className="text-lg text-ink-soft max-w-2xl">
-          What I do now, the shape of my product development practice, and the
+          What I do now, the range of things I&apos;ve led and built, and the
           roles that got me here.
         </p>
       </motion.header>
@@ -46,7 +46,7 @@ export default function ExperiencePage() {
           ))}
       </motion.ol>
 
-      <SectionHeading>Product development practice</SectionHeading>
+      <SectionHeading>Practice areas</SectionHeading>
       <motion.div
         variants={fadeUp}
         initial="hidden"

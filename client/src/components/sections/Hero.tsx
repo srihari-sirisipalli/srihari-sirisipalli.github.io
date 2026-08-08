@@ -5,27 +5,28 @@ import { personal } from "@/data/personal";
 
 export default function Hero() {
   return (
-    <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-24 md:pt-48 md:pb-32 px-5 sm:px-8">
+    <section className="relative pt-36 pb-16 sm:pt-40 sm:pb-24 md:pt-48 md:pb-32 px-5 sm:px-8">
       <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-[1fr_auto] gap-12 md:gap-16 items-end">
+        <div className="grid md:grid-cols-[1fr_auto] gap-8 md:gap-16 items-end">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="order-2 md:order-1"
           >
             <p className="text-sm text-ink-faint mb-6 tracking-wide font-sans">
-              Product Developer &middot; Industry Software &middot; AI &middot; Automation &middot; Apps &middot; Websites
+              Lead Engineer &middot; AI Systems Engineer &middot; End-to-End
             </p>
             <h1 className="font-display font-medium text-display-xl text-ink mb-8">
-              I build <em className="italic text-accent">products</em>.<br />
-              Industry Software, <em className="italic text-accent">AI</em>, Automation.<br />
-              Apps, Websites.
+              I <em className="italic text-accent">lead</em>, <em className="italic text-accent">engineer</em>,<br />
+              and <em className="italic text-accent">build</em>.
             </h1>
             <p className="font-sans text-lg md:text-xl text-ink-soft leading-relaxed max-w-2xl mb-10">
-              Industry Software, AI System, Automation, App, Website. Whatever
-              the surface, I ship it end-to-end. Hired when a team wants product
-              thinking, engineering depth, and production delivery from the same
-              person.
+              Leading engineering on projects. Autonomous Underwater Vehicle
+              (AUV) design and development, ship design, offshore structures,
+              gangways, planning craft. Product development end-to-end. Apps,
+              websites, platforms, industry software, AI, digital twins,
+              computer vision.
             </p>
             <div className="flex flex-wrap gap-4 items-center">
               <a
@@ -41,7 +42,7 @@ export default function Hero() {
                 href="/work"
                 className="inline-flex items-center gap-2 text-ink text-sm font-medium link-underline"
               >
-                See the products
+                See the work
                 <ArrowUpRight size={16} />
               </Link>
             </div>
@@ -51,9 +52,9 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="hidden md:block"
+            className="order-1 md:order-2 mx-auto md:mx-0"
           >
-            <div className="relative w-64 h-80 lg:w-72 lg:h-96 rounded-2xl overflow-hidden bg-accent-soft border border-rule">
+            <div className="relative w-52 h-52 sm:w-64 sm:h-64 md:w-64 md:h-80 lg:w-72 lg:h-96 rounded-2xl overflow-hidden bg-accent-soft border border-rule">
               <img
                 src="/sri.jpg"
                 alt={personal.name}
@@ -63,7 +64,7 @@ export default function Hero() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <p className="mt-4 text-xs text-ink-faint text-right font-medium">
+            <p className="mt-4 text-xs text-ink-faint text-center md:text-right font-medium">
               {personal.location}
             </p>
           </motion.div>

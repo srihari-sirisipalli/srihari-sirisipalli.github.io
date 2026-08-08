@@ -28,14 +28,14 @@ export default function WorkPage() {
         className="mb-16"
       >
         <p className="text-sm text-accent tracking-wide mb-4 uppercase font-medium">
-          Products
+          Work
         </p>
         <h1 className="font-display text-display-lg text-ink mb-6 max-w-3xl">
-          Products I&apos;ve <em className="italic text-accent">built</em> and <em className="italic text-accent">shipped</em>.
+          Things I&apos;ve <em className="italic text-accent">led</em> and <em className="italic text-accent">built</em>.
         </h1>
         <p className="text-lg text-ink-soft max-w-2xl">
-          Industry Software, AI Systems, Automations, Apps, and Websites.
-          Shipped for clients and built for my own product work.
+          Products, systems, engineering projects, apps, industry software.
+          Shipped for clients and built inside my own practice.
         </p>
       </motion.div>
 

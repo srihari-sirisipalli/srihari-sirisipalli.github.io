@@ -1,31 +1,91 @@
-## The problem
+## What it is
 
-A folder of PDFs turns into a mess remarkably quickly. `IMG_20231105_scan.pdf`, `Document (3).pdf`, `Copy of Final_v2_FINAL.pdf`, `scan_0042.pdf`. Multiply that by years of accumulation and you have a personal or organisational archive that is theoretically searchable and practically opaque.
+An offline PDF organiser. You drop a folder of messy PDFs, DocForge reads each one with a local vision-language model and produces clean descriptive filenames and a real folder structure. Everything runs on the machine. Nothing leaves.
 
-DocForge fixes it by reading each PDF with a local vision-language model and renaming it to something a human can read at a glance. Everything runs offline.
+Open source on GitHub. Cross-platform (Windows, macOS, Linux). Ships as a Python package and a CLI.
 
-## What it does
+## Before and after
 
-**Reads.** Every page of every PDF, including scanned image-only ones (Tesseract fallback).
+```
+BEFORE                                AFTER
+IMG_20231105_scan.pdf         →       quarterly_financial_report_q3_2023.pdf
+Document (3).pdf              →       deep_learning_specialization_certificate_2020.pdf
+scan_0042.pdf                 →       independent_contractor_agreement_nda_2025.pdf
+Copy of Final_v2_FINAL.pdf    →       btech_degree_certificate_university_2022.pdf
+```
 
-**Understands.** Passes the pages to a local VLM through Ollama and asks it what the document actually is: a certificate, a contract, a financial report, an identity document, a receipt.
+## The five-stage pipeline
 
-**Renames.** Generates descriptive filenames like `quarterly_financial_report_q3_2023.pdf` instead of `IMG_3847.pdf`. Consistent conventions, no cloud round-trip.
+Each PDF flows through the same pipeline. Stages are independent, resumable, and swappable.
 
-**Organises.** Sorts the renamed files into folders by type, year, or domain, whichever convention the user picks.
+1. **Metadata extraction.** PDF info dictionary, page count, file hash. Cheap, deterministic, always runs first.
+2. **Text probe.** Extract embedded text and score its quality. If a PDF is a real text PDF, later stages can skip the vision pass.
+3. **Content extraction.** Either a VLM vision pass (default, when Ollama is available) or a heuristic fallback (regex, font-size title detection, keyword classification). No GPU, no problem.
+4. **Field merging.** Combine what the VLM saw with what the heuristics and metadata gave you. Resolve conflicts with rules, not with a black box.
+5. **Filename generation.** VLM-suggested name, or a template built from the merged fields.
 
-**Preserves.** Dry-run mode shows every proposed change before anything moves. Full rollback by job ID undoes an entire batch if the classification was wrong.
+## VLM naming
 
-## Design choices
+When Ollama is installed, DocForge renders each PDF page as an image and asks a local vision-language model to name it. The model sees titles, logos, dates, stamps, and layout the way a human would. Three supported models today: `minicpm-v` (best), `llava` (good), `moondream` (lightweight, runs on 4 GB RAM).
 
-**Local-only.** No API calls, no telemetry, no cloud storage. The whole reason to reach for DocForge instead of a hosted document intelligence service is that the documents never should have to leave the machine.
+Model comparison, install, and pull are all first-class CLI commands (`docforge model list`, `docforge model pull`).
 
-**Fallback path.** VLM inference isn't free. Fast heuristics (regex + PDF metadata) handle the trivial cases and short-circuit before the VLM runs. The VLM is the tiebreaker, not the first line of defence.
+## Heuristic fallback
 
-**Auditable.** Every operation is a job with an ID. Exports to Excel, JSON, CSV, or Markdown so the classification trail is inspectable. Rollback is a one-liner.
+No Ollama, no GPU, no problem. The heuristic path uses largest-font-in-page detection for titles, regex for dates and IDs, keyword scoring for document type, and template assembly for the final name. Fast enough to process a hundred PDFs in seconds.
 
-**Cross-platform.** Windows, macOS, Linux. Same behaviour on all three.
+## OCR for scans
 
-## Where it fits
+Tesseract integration for image-only PDFs. Detected automatically when the text probe comes back empty.
 
-Personal document archives. Legal and compliance folders that can't leave a specific machine. Research groups with years of scanned papers. Onboarding for anyone inheriting someone else's document sprawl.
+## Safety and reversibility
+
+- **Dry-run by default.** `docforge process ~/pdfs` shows what would change. Nothing is renamed until `--execute`.
+- **Full rollback.** Every rename and move is tracked with a job ID. `docforge rollback <job-id>` puts things back.
+- **Local SQLite state.** Everything is in `~/.docforge/state.db`. Auditable, portable, deletable.
+
+## Organisation strategies
+
+Sorts files by type, year, domain, or nested combinations. The `domain_type` strategy produces trees like:
+
+```
+organized/
+├── academic/       (certificate, project_report)
+├── employment/     (offer_letter, contract)
+├── financial/      (invoice)
+├── identity/       (id_card, license)
+└── general/        (other)
+```
+
+## Multi-format export
+
+Export the full processing result to Excel, JSON, CSV, or Markdown. One command: `docforge export -f excel`.
+
+## What it looks like on disk
+
+```
+DocForge/
+├── src/docforge/
+│   ├── cli/              Click CLI (scan, process, rename, organize, export, rollback…)
+│   ├── extractors/       Metadata, text, heuristic, VLM
+│   ├── pipeline/         Orchestrator, router, scheduler, workers
+│   ├── vlm/              Ollama runtime, prompt engineering, response parsing
+│   ├── ocr/              Tesseract integration
+│   ├── organizer/        Folder strategies
+│   ├── renamer/          Rename execution with rollback
+│   ├── storage/          SQLite state database
+│   └── reporting/        Export in four formats
+├── tests/                110 pytest tests
+└── pyproject.toml
+```
+
+## Requirements
+
+- Python 3.10+
+- Ollama (optional, for VLM)
+- Tesseract (optional, for OCR)
+- Runs on 4 GB RAM in heuristic-only mode, 8+ GB with `minicpm-v`
+
+## Why it exists
+
+Every professional accumulates a folder full of scanned PDFs with names like `IMG_3847.pdf` and `Copy of Final_v2_FINAL.pdf`. Cloud OCR services want your documents on their servers. DocForge is the version of that tool that never asks.

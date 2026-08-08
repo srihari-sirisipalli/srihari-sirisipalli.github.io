@@ -1,10 +1,85 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
-  <rect width="640" height="400" fill="#FCE7DF"/>
-  <g fill="#E4572E" opacity="0.35">
-    <circle cx="140" cy="140" r="60"/>
-    <rect x="240" y="80" width="120" height="120" rx="12"/>
-    <path d="M420 180 L500 100 L500 260 Z"/>
-  </g>
-  <line x1="80" y1="320" x2="560" y2="320" stroke="#B4421F" stroke-width="1"/>
-  <line x1="80" y1="350" x2="380" y2="350" stroke="#B4421F" stroke-width="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"><rect width="1600" height="900" fill="#0B1930"/>
+  
+  <rect x="0" y="0" width="1600" height="64" fill="#132340"/>
+  <rect x="0" y="63" width="1600" height="1" fill="#2A3E62"/>
+  <rect x="24" y="20" width="24" height="24" rx="4" fill="#B04A2A"/>
+  <text x="60" y="40" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="18" font-weight="600">Prior-Art Analyzer</text>
+  
+    <text x="380" y="40" fill="#B5BFD1" font-family="Inter, sans-serif" font-size="14" font-weight="400">Query</text>
+    
+  
+    <text x="510" y="40" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="14" font-weight="600">Graph</text>
+    <rect x="500" y="55" width="70" height="2" fill="#B04A2A"/>
+  
+    <text x="640" y="40" fill="#B5BFD1" font-family="Inter, sans-serif" font-size="14" font-weight="400">Rank</text>
+    
+  
+    <text x="770" y="40" fill="#B5BFD1" font-family="Inter, sans-serif" font-size="14" font-weight="400">Report</text>
+    
+  
+  <circle cx="1560" cy="32" r="14" fill="#1B2C4E"/>
+  <text x="1560" y="37" fill="#B5BFD1" font-family="Inter, sans-serif" font-size="11" font-weight="600" text-anchor="middle">SS</text>
+
+  <!-- Left: query patent card -->
+  <rect x="24" y="88" width="420" height="788" rx="8" fill="#1B2C4E" stroke="#2A3E62"/>
+  <text x="46" y="120" fill="#7B87A0" font-family="Inter, sans-serif" font-size="10" letter-spacing="1.5">QUERY PATENT</text>
+  <text x="46" y="150" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="18" font-weight="600">Application #Q-7412</text>
+  <text x="46" y="176" fill="#B5BFD1" font-family="Inter, sans-serif" font-size="12">Filed 2026-05-22 &#183; Domain B (redacted)</text>
+  <line x1="46" y1="200" x2="424" y2="200" stroke="#2A3E62"/>
+  <text x="46" y="240" fill="#7B87A0" font-family="Inter, sans-serif" font-size="10" letter-spacing="1.5">CLAIMS</text>
+  
+    <rect x="46" y="260" width="378" height="58" rx="4" fill="#132340"/>
+    <text x="60" y="282" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="12" font-weight="500">Claim 1</text>
+    <text x="60" y="302" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11">endent claim 1: A method for ⋯</text>
+  
+    <rect x="46" y="328" width="378" height="58" rx="4" fill="#132340"/>
+    <text x="60" y="350" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="12" font-weight="500">Claim 2</text>
+    <text x="60" y="370" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11">aim 2: The method of claim 1 ⋯</text>
+  
+    <rect x="46" y="396" width="378" height="58" rx="4" fill="#132340"/>
+    <text x="60" y="418" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="12" font-weight="500">Claim 3</text>
+    <text x="60" y="438" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11"> 3: The apparatus of claim 1 ⋯</text>
+  
+    <rect x="46" y="464" width="378" height="58" rx="4" fill="#132340"/>
+    <text x="60" y="486" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="12" font-weight="500">Claim 4</text>
+    <text x="60" y="506" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11">claim 4: A system comprising ⋯</text>
+  
+  <text x="46" y="580" fill="#7B87A0" font-family="Inter, sans-serif" font-size="10" letter-spacing="1.5">EMBEDDING</text>
+  <text x="46" y="606" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="12">Sentence-BERT (fine-tuned)</text>
+  <text x="46" y="626" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="12">768-d &#183; L2-normalised</text>
+  <text x="46" y="668" fill="#7B87A0" font-family="Inter, sans-serif" font-size="10" letter-spacing="1.5">CORPUS</text>
+  <text x="46" y="694" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="12">4.2 M patents &#183; USPTO + EPO</text>
+  <text x="46" y="714" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="12">FAISS IVF-PQ &#183; 128 subvectors</text>
+  <rect x="46" y="770" width="378" height="52" rx="6" fill="#B04A2A"/>
+  <text x="235" y="800" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="14" font-weight="600" text-anchor="middle">Run prior-art search</text>
+
+  <!-- Right: graph -->
+  <rect x="468" y="88" width="1108" height="788" rx="8" fill="#1B2C4E" stroke="#2A3E62"/>
+  <text x="490" y="120" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="13" font-weight="600">Similarity graph &#183; k = 24 nearest</text>
+  <text x="490" y="140" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11">Node size = similarity &#183; edge weight = shared vocabulary</text>
+  <!-- centre query node -->
+  <circle cx="1020" cy="460" r="30" fill="#B04A2A"/>
+  <text x="1020" y="465" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="11" font-weight="600" text-anchor="middle">Q-7412</text>
+  <!-- surrounding nodes at various distances -->
+  <line x1="1020" y1="460" x2="850" y2="300" stroke="#7B87A0" stroke-width="2.1599999999999997" opacity="0.846"/><line x1="1020" y1="460" x2="1180" y2="320" stroke="#7B87A0" stroke-width="2.04" opacity="0.8190000000000001"/><line x1="1020" y1="460" x2="780" y2="460" stroke="#7B87A0" stroke-width="1.96" opacity="0.801"/><line x1="1020" y1="460" x2="1240" y2="480" stroke="#7B87A0" stroke-width="1.8399999999999999" opacity="0.774"/><line x1="1020" y1="460" x2="830" y2="620" stroke="#7B87A0" stroke-width="1.7599999999999998" opacity="0.756"/><line x1="1020" y1="460" x2="1160" y2="640" stroke="#7B87A0" stroke-width="1.6799999999999997" opacity="0.738"/><line x1="1020" y1="460" x2="700" y2="380" stroke="#7B87A0" stroke-width="1.52" opacity="0.7020000000000001"/><line x1="1020" y1="460" x2="1300" y2="400" stroke="#7B87A0" stroke-width="1.44" opacity="0.684"/><line x1="1020" y1="460" x2="720" y2="540" stroke="#7B87A0" stroke-width="1.3599999999999999" opacity="0.666"/><line x1="1020" y1="460" x2="1290" y2="570" stroke="#7B87A0" stroke-width="1.2799999999999998" opacity="0.648"/><line x1="1020" y1="460" x2="600" y2="460" stroke="#7B87A0" stroke-width="1.12" opacity="0.6120000000000001"/><line x1="1020" y1="460" x2="900" y2="720" stroke="#7B87A0" stroke-width="1" opacity="0.5850000000000001"/><line x1="1020" y1="460" x2="1120" y2="720" stroke="#7B87A0" stroke-width="0.9199999999999999" opacity="0.5670000000000001"/><line x1="1020" y1="460" x2="1050" y2="240" stroke="#7B87A0" stroke-width="0.8399999999999999" opacity="0.549"/><line x1="1020" y1="460" x2="640" y2="620" stroke="#7B87A0" stroke-width="0.7199999999999998" opacity="0.522"/><line x1="1020" y1="460" x2="1380" y2="500" stroke="#7B87A0" stroke-width="0.6000000000000001" opacity="0.49500000000000005"/><line x1="1020" y1="460" x2="520" y2="380" stroke="#7B87A0" stroke-width="0.48" opacity="0.468"/><line x1="1020" y1="460" x2="530" y2="540" stroke="#7B87A0" stroke-width="0.3999999999999999" opacity="0.45"/><circle cx="850" cy="300" r="20" fill="#4A8F6B" opacity="0.94"/><circle cx="1180" cy="320" r="18" fill="#4A8F6B" opacity="0.91"/><circle cx="780" cy="460" r="22" fill="#4A8F6B" opacity="0.89"/><circle cx="1240" cy="480" r="16" fill="#4A8F6B" opacity="0.86"/><circle cx="830" cy="620" r="19" fill="#D4A02E" opacity="0.84"/><circle cx="1160" cy="640" r="17" fill="#D4A02E" opacity="0.82"/><circle cx="700" cy="380" r="14" fill="#D4A02E" opacity="0.78"/><circle cx="1300" cy="400" r="13" fill="#D4A02E" opacity="0.76"/><circle cx="720" cy="540" r="15" fill="#D4A02E" opacity="0.74"/><circle cx="1290" cy="570" r="12" fill="#D4A02E" opacity="0.72"/><circle cx="600" cy="460" r="11" fill="#7B87A0" opacity="0.68"/><circle cx="900" cy="720" r="10" fill="#7B87A0" opacity="0.65"/><circle cx="1120" cy="720" r="10" fill="#7B87A0" opacity="0.63"/><circle cx="1050" cy="240" r="9" fill="#7B87A0" opacity="0.61"/><circle cx="640" cy="620" r="8" fill="#7B87A0" opacity="0.58"/><circle cx="1380" cy="500" r="8" fill="#7B87A0" opacity="0.55"/><circle cx="520" cy="380" r="7" fill="#7B87A0" opacity="0.52"/><circle cx="530" cy="540" r="7" fill="#7B87A0" opacity="0.5"/>
+  <!-- Legend / metrics panel -->
+  <rect x="490" y="700" width="1066" height="150" rx="6" fill="#132340"/>
+  <text x="510" y="730" fill="#7B87A0" font-family="Inter, sans-serif" font-size="10" letter-spacing="1.5">TOP HITS</text>
+  
+    <text x="510" y="760" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="14" font-weight="600">P-8821-K</text>
+    <text x="510" y="782" fill="#4A8F6B" font-family="Inter, sans-serif" font-size="20" font-weight="600">0.94</text>
+    <text x="510" y="810" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11">US patent, 2018</text>
+  
+    <text x="774" y="760" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="14" font-weight="600">P-4102-R</text>
+    <text x="774" y="782" fill="#4A8F6B" font-family="Inter, sans-serif" font-size="20" font-weight="600">0.91</text>
+    <text x="774" y="810" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11">EP patent, 2020</text>
+  
+    <text x="1038" y="760" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="14" font-weight="600">P-9917-J</text>
+    <text x="1038" y="782" fill="#4A8F6B" font-family="Inter, sans-serif" font-size="20" font-weight="600">0.89</text>
+    <text x="1038" y="810" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11">US application, 2022</text>
+  
+    <text x="1302" y="760" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="14" font-weight="600">P-2244-L</text>
+    <text x="1302" y="782" fill="#D4A02E" font-family="Inter, sans-serif" font-size="20" font-weight="600">0.86</text>
+    <text x="1302" y="810" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11">US patent, 2015</text>
+  
 </svg>

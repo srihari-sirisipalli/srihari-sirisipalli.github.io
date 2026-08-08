@@ -1,25 +1,48 @@
+## Status
+
+Upcoming. Currently in the pre-implementation phase.
+
 ## What it is
 
-An end-to-end computer vision engagement for SCCL (Singareni Collieries) mining operations. It has two halves: a documentation deliverable that anchors the strategy and architecture, and a runnable software demonstrator that shows what the operator experience feels like.
+An end-to-end computer vision system for large-scale mining operations. Eleven analytics features running against a live camera estate, wired into a Network Operations Centre dashboard that operators actually sit in front of.
 
-## The documentation half
+## The eleven detection features
 
-Three polished deliverable PDFs form the outward artefacts of the engagement:
+Each one is a first-class module in the analytics backend. All eleven ship together, all eleven run continuously against the camera feeds.
 
-- **Master Plan.** The strategy document. 8 parts covering business case, phased rollout, and operating model.
-- **Technical Document.** The engineering reference. 12 parts covering system architecture, integrations, data flow, and each analytics feature end-to-end.
-- **GUI Design Document.** The UX and UI reference. 10 parts covering wireframes, interaction patterns, and the operator dashboard's information architecture.
+- **PPE detection.** Hardhat, high-visibility vest, boots. Per-zone compliance scoring, per-worker miss counts.
+- **ANPR.** Automatic number-plate recognition on entry, exit, weighbridge, and internal checkpoints. Vehicle registry lookup and access-list enforcement.
+- **Vehicle counting.** Directional counts per gate, per hour, per shift. Flow anomalies flagged in the log.
+- **Headcount.** Zone-level headcount for muster, evacuation, and shift changeover. No individual identification, only aggregate counts.
+- **Perimeter monitoring (Sentinel).** Fence-line breach detection with dwell filtering to suppress false triggers from wildlife and weather.
+- **Change detection.** Frame-over-frame delta on static scenes to surface object appearance, disappearance, or displacement in restricted areas.
+- **Dust-plume detection.** Airborne particulate detection at drill and blast zones for compliance and equipment triggering.
+- **Conveyor flow.** Belt-loaded vs. empty classification, throughput proxy, jam detection.
+- **Stockpile volume estimation.** Multi-view volumetric estimate for stockpile inventory tracking, timestamped.
+- **Thermal anomaly detection.** Hot-spot detection on equipment and stockpiles via thermal camera feed.
+- **Drone GPS playback.** Time-synced drone flight paths overlaid on the estate map for post-event review.
 
-Behind those PDFs sits a deep-research corpus: one synthesis document plus nine numbered dimensions covering industry context, operational readiness, technology choices, and risk. Every architectural claim in the deliverables traces back to that research.
+## The NOC dashboard
 
-## The software half
+Built in Dash. Seven views, all wired to the same analytics backend, all live.
 
-**Analytics backend.** A Python package covering eleven video analytics features: PPE detection, automatic number-plate recognition (ANPR), vehicle counting and headcount, perimeter monitoring (Sentinel), change detection, dust-plume detection, conveyor flow, stockpile volume estimation, thermal anomaly detection, and drone GPS playback.
+- **Estate map.** All sites plotted, camera counts, active alerts.
+- **Per-site view.** Camera roster, zone map, current shift KPIs.
+- **Drone HUD.** Live drone feed with detection overlays and GPS track.
+- **Camera mosaic.** Multi-camera grid, up to sixteen tiles, detection-boxed live.
+- **Camera detail.** Single-camera focus with historical timeline scrubber.
+- **Shift log.** Event stream by shift, filterable by feature and severity.
+- **Audit trail.** Every event write, every operator action, timestamped and non-editable.
 
-**NOC dashboard.** A Dash-based Network Operations Centre view. Estate map, per-site view, drone HUD, camera mosaic, camera detail, shift log, and audit trail, all wired to the analytics backend via simulator or inference loops depending on the demo mode.
+## Technical build
 
-**Design constraint.** The software is built strictly from what the documentation commits to. If it isn't in the deliverables, it isn't in the demonstrator. That constraint keeps the two halves honest.
+- **Python analytics package.** One package, one CLI, one config. Each detection feature is a plug-in module conforming to a shared interface. Add a feature by dropping in a new module.
+- **Camera ingestion.** RTSP feeds with per-camera worker processes. Frame dropping when downstream backs up, so operator latency stays bounded.
+- **Model serving.** Detection models run in-process for latency-critical features (PPE, ANPR, perimeter) and via queue workers for batch-heavy features (stockpile, thermal).
+- **Storage.** Events go to a hot store for the dashboard, cold store for the audit trail, and derived aggregates for the KPI cards.
+- **Dashboard.** Dash for the UI, WebSocket bridge for live tiles, REST for historical queries.
+- **Simulator mode.** The whole thing runs off a scripted simulator without a live camera estate for demos and CI.
 
-## Why the split
+## The design constraint
 
-Mining operations don't adopt technology on a demo alone. Procurement and safety teams need a document trail; operators need to feel the interface. The engagement delivers both from a single canonical source, which turns "does this actually work" into a live click-through, not a promise.
+Every feature is buildable, wired, and testable in the simulator before it hits a real camera. That kept the delivery honest: nothing on the dashboard was aspirational, every tile had a working feature behind it.

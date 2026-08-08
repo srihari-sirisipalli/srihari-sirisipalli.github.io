@@ -2,27 +2,11 @@
 
 Rotating machinery (motors, pumps, turbines, gearboxes) fails in a small number of characteristic ways: unbalance, misalignment, looseness, bearing defects, rotor bar issues, stator eccentricity. Each fault leaves a fingerprint in the vibration spectrum. Practitioners know these fingerprints well. What they need is a diagnostic tool that surfaces the right diagnosis with the right evidence, not a black-box classifier that just returns a label.
 
-This rule engine ranks probable faults for a measurement with a traceable for-and-against evidence chain, so a maintenance engineer can read the reasoning, not just the verdict.
+## The approach
 
-## Thirteen diagnostic rules
+A rule engine, not a classifier. Every diagnosis comes with a for-and-against evidence chain, so a maintenance engineer can read the reasoning and not just the verdict. Thirteen rules covering the standard fault families. Physically motivated features feed the rules; the rules produce ranked hypotheses; each hypothesis carries the specific evidence that supported it.
 
-Unbalance, misalignment (angular and parallel), mechanical looseness, bearing defects (BPFO, BPFI, BSF, FTF), rotor bar defects, stator eccentricity, cavitation, and spectrogram-based transient fault detection. Each rule captures a specific fingerprint pattern in the frequency and time domains.
-
-## Feature extraction
-
-Thirty-plus features per measurement: FFT bands, Hilbert envelope, crest factor, kurtosis, harmonic and sideband detection, STFT transients. Every feature is physically motivated. The features feed the rules; the rules produce ranked hypotheses; the ranked hypotheses come with the specific evidence that supported them.
-
-## Bearing math
-
-Bearing defect frequencies (BPFO, BPFI, BSF, FTF) are computed from bearing geometry. Twelve pre-loaded SKF bearing profiles ship with the tool so common bearings can be diagnosed from a part number alone. Custom bearings just need the ball count, pitch diameter, ball diameter, and contact angle.
-
-## ISO 10816 severity mapping
-
-Overall vibration velocity gets mapped to ISO 10816 severity zones (A/B/C/D). Each diagnosis carries a confidence score and a severity score. Together they answer both "what is going on" and "how urgent is it."
-
-## Six-tab PyQt5 workflow
-
-Load a signal, extract features, run the rule engine, inspect evidence, review the ranked hypothesis list, export a report. A headless Python API mirrors the same workflow for teams that want to embed the diagnostics inside a larger CMMS or fleet-monitoring system.
+Bearing defect frequencies (BPFO, BPFI, BSF, FTF) are computed from bearing geometry. Overall vibration velocity is mapped to ISO 10816 severity zones (A/B/C/D). Each diagnosis carries a confidence score and a severity score. Together they answer both "what is going on" and "how urgent is it."
 
 ## Why rules, not ML
 

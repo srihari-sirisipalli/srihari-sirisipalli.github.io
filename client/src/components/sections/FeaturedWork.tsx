@@ -5,7 +5,7 @@ import { portfolio } from "@/data/projects";
 import { caseStudySlugs } from "@/data/caseStudies";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
-const FEATURED_IDS = ["openct-rebuild", "offshore-digital-twin", "sccl-mining-cv"];
+const FEATURED_IDS = ["auv-underwater-vehicle", "openct-rebuild", "offshore-digital-twin"];
 
 export default function FeaturedWork() {
   const featured = FEATURED_IDS.map((id) => portfolio.find((p) => p.id === id)).filter(
@@ -23,17 +23,17 @@ export default function FeaturedWork() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             <p className="text-sm text-accent tracking-wide mb-4 uppercase font-medium">
-              Selected products
+              Selected work
             </p>
             <h2 className="font-display text-display-lg text-ink">
-              Recently <em className="italic text-accent">shipped</em>.
+              Recent <em className="italic text-accent">builds</em>.
             </h2>
           </motion.div>
           <Link
             href="/work"
             className="text-sm text-ink font-medium inline-flex items-center gap-1 link-underline"
           >
-            All products
+            All work
             <ArrowUpRight size={16} />
           </Link>
         </div>

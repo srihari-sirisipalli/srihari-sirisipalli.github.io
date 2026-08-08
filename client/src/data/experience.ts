@@ -25,11 +25,11 @@ export const workExperience: ExperienceEntry[] = [
   {
     id: "pangeon",
     title: "Software Engineer, LLM & Cloud Infrastructure",
-    company: "Pangeon",
+    company: "Pangeon (startup studio)",
     period: "Mar 2024 – Present",
     location: "Part-time · Remote",
     achievements: [
-      "LLM-based patent similarity and prior-art system at production scale",
+      "LLM-based patent similarity and prior-art system at production scale for Intellipat, one of Pangeon's portfolio startups",
       "Embedding retrieval integrated with LLM semantic scoring for automated prior-art ranking",
       "Re-architected compute workloads from EC2 to AWS Lambda for cost and speed",
       "Reproducible AWS provisioning with Terraform across client accounts",
@@ -90,49 +90,61 @@ export interface ConsultingRole {
 }
 
 export const consultingRole: ConsultingRole = {
-  title: "AI Systems Engineer",
+  title: "Lead Engineer & AI Systems Engineer",
   company: "Independent Systems Engineering",
   period: "Jun 2023 – Present",
   location: "Freelance · Remote",
   projects: [
     {
-      id: "industry-software",
-      title: "Industry Software",
+      id: "marine-offshore-naval",
+      title: "Marine, Offshore & Naval Engineering",
       achievements: [
-        "PyNAOS, pure-Python FEA engine for offshore structures",
-        "NavalArch Studio, ship design and stability suite",
-        "Ship Recycling Expert System (Django, HTMX, WeasyPrint)",
-        "Vibration Diagnostics Rule Engine (ISO 10816, PyQt5)",
+        "Leading engineering teams on ship, offshore, and naval design projects",
+        "Ship and boat design across hydrostatics, stability, seakeeping, and damage",
+        "Offshore structures: platforms, jack-ups, risers, mooring, and gangways",
+        "Planning craft, service boats, and small-craft hull and structural design",
+        "Class and regulatory work against IMO IS Code, SOLAS, IACS, and DNV-GL",
+        "Structural, modal, fatigue, and vibration analysis on primary structure",
+      ],
+    },
+    {
+      id: "auv-underwater",
+      title: "AUV & Underwater Systems",
+      achievements: [
+        "Currently leading an engineering team on Autonomous Underwater Vehicle design and development",
+        "Underwater vehicle propulsion reliability research (AI, DOE, ML surrogates)",
+        "Marine, offshore, and subsea engineering deliverables end-to-end",
+      ],
+    },
+    {
+      id: "simulations",
+      title: "Simulations",
+      achievements: [
+        "CFD (ANSYS Fluent, k-omega SST)",
+        "FEA (ANSYS APDL, custom Python engine)",
+        "Hydrodynamics (Bentley MOSES, panel methods, wave modelling)",
+        "Physics-informed and ML surrogates over expensive physics runs",
+      ],
+    },
+    {
+      id: "digital-twins",
+      title: "Digital Twins",
+      achievements: [
+        "Offshore riser fatigue and motion digital twin",
+        "Mooring digital twin",
+        "Battery digital twin",
+        "Ship emergency-response digital twin",
       ],
     },
     {
       id: "ai-genai",
-      title: "AI & GenAI",
+      title: "AI, ML & GenAI",
       achievements: [
         "RAG systems, embeddings, and semantic retrieval",
         "Real-time offline 3D AI avatar (deployed)",
         "DocForge: offline document intelligence with local VLMs",
+        "Deep learning across sequence, vision, and structured problems",
         "Compliance and regulatory expert systems",
-      ],
-    },
-    {
-      id: "automation",
-      title: "Automation",
-      achievements: [
-        "MOSES sea-transport DOE automation platform",
-        "CAD and CAE automation across ANSYS APDL, FreeCAD, and MOSES",
-        "Data pipelines, ETL, and workflow automation",
-        "CI/CD, deployment automation, and observability",
-      ],
-    },
-    {
-      id: "apps-platforms",
-      title: "Apps & Platforms",
-      achievements: [
-        "Flutter apps end-to-end (Fractional CTO at Openct)",
-        "Full-stack web platforms in production (zapstays.in)",
-        "VHop nightlife platform (in build)",
-        "Architecture: FastAPI, Django, React, WebSockets",
       ],
     },
     {
@@ -146,33 +158,33 @@ export const consultingRole: ConsultingRole = {
       ],
     },
     {
-      id: "digital-twins",
-      title: "Digital Twins & Simulation",
+      id: "automation",
+      title: "Automation",
       achievements: [
-        "Offshore riser fatigue and motion digital twin",
-        "Mooring digital twin",
-        "Battery digital twin",
-        "Ship emergency-response digital twin",
+        "MOSES sea-transport DOE automation platform",
+        "CAD and CAE automation across ANSYS APDL, FreeCAD, and MOSES",
+        "Data pipelines, ETL, and workflow automation",
+        "CI/CD, deployment automation, and observability",
       ],
     },
     {
-      id: "auv-underwater",
-      title: "AUV & Underwater",
+      id: "industry-software",
+      title: "Industry Software",
       achievements: [
-        "Currently leading an engineering team on Autonomous Underwater Vehicle design and development",
-        "Underwater vehicle propulsion reliability research (AI, DOE, ML surrogates)",
-        "Marine, offshore, and subsea engineering deliverables",
+        "PyNAOS, pure-Python FEA engine for offshore structures",
+        "NavalArch Studio, ship design and stability suite",
+        "Ship Recycling Expert System (Django, HTMX, WeasyPrint)",
+        "Vibration Diagnostics Rule Engine (ISO 10816, PyQt5)",
       ],
     },
     {
-      id: "core-engineering",
-      title: "Core Engineering",
+      id: "apps-platforms",
+      title: "Apps, Websites & Platforms",
       achievements: [
-        "CFD (ANSYS Fluent, k-omega SST)",
-        "FEA (ANSYS APDL, custom Python engine)",
-        "Hydrodynamics (Bentley MOSES, panel methods, wave modelling)",
-        "Naval architecture (IMO IS Code, SOLAS, IACS, DNV-GL)",
-        "Structural, modal, fatigue, and seakeeping analysis",
+        "Flutter apps end-to-end (Fractional CTO at Openct)",
+        "Full-stack web platforms in production (zapstays.in)",
+        "VHop nightlife platform (in build)",
+        "Architecture: FastAPI, Django, React, WebSockets",
       ],
     },
     {

@@ -1,29 +1,21 @@
-## The problem
+## What it is
 
-Patent prior-art search at scale is two coupled problems. You need semantically meaningful similarity between long, jargon-heavy documents. And you need to evaluate thousands of pairs per day without paying enterprise-grade infrastructure rates.
+Pangeon is a startup studio. Intellipat is one of its portfolio startups — an LLM-powered patent product. It finds prior art for a query patent using embedding retrieval to narrow the field, then an LLM to score each candidate on how close it really is.
 
-The original system at Pangeon ran the embedding and scoring stack on always-on EC2 instances. Throughput was bounded by node count, costs were bounded by node uptime, and both were higher than they should have been for a workload that is bursty by nature.
+## What I did
 
-## Re-architecting onto Lambda
+The stack ran on always-on EC2 instances. Prior-art search is bursty by nature, so most of the time the boxes sat idle and the bill did not.
 
-The dominant cost on EC2 was idle capacity. Instances sized for peak burst sat near-empty most of the time. Re-shaping the workload as a coordinator Lambda with a fan-out of scoring Lambdas matched the bursty traffic pattern directly.
+I reshaped the compute as a coordinator Lambda that fans out to a pool of scoring Lambdas. Cold starts on the embedding container were the obvious risk, so the coordinator path has pre-warmed concurrency. That kept perceived latency low without paying for permanent capacity on the scoring side.
 
-Cold starts for the embedding container were the obvious risk. Pre-warmed concurrency on the coordinator path solved the user-perceived latency without paying for permanent capacity on the scoring path.
+Retrieval is FAISS over patent abstract embeddings, sharded by classification block. The coordinator narrows the candidate set before the expensive LLM scoring runs. The LLM drives the unit cost, so any hit to its call count compounds everywhere else.
 
-## Vector retrieval
+Two levels of parallelism worth naming. Per request, the scoring fan-out is async to AWS. Inside each Lambda, the batch scoring loop is multiprocessed. Both bounded by configuration, both visible in CloudWatch.
 
-FAISS index built over patent abstract embeddings, sharded by classification block. Top-k retrieval on the coordinator side narrows the candidate set before LLM scoring is paid for. The LLM is the unit-cost driver, so anything that reduces its call count compounds through the rest of the pipeline.
-
-## Two levels of parallelism
-
-Per-request, the scoring fan-out is async to AWS. Per-Lambda, the inner loop uses multiprocessing for batch scoring of the candidate window. Two independent levels of parallelism, both bounded by configuration, both visible in CloudWatch.
-
-## Terraform as source of truth
-
-Every client account gets the same stack via Terraform: Amplify front, Lambda compute, IAM, monitoring, security baseline. New environments are a `terraform apply` away, not a runbook. Reproducibility is the point.
+Every client account gets the same stack via Terraform: Amplify front, Lambda compute, IAM, monitoring, security baseline. New environments are a `terraform apply`, not a runbook.
 
 ## What broke
 
-Initial Lambda concurrency limits clipped the scoring fan-out under burst. The queue grew faster than the function scaled. Catching it required a CloudWatch dashboard that tracked invocations against the concurrency cap, not just function errors. Once the cap was raised and a fall-through to async invocation was added, peak-day throughput stopped degrading.
+The initial Lambda concurrency limit clipped the fan-out under burst. The queue grew faster than the function scaled. A CloudWatch dashboard tracking invocations against the concurrency cap made it obvious. Raise the cap, add a fall-through to async invocation, and peak-day throughput stopped degrading.
 
 The vector store also needed re-sharding twice as the corpus grew. Worth doing earlier next time.

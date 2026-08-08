@@ -1,15 +1,106 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
-  <rect width="640" height="400" fill="#FCE7DF"/>
-  <g fill="#E4572E" opacity="0.35">
-    <circle cx="160" cy="170" r="45"/>
-    <circle cx="260" cy="170" r="45"/>
-    <circle cx="360" cy="170" r="45"/>
-    <circle cx="460" cy="170" r="45"/>
-    <rect x="120" y="250" width="80" height="6" rx="3"/>
-    <rect x="220" y="250" width="80" height="6" rx="3"/>
-    <rect x="320" y="250" width="80" height="6" rx="3"/>
-    <rect x="420" y="250" width="80" height="6" rx="3"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"><rect width="1600" height="900" fill="#0B1930"/>
+  
+  <rect x="0" y="0" width="1600" height="64" fill="#132340"/>
+  <rect x="0" y="63" width="1600" height="1" fill="#2A3E62"/>
+  <rect x="24" y="20" width="24" height="24" rx="4" fill="#B04A2A"/>
+  <text x="60" y="40" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="18" font-weight="600">Herd ID &#183; Biometric Retrieval</text>
+  
+    <text x="380" y="40" fill="#B5BFD1" font-family="Inter, sans-serif" font-size="14" font-weight="400">Enrol</text>
+    
+  
+    <text x="510" y="40" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="14" font-weight="600">Match</text>
+    <rect x="500" y="55" width="70" height="2" fill="#B04A2A"/>
+  
+    <text x="640" y="40" fill="#B5BFD1" font-family="Inter, sans-serif" font-size="14" font-weight="400">Index</text>
+    
+  
+    <text x="770" y="40" fill="#B5BFD1" font-family="Inter, sans-serif" font-size="14" font-weight="400">Logs</text>
+    
+  
+  <circle cx="1560" cy="32" r="14" fill="#1B2C4E"/>
+  <text x="1560" y="37" fill="#B5BFD1" font-family="Inter, sans-serif" font-size="11" font-weight="600" text-anchor="middle">SS</text>
+
+  <!-- Left: query image panel -->
+  <rect x="24" y="88" width="740" height="788" rx="8" fill="#1B2C4E" stroke="#2A3E62"/>
+  <text x="46" y="120" fill="#7B87A0" font-family="Inter, sans-serif" font-size="10" letter-spacing="1.5">QUERY IMAGE</text>
+  <rect x="46" y="132" width="696" height="490" rx="6" fill="#132340"/>
+  <!-- silhouette (no real animal) -->
+  <g transform="translate(200, 200)">
+    <ellipse cx="180" cy="180" rx="180" ry="90" fill="#2A3A54"/>
+    <ellipse cx="60" cy="130" rx="55" ry="42" fill="#2A3A54"/>
+    <line x1="40" y1="98" x2="24" y2="70" stroke="#2A3A54" stroke-width="6"/>
+    <line x1="80" y1="98" x2="96" y2="70" stroke="#2A3A54" stroke-width="6"/>
+    <line x1="120" y1="270" x2="120" y2="330" stroke="#2A3A54" stroke-width="6"/>
+    <line x1="180" y1="270" x2="180" y2="330" stroke="#2A3A54" stroke-width="6"/>
+    <line x1="240" y1="270" x2="240" y2="330" stroke="#2A3A54" stroke-width="6"/>
+    <line x1="300" y1="270" x2="300" y2="330" stroke="#2A3A54" stroke-width="6"/>
+    <rect x="20" y="90" width="320" height="200" fill="none" stroke="#B04A2A" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="24" y="86" fill="#B04A2A" font-family="Inter, sans-serif" font-size="11" font-weight="600">MUZZLE 0.94</text>
   </g>
-  <line x1="80" y1="320" x2="560" y2="320" stroke="#B4421F" stroke-width="1"/>
-  <line x1="80" y1="345" x2="380" y2="345" stroke="#B4421F" stroke-width="1"/>
+  <text x="46" y="650" fill="#7B87A0" font-family="Inter, sans-serif" font-size="10" letter-spacing="1.5">EMBEDDING</text>
+  <rect x="46" y="680" width="6" height="0" fill="#B04A2A" opacity="0.4"/><rect x="53.3" y="655.3822134576691" width="6" height="24.617786542330936" fill="#B04A2A" opacity="0.7692667981349641"/><rect x="60.6" y="647.466929645496" width="6" height="32.53307035450409" fill="#B04A2A" opacity="0.8879960553175613"/><rect x="67.9" y="658.5368181194581" width="6" height="21.463181880541878" fill="#B04A2A" opacity="0.7219477282081281"/><rect x="75.2" y="675.1445778453285" width="6" height="4.855422154671541" fill="#B04A2A" opacity="0.4728313323200731"/><rect x="82.5" y="679.0074630432508" width="6" height="0.9925369567491354" fill="#B04A2A" opacity="0.41488805435123705"/><rect x="89.8" y="672.0790463529555" width="6" height="7.920953647044492" fill="#B04A2A" opacity="0.5188143047056674"/><rect x="97.1" y="660.1605050225061" width="6" height="19.839494977493885" fill="#B04A2A" opacity="0.6975924246624083"/><rect x="104.4" y="661.380317936084" width="6" height="18.619682063916045" fill="#B04A2A" opacity="0.6792952309587407"/><rect x="111.7" y="679.3919608389381" width="6" height="0.6080391610619098" fill="#B04A2A" opacity="0.40912058741592866"/><rect x="119" y="653.983527876054" width="6" height="26.01647212394596" fill="#B04A2A" opacity="0.7902470818591893"/><rect x="126.3" y="640.9681543911956" width="6" height="39.03184560880439" fill="#B04A2A" opacity="0.9854776841320658"/><rect x="133.6" y="649.3452494632745" width="6" height="30.654750536725544" fill="#B04A2A" opacity="0.8598212580508832"/><rect x="140.89999999999998" y="670.7342476221297" width="6" height="9.265752377870257" fill="#B04A2A" opacity="0.5389862856680538"/><rect x="148.2" y="672.813185643549" width="6" height="7.1868143564509595" fill="#B04A2A" opacity="0.5078022153467644"/><rect x="155.5" y="672.5825531608361" width="6" height="7.417446839163819" fill="#B04A2A" opacity="0.5112617025874573"/><rect x="162.8" y="676.5729177637086" width="6" height="3.427082236291434" fill="#B04A2A" opacity="0.45140623354437154"/><rect x="170.1" y="670.6543171851811" width="6" height="9.34568281481898" fill="#B04A2A" opacity="0.5401852422222847"/><rect x="177.4" y="679.1463876584505" width="6" height="0.8536123415495294" fill="#B04A2A" opacity="0.41280418512324296"/><rect x="184.7" y="657.6440623661113" width="6" height="22.355937633888754" fill="#B04A2A" opacity="0.7353390645083313"/><rect x="192" y="641.9539300529798" width="6" height="38.04606994702019" fill="#B04A2A" opacity="0.9706910492053029"/><rect x="199.29999999999998" y="646.1749090675132" width="6" height="33.825090932486745" fill="#B04A2A" opacity="0.9073763639873013"/><rect x="206.6" y="668.4786823279728" width="6" height="11.52131767202722" fill="#B04A2A" opacity="0.5728197650804083"/><rect x="213.9" y="667.5333901985016" width="6" height="12.466609801498414" fill="#B04A2A" opacity="0.5869991470224762"/><rect x="221.2" y="658.4018971354079" width="6" height="21.598102864592065" fill="#B04A2A" opacity="0.7239715429688809"/><rect x="228.5" y="666.4725427802572" width="6" height="13.527457219742857" fill="#B04A2A" opacity="0.6029118582961429"/><rect x="235.79999999999998" y="678.6946396278789" width="6" height="1.3053603721210203" fill="#B04A2A" opacity="0.4195804055818153"/><rect x="243.1" y="679.5087939667602" width="6" height="0.4912060332397533" fill="#B04A2A" opacity="0.40736809049859635"/><rect x="250.4" y="665.8345611831311" width="6" height="14.165438816868939" fill="#B04A2A" opacity="0.6124815822530341"/><rect x="257.7" y="650.2707504163665" width="6" height="29.729249583633496" fill="#B04A2A" opacity="0.8459387437545025"/><rect x="265" y="649.5079091581341" width="6" height="30.492090841865934" fill="#B04A2A" opacity="0.857381362627989"/><rect x="272.29999999999995" y="668.6071635845725" width="6" height="11.39283641542752" fill="#B04A2A" opacity="0.5708925462314128"/><rect x="279.6" y="664.3412698731355" width="6" height="15.658730126864526" fill="#B04A2A" opacity="0.6348809519029679"/><rect x="286.9" y="648.1602925037103" width="6" height="31.839707496289776" fill="#B04A2A" opacity="0.8775956124443467"/><rect x="294.2" y="652.2351099804696" width="6" height="27.764890019530434" fill="#B04A2A" opacity="0.8164733502929564"/><rect x="301.5" y="668.7515062760256" width="6" height="11.248493723974386" fill="#B04A2A" opacity="0.5687274058596158"/><rect x="308.8" y="679.4775784621232" width="6" height="0.5224215378767606" fill="#B04A2A" opacity="0.40783632306815143"/><rect x="316.09999999999997" y="677.1057213196336" width="6" height="2.8942786803663307" fill="#B04A2A" opacity="0.443414180205495"/><rect x="323.4" y="664.3446546487363" width="6" height="15.655345351263696" fill="#B04A2A" opacity="0.6348301802689554"/><rect x="330.7" y="658.5690192283294" width="6" height="21.430980771670654" fill="#B04A2A" opacity="0.7214647115750599"/><rect x="338" y="670.8558031237143" width="6" height="9.14419687628567" fill="#B04A2A" opacity="0.5371629531442851"/><rect x="345.3" y="664.0654129769468" width="6" height="15.934587023053123" fill="#B04A2A" opacity="0.6390188053457968"/><rect x="352.59999999999997" y="643.9182283700572" width="6" height="36.081771629942736" fill="#B04A2A" opacity="0.941226574449141"/><rect x="359.9" y="643.4265038265961" width="6" height="36.5734961734039" fill="#B04A2A" opacity="0.9486024426010585"/><rect x="367.2" y="661.3771485437456" width="6" height="18.622851456254303" fill="#B04A2A" opacity="0.6793427718438145"/><rect x="374.5" y="678.0016744447512" width="6" height="1.9983255552487622" fill="#B04A2A" opacity="0.42997488332873146"/><rect x="381.8" y="670.6555454884617" width="6" height="9.344454511538263" fill="#B04A2A" opacity="0.540166817673074"/><rect x="389.09999999999997" y="678.5192503626629" width="6" height="1.4807496373371314" fill="#B04A2A" opacity="0.422211244560057"/><rect x="396.4" y="671.5012053499246" width="6" height="8.498794650075403" fill="#B04A2A" opacity="0.5274819197511311"/><rect x="403.7" y="674.5642193461732" width="6" height="5.435780653826798" fill="#B04A2A" opacity="0.481536709807402"/><rect x="411" y="666.988592059526" width="6" height="13.011407940473978" fill="#B04A2A" opacity="0.5951711191071096"/><rect x="418.3" y="646.5995584802793" width="6" height="33.4004415197208" fill="#B04A2A" opacity="0.901006622795812"/><rect x="425.59999999999997" y="641.6915434776455" width="6" height="38.30845652235453" fill="#B04A2A" opacity="0.9746268478353179"/><rect x="432.9" y="657.8582725382435" width="6" height="22.141727461756517" fill="#B04A2A" opacity="0.7321259119263477"/><rect x="440.2" y="676.4492288560666" width="6" height="3.5507711439333973" fill="#B04A2A" opacity="0.45326156715900096"/><rect x="447.5" y="659.8278703470195" width="6" height="20.172129652980473" fill="#B04A2A" opacity="0.7025819447947071"/><rect x="454.8" y="661.6178662958331" width="6" height="18.382133704166893" fill="#B04A2A" opacity="0.6757320055625033"/><rect x="462.09999999999997" y="674.2533999840715" width="6" height="5.746600015928465" fill="#B04A2A" opacity="0.486199000238927"/><rect x="469.4" y="678.8467453422" width="6" height="1.1532546577999723" fill="#B04A2A" opacity="0.4172988198669996"/><rect x="476.7" y="672.7492403000502" width="6" height="7.250759699949743" fill="#B04A2A" opacity="0.5087613954992461"/><rect x="484" y="655.7922203378232" width="6" height="24.20777966217681" fill="#B04A2A" opacity="0.7631166949326522"/><rect x="491.3" y="647.2994481922716" width="6" height="32.700551807728374" fill="#B04A2A" opacity="0.8905082771159256"/><rect x="498.59999999999997" y="658.683683544921" width="6" height="21.31631645507895" fill="#B04A2A" opacity="0.7197447468261843"/><rect x="505.9" y="675.3087245434346" width="6" height="4.6912754565654256" fill="#B04A2A" opacity="0.4703691318484814"/><rect x="513.2" y="652.5906673505565" width="6" height="27.40933264944351" fill="#B04A2A" opacity="0.8111399897416527"/><rect x="520.5" y="648.2122574006058" width="6" height="31.78774259939413" fill="#B04A2A" opacity="0.8768161389909119"/><rect x="527.8" y="661.4453211906254" width="6" height="18.55467880937465" fill="#B04A2A" opacity="0.6783201821406197"/><rect x="535.0999999999999" y="677.2033774812752" width="6" height="2.7966225187247744" fill="#B04A2A" opacity="0.44194933778087164"/><rect x="542.4" y="679.6269076192286" width="6" height="0.37309238077136786" fill="#B04A2A" opacity="0.40559638571157053"/><rect x="549.7" y="669.8081535673359" width="6" height="10.191846432664068" fill="#B04A2A" opacity="0.5528776964899611"/><rect x="557" y="659.1040706026848" width="6" height="20.895929397315165" fill="#B04A2A" opacity="0.7134389409597275"/><rect x="564.3" y="663.485619456841" width="6" height="16.514380543159003" fill="#B04A2A" opacity="0.6477157081473851"/><rect x="571.6" y="675.0406812348293" width="6" height="4.959318765170688" fill="#B04A2A" opacity="0.47438978147756033"/><rect x="578.9" y="650.4841312890617" width="6" height="29.51586871093828" fill="#B04A2A" opacity="0.8427380306640742"/><rect x="586.1999999999999" y="640.8949601164913" width="6" height="39.10503988350865" fill="#B04A2A" opacity="0.9865755982526299"/><rect x="593.5" y="652.4837348099542" width="6" height="27.516265190045846" fill="#B04A2A" opacity="0.8127439778506877"/><rect x="600.8" y="674.3227718203769" width="6" height="5.67722817962305" fill="#B04A2A" opacity="0.4851584226943458"/><rect x="608.1" y="671.5638977173" width="6" height="8.436102282699991" fill="#B04A2A" opacity="0.5265415342404999"/><rect x="615.4" y="674.005481686167" width="6" height="5.9945183138330025" fill="#B04A2A" opacity="0.4899177747074951"/><rect x="622.6999999999999" y="674.7784612054616" width="6" height="5.221538794538414" fill="#B04A2A" opacity="0.4783230819180762"/><rect x="630" y="671.1507605463663" width="6" height="8.849239453633693" fill="#B04A2A" opacity="0.5327385918045054"/><rect x="637.3" y="675.9425701793335" width="6" height="4.057429820666423" fill="#B04A2A" opacity="0.46086144730999634"/><rect x="644.6" y="654.0830668040555" width="6" height="25.91693319594444" fill="#B04A2A" opacity="0.7887539979391667"/><rect x="651.9" y="641.0858605301511" width="6" height="38.91413946984888" fill="#B04A2A" opacity="0.9837120920477331"/><rect x="659.1999999999999" y="648.9808685080052" width="6" height="31.019131491994763" fill="#B04A2A" opacity="0.8652869723799215"/><rect x="666.5" y="672.939858676571" width="6" height="7.060141323428995" fill="#B04A2A" opacity="0.505902119851435"/><rect x="673.8" y="664.6682029608871" width="6" height="15.3317970391129" fill="#B04A2A" opacity="0.6299769555866935"/><rect x="681.1" y="658.761411308308" width="6" height="21.238588691692048" fill="#B04A2A" opacity="0.7185788303753807"/><rect x="688.4" y="668.7242970703879" width="6" height="11.27570292961212" fill="#B04A2A" opacity="0.5691355439441819"/><rect x="695.6999999999999" y="679.92823994239" width="6" height="0.07176005761005587" fill="#B04A2A" opacity="0.40107640086415086"/><rect x="703" y="678.0443562031489" width="6" height="1.9556437968510751" fill="#B04A2A" opacity="0.4293346569527661"/><rect x="710.3" y="662.8533457455479" width="6" height="17.146654254452027" fill="#B04A2A" opacity="0.6571998138167805"/><rect x="717.6" y="648.7551883366709" width="6" height="31.244811663329095" fill="#B04A2A" opacity="0.8686721749499364"/><rect x="724.9" y="651.4614388028326" width="6" height="28.538561197167414" fill="#B04A2A" opacity="0.8280784179575111"/><rect x="732.1999999999999" y="673.1159671396409" width="6" height="6.884032860359017" fill="#B04A2A" opacity="0.5032604929053853"/><rect x="739.5" y="660.4073941310899" width="6" height="19.592605868910123" fill="#B04A2A" opacity="0.6938890880336519"/>
+  <line x1="46" y1="680" x2="742" y2="680" stroke="#2A3E62" stroke-width="1"/>
+  <text x="46" y="750" fill="#7B87A0" font-family="Inter, sans-serif" font-size="10">SIMCLR &#183; 128-d</text>
+  <text x="200" y="750" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="10">||q||₂ = 1.00</text>
+  <text x="340" y="750" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="10">L2 index: 128,412 refs</text>
+
+  <rect x="46" y="780" width="140" height="46" rx="6" fill="#B04A2A"/>
+  <text x="116" y="808" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="14" font-weight="600" text-anchor="middle">Search</text>
+  <rect x="196" y="780" width="140" height="46" rx="6" fill="#132340" stroke="#2A3E62"/>
+  <text x="266" y="808" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="14" text-anchor="middle">Enrol new</text>
+
+  <!-- Right: match results -->
+  <rect x="788" y="88" width="788" height="788" rx="8" fill="#1B2C4E" stroke="#2A3E62"/>
+  <text x="810" y="120" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="13" font-weight="600">Top matches</text>
+  <text x="810" y="140" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11">FAISS &#183; multi-view fused</text>
+  <line x1="810" y1="160" x2="1554" y2="160" stroke="#2A3E62"/>
+  
+    <rect x="810" y="180" width="744" height="96" rx="6" fill="#132340"/>
+    <rect x="810" y="180" width="4" height="96" fill="#4A8F6B"/>
+    <rect x="830" y="196" width="80" height="64" rx="4" fill="#2A3A54"/>
+    <text x="930" y="215" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="16" font-weight="600">A-2117</text>
+    <text x="930" y="234" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11">Farm #12 &#183; last seen 2026-08-02</text>
+    <text x="930" y="255" fill="#4A8F6B" font-family="Inter, sans-serif" font-size="11" font-weight="600">EXACT</text>
+    <text x="1400" y="215" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="26" font-weight="600" text-anchor="end">0.987</text>
+    <text x="1400" y="234" fill="#7B87A0" font-family="Inter, sans-serif" font-size="10" text-anchor="end">cosine similarity</text>
+  
+    <rect x="810" y="290" width="744" height="96" rx="6" fill="#132340"/>
+    <rect x="810" y="290" width="4" height="96" fill="#4A8F6B"/>
+    <rect x="830" y="306" width="80" height="64" rx="4" fill="#2A3A54"/>
+    <text x="930" y="325" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="16" font-weight="600">A-2117</text>
+    <text x="930" y="344" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11">Farm #12 &#183; last seen 2026-08-02</text>
+    <text x="930" y="365" fill="#4A8F6B" font-family="Inter, sans-serif" font-size="11" font-weight="600">LEFT VIEW</text>
+    <text x="1400" y="325" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="26" font-weight="600" text-anchor="end">0.981</text>
+    <text x="1400" y="344" fill="#7B87A0" font-family="Inter, sans-serif" font-size="10" text-anchor="end">cosine similarity</text>
+  
+    <rect x="810" y="400" width="744" height="96" rx="6" fill="#132340"/>
+    <rect x="810" y="400" width="4" height="96" fill="#4A8F6B"/>
+    <rect x="830" y="416" width="80" height="64" rx="4" fill="#2A3A54"/>
+    <text x="930" y="435" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="16" font-weight="600">A-2117</text>
+    <text x="930" y="454" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11">Farm #12 &#183; last seen 2026-08-02</text>
+    <text x="930" y="475" fill="#4A8F6B" font-family="Inter, sans-serif" font-size="11" font-weight="600">RIGHT VIEW</text>
+    <text x="1400" y="435" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="26" font-weight="600" text-anchor="end">0.964</text>
+    <text x="1400" y="454" fill="#7B87A0" font-family="Inter, sans-serif" font-size="10" text-anchor="end">cosine similarity</text>
+  
+    <rect x="810" y="510" width="744" height="96" rx="6" fill="#132340"/>
+    <rect x="810" y="510" width="4" height="96" fill="#D4A02E"/>
+    <rect x="830" y="526" width="80" height="64" rx="4" fill="#2A3A54"/>
+    <text x="930" y="545" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="16" font-weight="600">A-0842</text>
+    <text x="930" y="564" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11">Farm #12 &#183; last seen 2026-08-02</text>
+    <text x="930" y="585" fill="#D4A02E" font-family="Inter, sans-serif" font-size="11" font-weight="600">AMBIGUOUS</text>
+    <text x="1400" y="545" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="26" font-weight="600" text-anchor="end">0.512</text>
+    <text x="1400" y="564" fill="#7B87A0" font-family="Inter, sans-serif" font-size="10" text-anchor="end">cosine similarity</text>
+  
+    <rect x="810" y="620" width="744" height="96" rx="6" fill="#132340"/>
+    <rect x="810" y="620" width="4" height="96" fill="#7B87A0"/>
+    <rect x="830" y="636" width="80" height="64" rx="4" fill="#2A3A54"/>
+    <text x="930" y="655" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="16" font-weight="600">A-1935</text>
+    <text x="930" y="674" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11">Farm #12 &#183; last seen 2026-08-02</text>
+    <text x="930" y="695" fill="#7B87A0" font-family="Inter, sans-serif" font-size="11" font-weight="600">REJECT</text>
+    <text x="1400" y="655" fill="#F5EFE4" font-family="Inter, sans-serif" font-size="26" font-weight="600" text-anchor="end">0.401</text>
+    <text x="1400" y="674" fill="#7B87A0" font-family="Inter, sans-serif" font-size="10" text-anchor="end">cosine similarity</text>
+  
+  <text x="810" y="780" fill="#7B87A0" font-family="Inter, sans-serif" font-size="10" letter-spacing="1.5">DECISION</text>
+  <text x="810" y="820" fill="#4A8F6B" font-family="Inter, sans-serif" font-size="28" font-weight="600">A-2117 confirmed</text>
+  <text x="810" y="850" fill="#B5BFD1" font-family="Inter, sans-serif" font-size="12">3 of 3 top matches agree &#183; margin 0.47 vs runner-up</text>
 </svg>
