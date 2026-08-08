@@ -1,117 +1,29 @@
 ## The problem
 
-Naval-architecture computation at the early-stage hull-design level is dominated by expensive commercial software (Maxsurf-class). For independent analysts, small yards, and academic groups, that pricing locks the discipline behind a paywall. The brief was to build an open-source Python-first naval-architecture suite that covers the full pipeline an analyst actually uses (hydrostatics, stability, seakeeping, damage, structural strength, classification compliance), validates against the commercial reference, and produces branded reports clients accept.
+Naval-architecture computation at the early-stage hull-design level is dominated by expensive commercial software. For independent analysts, small yards, and academic groups, that pricing locks the discipline behind a paywall.
 
-## Constraints
+NavalArch Studio is an open-source Python-first naval-architecture suite that covers the full pipeline an analyst actually uses (hydrostatics, stability, seakeeping, damage, structural strength, classification compliance), validates against the commercial reference, and produces branded reports clients accept.
 
-- **Validate against the industry standard**: parity with Maxsurf at typical loading conditions has to be tight enough to be defensible.
-- **Cover the full design pipeline**: hydrostatics through damage stability through classification rules. Each gap is a reason to fall back to commercial.
-- **Branded multi-page PDF reports**: deliverables need to look like deliverables.
-- **Laptop-runnable**: no cloud, no cluster. The hardware budget assumption is one well-specced laptop.
+## Hydrostatics with selectable integration
 
-## Architecture
+Nine integration methods to choose from (Simpson, Gauss, trapezoidal variants) so the analyst can match the convention of whatever validation reference is in play. Bonjean curves drop out of the same evaluator. Validated against Maxsurf at a large displacement match before the rest of the suite was layered on top.
 
-<Diagram caption="Hull geometry feeds 13 domain subpackages, all surfaced through one PyQt5 workstation">
-<svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto" role="img" aria-label="Architecture diagram showing hull NURBS geometry feeding 13 domain modules clustered around a PyQt5 GUI shell with PDF export.">
-  <defs>
-    <marker id="arrNA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#60a5fa"/>
-    </marker>
-  </defs>
-  <g fontFamily="Inter, system-ui" fontSize="13" fill="#e2e8f0">
-    <g>
-      <rect x="40"  y="20"  width="200" height="60" rx="8" fill="rgba(96,165,250,0.10)" stroke="#60a5fa"/>
-      <text x="140" y="48" textAnchor="middle" fontWeight="600">Hull geometry</text>
-      <text x="140" y="68" textAnchor="middle" fill="#94a3b8" fontSize="11">NURBS via geomdl</text>
-    </g>
+## Stability code coverage
 
-    <g fontSize="11">
-      <rect x="280" y="20"  width="160" height="44" rx="6" fill="rgba(34,211,238,0.10)" stroke="#22d3ee"/>
-      <text x="360" y="46" textAnchor="middle" fontWeight="600">Hydrostatics</text>
-      <rect x="280" y="74"  width="160" height="44" rx="6" fill="rgba(34,211,238,0.10)" stroke="#22d3ee"/>
-      <text x="360" y="100" textAnchor="middle" fontWeight="600">Stability (intact)</text>
-      <rect x="280" y="128" width="160" height="44" rx="6" fill="rgba(34,211,238,0.10)" stroke="#22d3ee"/>
-      <text x="360" y="154" textAnchor="middle" fontWeight="600">Damage (SOLAS)</text>
-      <rect x="280" y="182" width="160" height="44" rx="6" fill="rgba(34,211,238,0.10)" stroke="#22d3ee"/>
-      <text x="360" y="208" textAnchor="middle" fontWeight="600">Tanks · Resistance</text>
-      <rect x="280" y="236" width="160" height="44" rx="6" fill="rgba(34,211,238,0.10)" stroke="#22d3ee"/>
-      <text x="360" y="262" textAnchor="middle" fontWeight="600">Seakeeping · Diffraction</text>
-      <rect x="280" y="290" width="160" height="44" rx="6" fill="rgba(34,211,238,0.10)" stroke="#22d3ee"/>
-      <text x="360" y="316" textAnchor="middle" fontWeight="600">Strength · Maneuvering</text>
-      <rect x="280" y="344" width="160" height="44" rx="6" fill="rgba(167,139,250,0.10)" stroke="#a78bfa"/>
-      <text x="360" y="370" textAnchor="middle" fontWeight="600">Classification rules</text>
-    </g>
+GZ curves, IMO IS Code 2008 intact criteria, and the weather criterion live in the intact-stability module. SOLAS probabilistic damage with an attained subdivision index calculation lives in the damage module. Both share the same heeling-equilibrium solver so a result in one is consistent with a result in the other.
 
-    <g>
-      <rect x="490" y="120" width="200" height="100" rx="8" fill="rgba(96,165,250,0.10)" stroke="#60a5fa"/>
-      <text x="590" y="148" textAnchor="middle" fontWeight="600">PyQt5 + OpenGL GUI</text>
-      <text x="590" y="170" textAnchor="middle" fill="#94a3b8" fontSize="11">13 workspaces</text>
-      <text x="590" y="186" textAnchor="middle" fill="#94a3b8" fontSize="11">side-by-side load comparison</text>
-      <text x="590" y="202" textAnchor="middle" fill="#94a3b8" fontSize="11">~450 tests</text>
-    </g>
-    <g>
-      <rect x="490" y="260" width="200" height="60" rx="8" fill="rgba(74,222,128,0.10)" stroke="#4ade80"/>
-      <text x="590" y="288" textAnchor="middle" fontWeight="600">Branded PDF reports</text>
-      <text x="590" y="308" textAnchor="middle" fill="#94a3b8" fontSize="11">ReportLab, multi-page</text>
-    </g>
+## Classification rules as code
 
-    <line x1="240" y1="50" x2="280" y2="50"  stroke="#60a5fa" markerEnd="url(#arrNA)"/>
-    <line x1="240" y1="50" x2="280" y2="105" stroke="#60a5fa" markerEnd="url(#arrNA)"/>
-    <line x1="240" y1="50" x2="280" y2="160" stroke="#60a5fa" markerEnd="url(#arrNA)"/>
-    <line x1="240" y1="50" x2="280" y2="215" stroke="#60a5fa" markerEnd="url(#arrNA)"/>
-    <line x1="240" y1="50" x2="280" y2="270" stroke="#60a5fa" markerEnd="url(#arrNA)"/>
-    <line x1="440" y1="200" x2="490" y2="170" stroke="#22d3ee" markerEnd="url(#arrNA)"/>
-    <line x1="590" y1="220" x2="590" y2="260" stroke="#4ade80" markerEnd="url(#arrNA)"/>
-  </g>
-</svg>
-</Diagram>
+IACS rule loads, hull-girder compliance, plate buckling, IRS design motions, and DNV-GL fatigue (Palmgren-Miner damage accumulation with S-N curves) are codified as rule modules. Each module emits a structured pass or fail with the governing equation surfaced in the output, so a class society reviewer can trace the calculation back to the rule clause.
 
-## Approach
+## Thirteen GUI workspaces
 
-**Hydrostatics with selectable integration.** Nine integration methods to choose from (Simpson, Gauss, trapezoidal variants, etc.) so the analyst can match the convention of whatever validation reference is in play. Bonjean curves drop out of the same evaluator. Validated against Maxsurf at a 4,759 t displacement match before the rest of the suite was layered on top.
+Each domain module gets its own workspace. The cross-cutting feature most analysts ask for first is loading-condition comparison: pick two or three cases and have GZ curves, motions, and bending moments plotted side by side. ReportLab assembles the branded multi-page PDF when the analyst is ready to deliver.
 
-**Stability code coverage.** GZ curves, IMO IS Code 2008 intact criteria, and the weather criterion live in the intact-stability module. SOLAS probabilistic damage with an attained subdivision index calculation lives in the damage module. Both share the same heeling-equilibrium solver so a result in one is consistent with a result in the other.
+## Tests as the validation contract
 
-**Classification rules as code.** IACS rule loads, hull-girder compliance, plate buckling, IRS Sec. 15.4–15.5 design motions, and DNV-GL fatigue (Palmgren-Miner damage accumulation with S-N curves) are codified as rule modules. Each module emits a structured pass/fail with the governing equation surfaced in the output, so a class society reviewer can trace the calculation back to the rule clause.
-
-**13 GUI workspaces with side-by-side comparison.** Each domain module gets its own workspace. The cross-cutting feature most analysts ask for first is loading-condition comparison: pick two or three cases and have GZ curves, motions, and bending moments plotted side by side. ReportLab assembles the branded multi-page PDF when the analyst is ready to deliver.
-
-**Tests as the validation contract.** ~450 tests across the 13 modules, with the Maxsurf parity case treated as a first-class regression. New module work that breaks the parity test does not merge.
-
-## Results
-
-<MetricRow metrics={[
-  { value: "13", label: "Domain modules" },
-  { value: "~450", label: "Tests" },
-  { value: "13", label: "GUI workspaces" },
-  { value: "Maxsurf", label: "Validated against" },
-]} />
-
-<ResultsChart
-  kind="line"
-  caption="GZ righting arm under three loading conditions across 0–60° heel (illustrative)"
-  yLabel="GZ (m)"
-  data={[
-    { heel:  "0°", lightship: 0.00, design: 0.00, full: 0.00 },
-    { heel: "10°", lightship: 0.18, design: 0.21, full: 0.16 },
-    { heel: "20°", lightship: 0.34, design: 0.40, full: 0.30 },
-    { heel: "30°", lightship: 0.42, design: 0.49, full: 0.36 },
-    { heel: "40°", lightship: 0.36, design: 0.44, full: 0.30 },
-    { heel: "50°", lightship: 0.22, design: 0.30, full: 0.18 },
-    { heel: "60°", lightship: 0.04, design: 0.12, full: 0.02 },
-  ]}
-  xKey="heel"
-  series={[
-    { dataKey: "lightship", label: "Lightship", color: "#60a5fa" },
-    { dataKey: "design",    label: "Design",    color: "#a78bfa" },
-    { dataKey: "full",      label: "Full",      color: "#22d3ee" },
-  ]}
-/>
+Around 450 tests across the 13 modules, with the Maxsurf parity case treated as a first-class regression. Module work that breaks the parity test does not merge.
 
 ## What broke
 
-The first seakeeping module produced plausible-looking but wrong RAOs because the wave-spectrum integration sampled too coarsely at low frequencies. JONSWAP results from a published reference paper failed the parity check. Re-sampling with a denser low-frequency mesh and switching to a quadrature better suited to the spectral shape brought the RAOs into agreement.
-
-## What I would do differently
-
-Adopt a single canonical units library across the suite from day one, rather than normalising units at module boundaries. A handful of subtle bugs traced back to mixed units (m/s vs knots, kN vs kgf) sneaking through legacy code paths. A library-level convention removes the whole class.
+The first seakeeping module produced plausible-looking but wrong RAOs because the wave-spectrum integration sampled too coarsely at low frequencies. Published JONSWAP results failed the parity check. Re-sampling with a denser low-frequency mesh and switching to a quadrature better suited to the spectral shape brought the RAOs into agreement. Lesson: parity checks against published references catch a whole class of quiet errors that internal test data never will.

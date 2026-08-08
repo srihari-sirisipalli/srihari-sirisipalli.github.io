@@ -209,9 +209,9 @@ export const portfolio: PortfolioProject[] = [
     title: "Underwater Vehicle Propulsion Reliability",
     category: "Structural Reliability",
     type: "research",
-    tags: ["Reliability", "Structural Analysis", "Fatigue", "Marine"],
+    tags: ["Reliability", "ML Surrogates", "DOE", "AI", "Structural Analysis"],
     description:
-      "Research on structural reliability of underwater vehicle propulsion subsystems. Failure-mode analysis, fatigue prediction, and design margins for components that operate underwater over service life.",
+      "Research on structural reliability of underwater vehicle propulsion. Failure-mode analysis, fatigue prediction, and design margins, sped up with AI, Design of Experiments, and ML surrogates over expensive physics simulations.",
     image: "/work/reliability.svg",
   },
   {

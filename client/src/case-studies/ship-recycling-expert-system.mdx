@@ -1,148 +1,33 @@
 ## The problem
 
-Ship recycling has to satisfy multiple regulatory frameworks (Hong Kong Convention, Basel Convention, EU SRR, ILO Guidelines) at the same time, sequence safe cutting operations across hundreds of components, track hazardous materials inventory across the whole vessel, and produce an economically viable plan. In practice that work is split across separate experts and separate spreadsheets, with the cross-checks done by hand. The brief was a single expert system that turns ship intake data into compliant, safe, economically viable recycling plans, with all four regulatory frameworks evaluated in parallel.
+Ship recycling has to satisfy multiple regulatory frameworks (Hong Kong Convention, Basel Convention, EU SRR, ILO Guidelines) at the same time, sequence safe cutting operations across hundreds of components, track hazardous materials inventory across the whole vessel, and produce an economically viable plan. In practice that work is split across separate experts and separate spreadsheets, with the cross-checks done by hand.
 
-## Constraints
+This system turns ship intake data into compliant, safe, economically viable recycling plans, with all four regulatory frameworks evaluated in parallel.
 
-- **Multi-framework compliance**: HKC, Basel, EU SRR, and ILO Guidelines evaluated simultaneously. No assumption that one preempts another.
-- **Critical-path-aware sequencing**: workflow order matters because of safety dependencies (you cannot cut into a tank that has not been gas-freed).
-- **Combine declared and inferred hazards**: declared IHM is the ground truth where it exists; for everything else, hazards are inferred from age, type, and equipment.
-- **Audience-specific reports**: the regulator, the recycling yard, the insurer, and the owner all want different cuts of the same plan.
+## Intake to ship profile
 
-## Architecture
+A wizard captures 40+ parameters (vessel type, age, tonnage, equipment manifest, declared IHM, last drydock, propulsion, paint history). The output is a structured ship profile that every downstream module reads from.
 
-<Diagram caption="Intake feeds hazard, structure, and workflow modules into compliance, risk, and seven report types">
-<svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto" role="img" aria-label="Architecture diagram showing intake wizard feeding hazard identification, structural decomposition, workflow DAG, compliance, and risk modules into seven PDF report types.">
-  <defs>
-    <marker id="arrSR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#60a5fa"/>
-    </marker>
-  </defs>
-  <g fontFamily="Inter, system-ui" fontSize="13" fill="#e2e8f0">
-    <g>
-      <rect x="40"  y="20"  width="200" height="60" rx="8" fill="rgba(96,165,250,0.10)" stroke="#60a5fa"/>
-      <text x="140" y="48" textAnchor="middle" fontWeight="600">Intake wizard</text>
-      <text x="140" y="68" textAnchor="middle" fill="#94a3b8" fontSize="11">40+ ship parameters</text>
-    </g>
+## Hazmat identification
 
-    <g>
-      <rect x="40"  y="120" width="200" height="60" rx="8" fill="rgba(34,211,238,0.10)" stroke="#22d3ee"/>
-      <text x="140" y="148" textAnchor="middle" fontWeight="600">Hazmat ID</text>
-      <text x="140" y="168" textAnchor="middle" fill="#94a3b8" fontSize="11">15 categories · IHM + inferred</text>
-    </g>
-    <g>
-      <rect x="40"  y="200" width="200" height="60" rx="8" fill="rgba(34,211,238,0.10)" stroke="#22d3ee"/>
-      <text x="140" y="228" textAnchor="middle" fontWeight="600">Structural decomposition</text>
-      <text x="140" y="248" textAnchor="middle" fill="#94a3b8" fontSize="11">4-tier hierarchy</text>
-    </g>
-    <g>
-      <rect x="40"  y="280" width="200" height="60" rx="8" fill="rgba(34,211,238,0.10)" stroke="#22d3ee"/>
-      <text x="140" y="308" textAnchor="middle" fontWeight="600">Workflow DAG</text>
-      <text x="140" y="328" textAnchor="middle" fill="#94a3b8" fontSize="11">204 activities · Kahn's sort</text>
-    </g>
+15 hazardous-material categories (asbestos, PCBs, ODS, anti-fouling biocides, heavy metals, and others). Where the ship has a declared Inventory of Hazardous Materials, that is treated as primary truth. Where it does not, hazards are inferred from age, type, and equipment using a deterministic rule set. Both paths produce the same structured hazard record.
 
-    <g>
-      <rect x="290" y="120" width="200" height="60" rx="8" fill="rgba(167,139,250,0.10)" stroke="#a78bfa"/>
-      <text x="390" y="148" textAnchor="middle" fontWeight="600">Compliance engine</text>
-      <text x="390" y="168" textAnchor="middle" fill="#94a3b8" fontSize="11">HKC · Basel · EU SRR · ILO</text>
-    </g>
-    <g>
-      <rect x="290" y="200" width="200" height="60" rx="8" fill="rgba(167,139,250,0.10)" stroke="#a78bfa"/>
-      <text x="390" y="228" textAnchor="middle" fontWeight="600">Risk matrix</text>
-      <text x="390" y="248" textAnchor="middle" fill="#94a3b8" fontSize="11">5×5 severity / probability</text>
-    </g>
-    <g>
-      <rect x="290" y="280" width="200" height="60" rx="8" fill="rgba(167,139,250,0.10)" stroke="#a78bfa"/>
-      <text x="390" y="308" textAnchor="middle" fontWeight="600">Economic analysis</text>
-      <text x="390" y="328" textAnchor="middle" fill="#94a3b8" fontSize="11">revenue · ±30% sensitivity</text>
-    </g>
+## Structural decomposition and cutting sequence
 
-    <g>
-      <rect x="540" y="120" width="160" height="220" rx="8" fill="rgba(74,222,128,0.10)" stroke="#4ade80"/>
-      <text x="620" y="148" textAnchor="middle" fontWeight="600">Seven reports</text>
-      <text x="620" y="172" textAnchor="middle" fill="#94a3b8" fontSize="11">SRP</text>
-      <text x="620" y="188" textAnchor="middle" fill="#94a3b8" fontSize="11">Compliance</text>
-      <text x="620" y="204" textAnchor="middle" fill="#94a3b8" fontSize="11">Hazmat</text>
-      <text x="620" y="220" textAnchor="middle" fill="#94a3b8" fontSize="11">Safety</text>
-      <text x="620" y="236" textAnchor="middle" fill="#94a3b8" fontSize="11">Environmental</text>
-      <text x="620" y="252" textAnchor="middle" fill="#94a3b8" fontSize="11">Economic</text>
-      <text x="620" y="268" textAnchor="middle" fill="#94a3b8" fontSize="11">Workflow</text>
-      <text x="620" y="296" textAnchor="middle" fill="#94a3b8" fontSize="11">PDF export</text>
-      <text x="620" y="312" textAnchor="middle" fill="#94a3b8" fontSize="11">via WeasyPrint</text>
-    </g>
+Four-tier component hierarchy (primary, secondary, tertiary, non-structural) drives a five-phase safe cutting sequence. You cannot cut into a tank that has not been gas-freed, so hierarchy is a safety property, not a taxonomy.
 
-    {/* Intake fans out to all three column-1 boxes via a left-side rail */}
-    <line x1="140" y1="80"  x2="140" y2="95"  stroke="#60a5fa"/>
-    <line x1="140" y1="95"  x2="20"  y2="95"  stroke="#60a5fa"/>
-    <line x1="20"  y1="95"  x2="20"  y2="310" stroke="#60a5fa"/>
-    <line x1="20"  y1="150" x2="40"  y2="150" stroke="#60a5fa" markerEnd="url(#arrSR)"/>
-    <line x1="20"  y1="230" x2="40"  y2="230" stroke="#60a5fa" markerEnd="url(#arrSR)"/>
-    <line x1="20"  y1="310" x2="40"  y2="310" stroke="#60a5fa" markerEnd="url(#arrSR)"/>
+## Workflow DAG and critical path
 
-    {/* Column 1 → Column 2 (lateral pairs) */}
-    <line x1="240" y1="150" x2="290" y2="150" stroke="#22d3ee" markerEnd="url(#arrSR)"/>
-    <line x1="240" y1="230" x2="290" y2="230" stroke="#22d3ee" markerEnd="url(#arrSR)"/>
-    <line x1="240" y1="310" x2="290" y2="310" stroke="#22d3ee" markerEnd="url(#arrSR)"/>
+A catalog of 204 standardised activities, each with prerequisites, durations, required certifications, and produced waste streams. Kahn's algorithm topologically sorts the DAG; duration-weighted longest-path identifies the critical path. The output is a sequenced workflow with clear bottlenecks.
 
-    {/* Column 2 → Reports column */}
-    <line x1="490" y1="150" x2="540" y2="180" stroke="#a78bfa" markerEnd="url(#arrSR)"/>
-    <line x1="490" y1="230" x2="540" y2="230" stroke="#a78bfa" markerEnd="url(#arrSR)"/>
-    <line x1="490" y1="310" x2="540" y2="280" stroke="#a78bfa" markerEnd="url(#arrSR)"/>
-  </g>
-</svg>
-</Diagram>
+## Multi-framework compliance
 
-## Approach
+HKC, Basel, EU SRR, and ILO Guidelines each run as an independent rule engine that consumes the ship profile, hazard record, and workflow plan, and emits structured compliance findings. All four run in parallel; nothing assumes one preempts another. A single non-compliance finding under any framework surfaces in the consolidated report with the specific clause violated.
 
-**Intake to ship profile.** A wizard captures 40+ parameters (vessel type, age, tonnage, equipment manifest, declared IHM, last drydock, propulsion, paint history). The output is a structured ship profile that every downstream module reads from.
+## Seven audience-specific reports
 
-**Hazmat identification.** 15 hazardous-material categories (asbestos, PCBs, ODS, anti-fouling biocides, heavy metals, etc.). Where the ship has a declared Inventory of Hazardous Materials, that is treated as primary truth. Where it does not, hazards are inferred from age, type, and equipment using a deterministic rule set. Both paths produce the same structured hazard record.
-
-**Structural decomposition.** Four-tier component hierarchy: primary (hull, decks), secondary (bulkheads, frames), tertiary (stiffeners, brackets), non-structural (fittings, machinery foundations). The cutting sequence ordering depends on which tier a component sits in, so this hierarchy underpins everything safety-related.
-
-**Workflow DAG and critical path.** A catalog of 204 standardised activities. Each activity has prerequisites (which produce a directed acyclic graph), durations, required certifications, and produced waste streams. Kahn's algorithm topologically sorts the DAG; the critical path is identified using duration-weighted longest-path. The output is a sequenced workflow with clear bottlenecks.
-
-**Multi-framework compliance.** Each of HKC, Basel, EU SRR, and ILO Guidelines is implemented as an independent rule engine that consumes the ship profile + hazard record + workflow plan and emits structured compliance findings. All four run in parallel; nothing assumes one preempts another. A single non-compliance finding under any framework surfaces in the consolidated report with the specific clause violated.
-
-**Risk matrix.** A standard 5×5 severity-by-probability grid maps to four risk classifications (Critical, High, Medium, Low). Each identified hazard gets placed in the grid based on the ship profile and the planned mitigations. The output drives where additional controls are required.
-
-**Economic analysis.** Material recovery revenue (steel, copper, aluminium by weight, with regional pricing assumptions), labour and equipment cost breakdown, and a sensitivity sweep at ±30% on the dominant uncertainties. Reported alongside compliance and risk so the trade-offs are visible.
-
-**Seven report types.** SRP (Ship Recycling Plan), Compliance, Hazmat, Safety, Environmental, Economic, Workflow. Each report serves a different audience and is generated to PDF via WeasyPrint with consistent branding.
-
-## Results
-
-<MetricRow metrics={[
-  { value: "204", label: "Workflow activities" },
-  { value: "4", label: "Compliance frameworks" },
-  { value: "7", label: "Report types" },
-  { value: "15", label: "Hazmat categories" },
-  { value: "5×5", label: "Risk matrix" },
-]} />
-
-<ResultsChart
-  kind="bar"
-  caption="Activity counts per recycling phase, broken down by structural component tier"
-  data={[
-    { phase: "Pre-cleaning", primary: 4,  secondary: 6,  tertiary: 3,  nonstruct: 8  },
-    { phase: "Hazmat removal", primary: 0, secondary: 2,  tertiary: 4,  nonstruct: 22 },
-    { phase: "Cutting", primary: 18, secondary: 24, tertiary: 18, nonstruct: 4 },
-    { phase: "Sorting", primary: 6,  secondary: 8,  tertiary: 12, nonstruct: 14 },
-    { phase: "Closeout", primary: 2,  secondary: 3,  tertiary: 4,  nonstruct: 6  },
-  ]}
-  xKey="phase"
-  series={[
-    { dataKey: "primary",    label: "Primary",         color: "#60a5fa" },
-    { dataKey: "secondary",  label: "Secondary",       color: "#a78bfa" },
-    { dataKey: "tertiary",   label: "Tertiary",        color: "#22d3ee" },
-    { dataKey: "nonstruct",  label: "Non-structural",  color: "#4ade80" },
-  ]}
-/>
+SRP (Ship Recycling Plan), Compliance, Hazmat, Safety, Environmental, Economic, Workflow. The regulator, the yard, the insurer, and the owner each want a different cut of the same plan. Each report renders to PDF via WeasyPrint with consistent branding.
 
 ## What broke
 
-The first version of the critical-path output sorted the DAG topologically but did not weight by duration. Optimisers latched onto the first valid sequence regardless of how long it actually took, which produced plans that were technically dependency-correct and operationally absurd. Adding duration-weighted longest-path computation on top of Kahn's sort fixed it. The lesson: a topological sort is not a critical path, and downstream code will assume it is unless you make the distinction explicit.
-
-## What I would do differently
-
-Ship the framework comparison view (HKC vs Basel vs EU SRR vs ILO side by side) earlier. Stakeholders kept asking "what changes if we drop framework X" comparisons that the original UI did not surface. The compliance engine could already answer those queries; the UI just had not exposed them.
+The first version of the critical-path output sorted the DAG topologically but did not weight by duration. Optimisers latched onto the first valid sequence regardless of how long it actually took, which produced plans that were technically dependency-correct and operationally absurd. Adding duration-weighted longest-path fixed it. Lesson: a topological sort is not a critical path, and downstream code will assume it is unless you make the distinction explicit.
