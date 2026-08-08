@@ -6,6 +6,7 @@ import HomePage from "@/pages/HomePage";
 
 const WorkPage = lazy(() => import("@/pages/WorkPage"));
 const WorkDetailPage = lazy(() => import("@/pages/WorkDetailPage"));
+const ResearchPage = lazy(() => import("@/pages/ResearchPage"));
 const BlogPage = lazy(() => import("@/pages/BlogPage"));
 const BlogDetailPage = lazy(() => import("@/pages/BlogDetailPage"));
 
@@ -44,6 +45,11 @@ export default function App() {
           </Route>
           <Route path="/case/:id">
             {(p) => <Redirect to={`/work/${p.id}`} replace />}
+          </Route>
+          <Route path="/research">
+            <Suspense fallback={<PageFallback />}>
+              <ResearchPage />
+            </Suspense>
           </Route>
           <Route path="/blog">
             <Suspense fallback={<PageFallback />}>

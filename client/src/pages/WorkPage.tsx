@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { portfolio } from "@/data/projects";
+import { workProjects } from "@/data/projects";
 import PortfolioCard from "@/components/work/PortfolioCard";
 import { fadeUp, staggerContainer } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 
-const CATEGORIES = ["All", ...Array.from(new Set(portfolio.map((p) => p.category)))];
+const CATEGORIES = ["All", ...Array.from(new Set(workProjects.map((p) => p.category)))];
 
 export default function WorkPage() {
   useEffect(() => {
@@ -15,8 +15,8 @@ export default function WorkPage() {
   const [category, setCategory] = useState<string>("All");
 
   const filtered = useMemo(() => {
-    if (category === "All") return portfolio;
-    return portfolio.filter((p) => p.category === category);
+    if (category === "All") return workProjects;
+    return workProjects.filter((p) => p.category === category);
   }, [category]);
 
   return (
@@ -34,8 +34,8 @@ export default function WorkPage() {
           Selected <em className="italic text-accent">projects</em>.
         </h1>
         <p className="text-lg text-ink-soft max-w-2xl">
-          A slice of what I have shipped across product, AI, digital twins,
-          automations, and engineering software.
+          Product, AI, digital twins, apps, backend, and automations shipped for
+          clients and my own work.
         </p>
       </motion.div>
 
