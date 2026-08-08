@@ -14,17 +14,18 @@ export default function Hero() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <p className="text-sm text-ink-faint mb-6 tracking-wide font-sans">
-              Product Developer &middot; Apps &middot; Websites &middot; Industry Software &middot; AI &middot; Automation
+              Product Developer &middot; Industry Software &middot; AI &middot; Automation &middot; Apps &middot; Websites
             </p>
             <h1 className="font-display font-medium text-display-xl text-ink mb-8">
               I build <em className="italic text-accent">products</em>.<br />
-              Apps, Websites, Industry Software, <em className="italic text-accent">AI</em>, Automation.
+              Industry Software, <em className="italic text-accent">AI</em>, Automation.<br />
+              Apps, Websites.
             </h1>
             <p className="font-sans text-lg md:text-xl text-ink-soft leading-relaxed max-w-2xl mb-10">
-              Whatever the surface, Mobile App, Live Web Platform, Engineering
-              Software, AI System, or Automation Pipeline, I build it end-to-end.
-              Hired when a project needs hard engineering depth and production
-              delivery in one place.
+              Industry Software, AI System, Automation, App, Website. Whatever
+              the surface, I ship it end-to-end. Hired when a team wants product
+              thinking, engineering depth, and production delivery from the same
+              person.
             </p>
             <div className="flex flex-wrap gap-4 items-center">
               <a

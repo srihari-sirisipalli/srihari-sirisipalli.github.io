@@ -1,7 +1,8 @@
 export const personal = {
   name: "Sri Hari Sirisipalli",
   title: "Product Developer",
-  subtitle: "Apps, Websites, Industry Software, AI, Automation. Fractional CTO for Engineering R&D.",
+  subtitle:
+    "I build products end-to-end. Industry Software, AI, Automation, Apps, Websites. Fractional CTO for teams that need one person who can ship all of it.",
   roles: [
     "Product Developer",
     "Fractional CTO",
@@ -10,8 +11,8 @@ export const personal = {
     "Researcher",
   ],
   bio: [
-    "I do product development. Apps, Websites, Industry Software, AI Systems, and Automation. Whatever the surface, I build it end-to-end.",
-    "Fractional CTO at Openct. Independent practice hired when a project needs hard engineering depth and production delivery in one place.",
+    "I build products. Industry Software, AI Systems, Automation, Apps, and Websites. Whatever the surface, I ship it end-to-end.",
+    "Fractional CTO at Openct. Independent product development practice hired when a team wants product thinking, engineering depth, and production delivery from the same person.",
   ],
   stats: [
     { value: 3, suffix: "+", label: "Years Experience" },

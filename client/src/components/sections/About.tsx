@@ -24,8 +24,8 @@ export default function About() {
               <p className="text-sm text-ink-faint mb-2 uppercase tracking-wide">Now</p>
               <p className="text-ink-soft">
                 Fractional CTO at Openct. Independent product development
-                practice across Apps, Websites, Industry Software, AI,
-                Automation, and Core Engineering.
+                practice across Industry Software, AI, Automation, Apps,
+                Websites, and Core Engineering.
               </p>
             </div>
             <div>
@@ -44,10 +44,11 @@ export default function About() {
               </ul>
             </div>
             <div>
-              <p className="text-sm text-ink-faint mb-2 uppercase tracking-wide">Off-work</p>
+              <p className="text-sm text-ink-faint mb-2 uppercase tracking-wide">Also</p>
               <p className="text-ink-soft">
-                Mentored 3 teams at CODEIAM hackathon (2 in top 5 of 40).
-                Zenith Science Club core member at Mahindra University.
+                Research alongside product work. Co-author on the ADMOS UAV
+                swarm preprint. Mentored 3 teams at CODEIAM hackathon, 2 landed
+                in the top 5 of 40.
               </p>
             </div>
           </div>

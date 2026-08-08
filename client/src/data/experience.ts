@@ -15,11 +15,11 @@ export const workExperience: ExperienceEntry[] = [
     period: "Feb 2026 – Present",
     location: "Self-employed · Remote",
     achievements: [
-      "Embedded as fractional CTO leading product audit, new feature development, complete website redesign, backend architecture rebuild, and mobile app rebuild",
-      "Complete redesign of the openct.co website with new design system, information architecture, and content flow",
+      "Embedded product-side, leading product audit, feature strategy, delivery cadence, and technical direction",
+      "Complete redesign of openct.co with new design system, information architecture, and content flow",
       "Rebuilding the Openct Flutter mobile app end-to-end with new architecture, state management, and design system",
-      "New backend architecture from scratch on DigitalOcean, Redis, and PostgreSQL with third-party integrations across payments, communication, and analytics",
-      "Owning architecture decisions, technical roadmap, hiring input, and product-engineering delivery cadence",
+      "New backend from scratch on DigitalOcean, Redis, and PostgreSQL, with third-party integrations across payments, communication, and analytics",
+      "Owning architecture decisions, technical roadmap, hiring input, and product-engineering delivery",
     ],
   },
   {
@@ -29,10 +29,10 @@ export const workExperience: ExperienceEntry[] = [
     period: "Mar 2024 – Present",
     location: "Part-time · Remote",
     achievements: [
-      "Patent similarity and prior-art LLM system at production scale",
-      "Embedding-driven retrieval integrated with LLM semantic scoring",
-      "Re-architected compute workloads from EC2 to AWS Lambda",
-      "Reproducible AWS provisioning with Terraform across accounts",
+      "LLM-based patent similarity and prior-art system at production scale",
+      "Embedding retrieval integrated with LLM semantic scoring for automated prior-art ranking",
+      "Re-architected compute workloads from EC2 to AWS Lambda for cost and speed",
+      "Reproducible AWS provisioning with Terraform across client accounts",
       "Async and multiprocessing framework for high-throughput evaluation",
       "Custom Terraform GUI for AWS resource management",
     ],
@@ -44,7 +44,7 @@ export const workExperience: ExperienceEntry[] = [
     period: "Mar 2023 – Jun 2023",
     location: "Full-Time",
     achievements: [
-      "Led migration of legacy SAS data pipelines to PySpark, redesigning batch workflows for distributed execution",
+      "Led migration of legacy SAS pipelines to PySpark, redesigning batch workflows for distributed execution",
       "Built automated validation framework ensuring functional parity between SAS and PySpark outputs",
       "Modeled job dependency graphs to eliminate scheduling bottlenecks",
     ],
@@ -56,9 +56,9 @@ export const workExperience: ExperienceEntry[] = [
     period: "Jul 2022 – Dec 2022",
     location: "Internship",
     achievements: [
-      "Converted TensorFlow and PyTorch models to ONNX for cross-platform deployment compatibility",
-      "Optimized inference performance using structured pruning and post-training quantization",
-      "Validated numerical consistency across model formats to ensure reliable production deployment",
+      "Converted TensorFlow and PyTorch models to ONNX for cross-platform deployment",
+      "Optimised inference with structured pruning and post-training quantisation",
+      "Validated numerical consistency across model formats for reliable production deployment",
     ],
   },
   {
@@ -69,8 +69,8 @@ export const workExperience: ExperienceEntry[] = [
     location: "Internship",
     achievements: [
       "Integrated Polkadot ecosystem components to enable cross-chain interoperability",
-      "Implemented cross-chain communication workflows for transaction routing and state synchronization",
-      "Deployed Prometheus and Grafana monitoring stack for real-time API observability",
+      "Implemented cross-chain communication workflows for transaction routing and state synchronisation",
+      "Deployed a Prometheus and Grafana monitoring stack for real-time API observability",
     ],
   },
 ];
@@ -90,21 +90,59 @@ export interface ConsultingRole {
 }
 
 export const consultingRole: ConsultingRole = {
-  title: "AI Systems Engineer",
-  company: "Independent Systems Engineering",
+  title: "Product Developer",
+  company: "Independent Practice",
   period: "Jun 2023 – Present",
   location: "Freelance · Remote",
   projects: [
     {
-      id: "core-engineering",
-      title: "Core Engineering",
+      id: "industry-software",
+      title: "Industry Software",
       achievements: [
-        "CFD (ANSYS Fluent, k-omega SST)",
-        "FEA (ANSYS APDL, custom Python engine)",
-        "Hydrodynamics (Bentley MOSES, panel methods, wave modeling)",
-        "Naval architecture (IMO IS Code, SOLAS, IACS, DNV-GL)",
-        "CAD/CAE automation (FreeCAD, ANSYS APDL)",
-        "Structural, modal, fatigue, and seakeeping analysis",
+        "PyNAOS, pure-Python FEA engine for offshore structures",
+        "NavalArch Studio, ship design and stability suite",
+        "Ship Recycling Expert System (Django, HTMX, WeasyPrint)",
+        "Vibration Diagnostics Rule Engine (ISO 10816, PyQt5)",
+      ],
+    },
+    {
+      id: "ai-genai",
+      title: "AI & GenAI",
+      achievements: [
+        "RAG systems, embeddings, and semantic retrieval",
+        "Real-time offline 3D AI avatar (deployed)",
+        "DocForge: offline document intelligence with local VLMs",
+        "Compliance and regulatory expert systems",
+      ],
+    },
+    {
+      id: "automation",
+      title: "Automation",
+      achievements: [
+        "MOSES sea-transport DOE automation platform",
+        "CAD and CAE automation across ANSYS APDL, FreeCAD, and MOSES",
+        "Data pipelines, ETL, and workflow automation",
+        "CI/CD, deployment automation, and observability",
+      ],
+    },
+    {
+      id: "apps-platforms",
+      title: "Apps & Platforms",
+      achievements: [
+        "Flutter apps end-to-end (Fractional CTO at Openct)",
+        "Full-stack web platforms in production (zapstays.in)",
+        "VHop nightlife platform (in build)",
+        "Architecture: FastAPI, Django, React, WebSockets",
+      ],
+    },
+    {
+      id: "computer-vision",
+      title: "Computer Vision",
+      achievements: [
+        "Multi-view biometric retrieval at scale (100K+ images, FAISS)",
+        "Live cattle detection and tracking (YOLO, BoT-SORT)",
+        "Computer Vision for SCCL Mining Operations (11 detection features, Dash NOC)",
+        "Distributed image-processing pipelines",
       ],
     },
     {
@@ -115,54 +153,26 @@ export const consultingRole: ConsultingRole = {
         "Mooring digital twin",
         "Battery digital twin",
         "Ship emergency-response digital twin",
-        "MOSES sea-transport DOE automation platform",
-        "NavalArch Studio, ship design and stability suite",
-        "PyNAOS, pure-Python FEA engine for offshore structures",
       ],
     },
     {
       id: "auv-underwater",
-      title: "AUV & Underwater Systems",
+      title: "AUV & Underwater",
       achievements: [
-        "Led engineering team on autonomous underwater vehicle (AUV) design and development",
-        "Underwater vehicle propulsion structural reliability analysis",
+        "Currently leading an engineering team on Autonomous Underwater Vehicle design and development",
+        "Underwater vehicle propulsion reliability research (AI, DOE, ML surrogates)",
         "Marine, offshore, and subsea engineering deliverables",
       ],
     },
     {
-      id: "ai-genai",
-      title: "AI & GenAI",
+      id: "core-engineering",
+      title: "Core Engineering",
       achievements: [
-        "RAG systems, embeddings, and semantic retrieval",
-        "Real-time offline 3D AI avatar (deployed)",
-        "Offline conversational AI with real-time speech (Whisper, Ollama)",
-        "Offline document intelligence",
-        "Compliance and regulatory expert systems (Ship Recycling Expert System)",
-      ],
-    },
-    {
-      id: "computer-vision",
-      title: "Computer Vision",
-      achievements: [
-        "Multi-view biometric retrieval at scale (100K+ images, FAISS multi-index)",
-        "Distributed image-processing pipelines",
-      ],
-    },
-    {
-      id: "ml-r-and-d",
-      title: "ML for Engineering R&D",
-      achievements: [
-        "Multi-input DC-DC converter surrogate and inverse design (physics-informed)",
-        "Vibration diagnostics rule engine (ISO 10816)",
-        "Reliability Analysis Workbench for underwater vehicle propulsion",
-      ],
-    },
-    {
-      id: "apps-platforms",
-      title: "Apps & Platforms",
-      achievements: [
-        "Full-stack web platforms in production (zapstays.in, live)",
-        "Architecture: FastAPI, Django, React, WebSockets",
+        "CFD (ANSYS Fluent, k-omega SST)",
+        "FEA (ANSYS APDL, custom Python engine)",
+        "Hydrodynamics (Bentley MOSES, panel methods, wave modelling)",
+        "Naval architecture (IMO IS Code, SOLAS, IACS, DNV-GL)",
+        "Structural, modal, fatigue, and seakeeping analysis",
       ],
     },
     {
@@ -196,7 +206,7 @@ export const advisoryExperience: AdvisoryEntry[] = [
     achievements: [
       "Benchmarked commercial (OpenAI, Anthropic) and open-source LLMs (LLaMA, Mistral) for agriculture QA",
       "Evaluated bilingual answering (English and Telugu) for Andhra agriculture use cases",
-      "Designed STT fine-tuning pipeline: audio collection, transcription, diarization, dataset prep",
+      "Designed STT fine-tuning pipeline: audio collection, transcription, diarisation, dataset prep",
       "Fine-tuned models with agriculture-specific vocabulary for farmer query accuracy",
     ],
   },

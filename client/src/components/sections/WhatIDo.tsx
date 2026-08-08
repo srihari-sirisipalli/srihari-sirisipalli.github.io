@@ -6,15 +6,15 @@ import {
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
 const pillars: { icon: LucideIcon; label: string; hint: string }[] = [
-  { icon: Bot, label: "AI & GenAI", hint: "RAG, LLMs, retrieval" },
+  { icon: Smartphone, label: "Apps", hint: "Mobile and desktop, Flutter and PyQt" },
+  { icon: Server, label: "Websites & Platforms", hint: "Full-stack web, in production" },
+  { icon: Ruler, label: "Industry Software", hint: "Domain apps for engineering teams" },
+  { icon: Bot, label: "AI Systems", hint: "LLMs, RAG, offline agents" },
+  { icon: Zap, label: "Automation", hint: "CAD, CAE, DOE, CI/CD, pipelines" },
+  { icon: Eye, label: "Computer Vision", hint: "Detection, tracking, retrieval" },
   { icon: Waves, label: "Digital Twins", hint: "Marine, offshore, battery" },
-  { icon: Smartphone, label: "Mobile & Web", hint: "Flutter, React, full-stack" },
-  { icon: Server, label: "Backend & Cloud", hint: "APIs, AWS, DigitalOcean" },
-  { icon: Zap, label: "Automations", hint: "CAD/CAE, pipelines, CI/CD" },
-  { icon: Eye, label: "Computer Vision", hint: "Retrieval, inspection" },
-  { icon: Ruler, label: "Core Engineering", hint: "CFD, FEA, naval arch" },
-  { icon: Anchor, label: "AUV & Underwater", hint: "Design, reliability" },
-  { icon: Sparkles, label: "Product & CTO", hint: "Strategy, delivery, teams" },
+  { icon: Anchor, label: "AUV & Underwater", hint: "Design, reliability, systems" },
+  { icon: Sparkles, label: "Fractional CTO", hint: "Product, delivery, teams" },
 ];
 
 export default function WhatIDo() {
@@ -29,12 +29,12 @@ export default function WhatIDo() {
           className="mb-12"
         >
           <p className="text-sm text-accent tracking-wide mb-4 uppercase font-medium">
-            What I do
+            What I build
           </p>
           <h2 className="font-display text-display-lg text-ink max-w-3xl">
-            Nine disciplines,
+            Nine surfaces,
             <br />
-            <em className="italic text-accent">one practice</em>.
+            <em className="italic text-accent">one builder</em>.
           </h2>
         </motion.div>
 

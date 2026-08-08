@@ -19,10 +19,10 @@ export default function BlogPage() {
         className="mb-16"
       >
         <p className="text-sm text-accent tracking-wide mb-4 uppercase font-medium">
-          Blog
+          Writing
         </p>
         <h1 className="font-display text-display-lg text-ink mb-6">
-          Notes on shipping <em className="italic text-accent">software</em> for engineering R&amp;D.
+          Notes on building <em className="italic text-accent">products</em>.
         </h1>
       </motion.div>
 

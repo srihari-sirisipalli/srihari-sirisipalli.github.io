@@ -21,9 +21,9 @@ export default function Contact() {
             Get in touch
           </p>
           <h2 className="font-display text-display-lg text-ink mb-8 max-w-3xl">
-            Have a project that needs
+            Have a product that needs
             <br />
-            <em className="italic text-accent">shipping</em>?
+            <em className="italic text-accent">building</em>?
           </h2>
 
           <div className="grid md:grid-cols-2 gap-x-16 gap-y-10 max-w-4xl">
@@ -40,7 +40,7 @@ export default function Contact() {
                 <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
               <p className="mt-3 text-sm text-ink-soft">
-                Fifteen minutes. We talk scope, timeline, and fit.
+                Fifteen minutes. We talk product, scope, and fit.
               </p>
             </div>
 

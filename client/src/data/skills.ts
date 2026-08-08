@@ -6,14 +6,19 @@ export interface SkillGroup {
 
 export const skillGroups: SkillGroup[] = [
   {
-    id: "ai-genai",
-    title: "AI & GenAI",
-    skills: ["LLMs & RAG", "FAISS & Vector Search", "LangChain", "Whisper & Ollama", "Computer Vision"],
+    id: "industry-software",
+    title: "Industry Software",
+    skills: ["PyQt5 Desktop Apps", "Domain Modelling", "PDF & Reporting", "Regulatory & Compliance", "Rule Engines"],
   },
   {
-    id: "digital-twins",
-    title: "Digital Twins & Simulation",
-    skills: ["Bentley MOSES", "ANSYS Fluent", "ANSYS APDL", "Custom Python FEA", "DOE & Surrogates"],
+    id: "ai-genai",
+    title: "AI & GenAI",
+    skills: ["LLMs & RAG", "FAISS & Vector Search", "LangChain", "Whisper & Ollama", "Vision-Language Models"],
+  },
+  {
+    id: "automation",
+    title: "Automation",
+    skills: ["CAD & CAE Automation", "DOE & Surrogates", "Bentley MOSES", "Data Pipelines", "CI/CD"],
   },
   {
     id: "apps-backend",
@@ -21,9 +26,14 @@ export const skillGroups: SkillGroup[] = [
     skills: ["Flutter", "React", "FastAPI", "Django", "WebSockets"],
   },
   {
-    id: "cloud-automation",
-    title: "Cloud & Automation",
-    skills: ["AWS", "DigitalOcean", "Terraform", "Docker", "CI/CD"],
+    id: "cloud",
+    title: "Cloud",
+    skills: ["AWS", "DigitalOcean", "Terraform", "Docker", "Redis & PostgreSQL"],
+  },
+  {
+    id: "computer-vision",
+    title: "Computer Vision",
+    skills: ["YOLO & BoT-SORT", "SimCLR Embeddings", "FAISS Retrieval", "OpenCV", "Video Analytics"],
   },
   {
     id: "core-engineering",

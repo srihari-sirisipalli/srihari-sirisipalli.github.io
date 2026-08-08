@@ -34,8 +34,8 @@ export default function WorkPage() {
           Products I&apos;ve <em className="italic text-accent">built</em> and <em className="italic text-accent">shipped</em>.
         </h1>
         <p className="text-lg text-ink-soft max-w-2xl">
-          Apps, Websites, Industry Software, AI Systems, and Automations for
-          clients and my own product work.
+          Industry Software, AI Systems, Automations, Apps, and Websites.
+          Shipped for clients and built for my own product work.
         </p>
       </motion.div>
 

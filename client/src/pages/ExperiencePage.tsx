@@ -24,11 +24,11 @@ export default function ExperiencePage() {
           Experience
         </p>
         <h1 className="font-display text-display-lg text-ink mb-6">
-          Roles &amp; <em className="italic text-accent">practice</em>.
+          Where I&apos;ve <em className="italic text-accent">built</em>.
         </h1>
         <p className="text-lg text-ink-soft max-w-2xl">
-          Current engagements, the shape of my consulting practice, and the
-          earlier roles that got me here.
+          What I do now, the shape of my product development practice, and the
+          roles that got me here.
         </p>
       </motion.header>
 
@@ -46,7 +46,7 @@ export default function ExperiencePage() {
           ))}
       </motion.ol>
 
-      <SectionHeading>Consulting practice</SectionHeading>
+      <SectionHeading>Product development practice</SectionHeading>
       <motion.div
         variants={fadeUp}
         initial="hidden"

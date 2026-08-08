@@ -27,14 +27,14 @@ export default function WorkDetailPage({ id }: { id: string }) {
   );
 
   if (!project) {
-    return <NotFound title="Project not found" message="That URL doesn't match any project in the portfolio." />;
+    return <NotFound title="Product not found" message="That URL doesn't match any product in the portfolio." />;
   }
 
   if (!matchKey) {
     return (
       <NotFound
-        title="No case study yet"
-        message={`${project.title} doesn't have a deep-dive case study written yet.`}
+        title="No write-up yet"
+        message={`${project.title} does not have a written case study yet. Coming soon.`}
       />
     );
   }
@@ -69,7 +69,7 @@ function NotFound({ title, message }: { title: string; message: string }) {
         className="inline-flex items-center gap-1.5 text-ink hover:text-accent link-underline"
       >
         <ArrowLeft size={14} />
-        Back to all work
+        Back to all products
       </Link>
     </div>
   );

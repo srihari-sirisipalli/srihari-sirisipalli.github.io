@@ -6,7 +6,7 @@ export const education = {
   period: "08/2018 – 06/2022",
   cgpa: "7.5",
   focus:
-    "Focused on computational modeling, numerical methods, and systems analysis, forming the foundation for applied AI and large-scale modeling systems.",
+    "Computational modelling, numerical methods, and systems analysis. The foundation for the product work that followed.",
 };
 
 export interface Certification {

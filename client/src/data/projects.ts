@@ -23,9 +23,9 @@ export const portfolio: PortfolioProject[] = [
     title: "Openct Product & Platform Rebuild",
     category: "Apps & Platforms",
     type: "work",
-    tags: ["Flutter", "DigitalOcean", "Redis", "Product"],
+    tags: ["Flutter", "DigitalOcean", "Redis", "Fractional CTO"],
     description:
-      "End-to-end technical rebuild of Openct: complete website redesign, Flutter mobile rebuild, new backend on DigitalOcean and Redis, and shipped features across web and mobile.",
+      "Full rebuild of Openct as Fractional CTO. New Flutter app, new backend on DigitalOcean and Redis, complete openct.co redesign, and a steady stream of new features shipping to web and mobile.",
     image: "/work/openct.png",
     links: [
       { label: "Website", url: "https://openct.co" },
@@ -39,7 +39,7 @@ export const portfolio: PortfolioProject[] = [
     type: "work",
     tags: ["In Development", "Mobile", "Events", "Community", "India"],
     description:
-      "Mobile-first clubbing and nightlife platform for India. Club discovery, event booking, table reservations, community squads, paid host events, verified chat, and a platform-token rewards system. Currently building.",
+      "Mobile-first nightlife platform for India. Club discovery, event booking, table reservations, community squads, paid host events, verified chat, and a platform-token rewards economy. Currently building.",
     image: "/work/vhop.svg",
   },
   {
@@ -59,7 +59,7 @@ export const portfolio: PortfolioProject[] = [
     type: "work",
     tags: ["SimCLR", "FAISS", "Multi-view", "Distributed", "Agritech"],
     description:
-      "Multi-view biometric retrieval system for cattle identification. 100,000+ images indexed with contrastive embeddings, FAISS multi-index search, and distributed feature extraction across worker pools.",
+      "Multi-view biometric retrieval for individual cattle identification. Contrastive embeddings, FAISS multi-index at 100K+ image scale, distributed feature extraction across worker pools.",
     image: "/work/cattle.svg",
   },
   {
@@ -69,7 +69,7 @@ export const portfolio: PortfolioProject[] = [
     type: "work",
     tags: ["YOLO", "BoT-SORT", "OpenCV", "Streamlit", "Docker"],
     description:
-      "Live cattle detection and tracking app. Ultralytics YOLO for detection, BoT-SORT for stable per-animal IDs, Streamlit for the operator UI, containerised for Hugging Face Spaces deployment.",
+      "Live cattle detection and tracking app. YOLO for detection, BoT-SORT for stable per-animal IDs, Streamlit UI, containerised for Hugging Face Spaces.",
     image: "/work/cattle-ai.svg",
   },
   {
@@ -79,7 +79,7 @@ export const portfolio: PortfolioProject[] = [
     type: "work",
     tags: ["Video Analytics", "PPE", "ANPR", "Dash", "Mining"],
     description:
-      "End-to-end computer vision system for SCCL mining operations: strategy documents, technical architecture, a Python analytics backend across 11 features, and a Dash NOC dashboard for live operator use.",
+      "End-to-end computer vision system for SCCL mining operations. Strategy documents, technical architecture, a Python analytics backend across 11 detection features, and a Dash NOC dashboard for live operators.",
     image: "/work/sccl-mining.png",
   },
   {
@@ -89,7 +89,7 @@ export const portfolio: PortfolioProject[] = [
     type: "work",
     tags: ["PHP 8", "MySQL", "Full-Stack", "Live"],
     description:
-      "Full-stack hostel and co-living platform for verified travelers and owners across India. Quote-based flow, real-time chat, three-role codebase, and admin power-tools. Live production.",
+      "Full-stack hostel and co-living platform for verified travelers and owners across India. Quote-based booking flow, real-time chat, three-role codebase, admin power-tools. Live in production.",
     image: "/work/zapstays.png",
     links: [{ label: "Live", url: "https://zapstays.in" }],
   },
@@ -100,7 +100,7 @@ export const portfolio: PortfolioProject[] = [
     type: "work",
     tags: ["Python", "Signal Processing", "PyQt5", "ISO 10816"],
     description:
-      "Transparent rule-based fault diagnostics for rotating machinery. Ranks probable mechanical, bearing, and electrical faults with traceable evidence rather than opaque ML predictions.",
+      "Rule-based fault diagnostics for rotating machinery. Ranks probable mechanical, bearing, and electrical faults with traceable evidence, not opaque ML predictions.",
     image: "/work/vibration.png",
   },
   {
@@ -110,7 +110,7 @@ export const portfolio: PortfolioProject[] = [
     type: "research",
     tags: ["Python", "PCA", "Clustering", "Anomaly Detection", "PyQt5"],
     description:
-      "Vibration-based ML fault detection library and desktop app. Extracts ~45 time and frequency features per sample, standardises, PCA-reduces, clusters, and flags anomalies against a learned model.",
+      "Vibration-based ML fault detection library and desktop app. Around 45 time and frequency features per sample, standardised, PCA-reduced, clustered, and anomaly-scored against a learned healthy baseline.",
     image: "/work/mfdms.png",
   },
   {
@@ -120,7 +120,7 @@ export const portfolio: PortfolioProject[] = [
     type: "research",
     tags: ["UAV Swarms", "Control", "Springer Preprint", "Co-author"],
     description:
-      "Co-authored research on a resilient multi-UAV swarm that adaptively switches between cooperative and autonomous modes to defend an asset under communication jamming. Preprint on Research Square, under review at Discover Vehicles (Springer).",
+      "Co-authored paper on a resilient multi-UAV swarm that adaptively switches between cooperative and autonomous modes to defend an asset under communication jamming. Preprint on Research Square, under review at Discover Vehicles (Springer).",
     image: "/work/admos.svg",
     links: [{ label: "Preprint", url: "https://gist.science/paper/rs/rs-9957095" }],
   },
@@ -131,7 +131,7 @@ export const portfolio: PortfolioProject[] = [
     type: "work",
     tags: ["Python", "Ollama", "VLM", "Tesseract", "PDF"],
     description:
-      "Offline PDF organiser that reads each page with a local vision-language model and generates clean descriptive filenames and folder structures. Zero cloud calls, zero data leaves the machine.",
+      "Offline PDF organiser that reads each page with a local vision-language model and generates clean descriptive filenames and folder structures. Zero cloud calls. Nothing leaves the machine.",
     image: "/work/docforge.svg",
   },
   {
@@ -141,7 +141,7 @@ export const portfolio: PortfolioProject[] = [
     type: "work",
     tags: ["LLMs", "FAISS", "AWS Lambda", "Terraform"],
     description:
-      "LLM-based patent similarity and prior-art evaluation for Pangeon. Embedding retrieval, semantic scoring, and reproducible AWS provisioning across accounts.",
+      "LLM-based patent similarity and prior-art system for Pangeon. Embedding retrieval, semantic scoring, and reproducible AWS provisioning across client accounts.",
     image: "/work/patent-similarity.svg",
   },
   {
@@ -157,7 +157,7 @@ export const portfolio: PortfolioProject[] = [
   {
     id: "pynaos-fea",
     title: "PyNAOS: Pure-Python FEA Engine",
-    category: "Engineering Software",
+    category: "Industry Software",
     type: "work",
     tags: ["Python", "PyQt5", "NumPy", "SciPy"],
     description:
@@ -167,31 +167,31 @@ export const portfolio: PortfolioProject[] = [
   {
     id: "naval-arch-studio",
     title: "NavalArch Studio: Ship Design Suite",
-    category: "Naval Architecture",
+    category: "Industry Software",
     type: "work",
     tags: ["Python", "PyQt5", "PyOpenGL", "ReportLab"],
     description:
-      "Naval architecture suite covering hydrostatics, stability, seakeeping, damage, structural strength, and classification rules, validated against Maxsurf.",
+      "Naval architecture suite covering hydrostatics, stability, seakeeping, damage, structural strength, and classification rules. Validated against Maxsurf.",
     image: "/work/navalarch.png",
   },
   {
     id: "moses-doe-pipeline",
     title: "MOSES Sea-Transport DOE Automation",
-    category: "Simulation Automation",
+    category: "Automation",
     type: "work",
     tags: ["Python", "MOSES", "XGBoost", "Optuna"],
     description:
-      "Parametric sea-transport platform driving Bentley MOSES through stratified DOE cases, feeding ML surrogates, sensitivity analysis, and multi-objective optimisation.",
+      "Parametric sea-transport platform driving Bentley MOSES through stratified DOE cases. ML surrogates, sensitivity analysis, and multi-objective optimisation on top of the generated data.",
     image: "/work/moses-doe.png",
   },
   {
     id: "ship-recycling-expert-system",
     title: "Ship Recycling Expert System",
-    category: "Compliance & Automation",
+    category: "Industry Software",
     type: "work",
     tags: ["Django", "HTMX", "Tailwind", "WeasyPrint"],
     description:
-      "Multi-domain expert system turning ship intake data into compliant, safe, economically viable recycling plans. Hazmat tracking, cutting sequences, workflow DAG.",
+      "Expert system that turns ship intake data into compliant, safe, economically viable recycling plans. Hazmat tracking, cutting sequences, workflow DAG, seven report types.",
     image: "/work/ship-recycling.png",
   },
   {
@@ -221,7 +221,7 @@ export const portfolio: PortfolioProject[] = [
     type: "research",
     tags: ["Reliability", "ML Surrogates", "DOE", "AI", "Structural Analysis"],
     description:
-      "Research on structural reliability of underwater vehicle propulsion. Failure-mode analysis, fatigue prediction, and design margins, sped up with AI, Design of Experiments, and ML surrogates over expensive physics simulations.",
+      "Research on structural reliability of underwater vehicle propulsion. Failure-mode analysis, fatigue prediction, and design margins. Sped up with AI, Design of Experiments, and ML surrogates over expensive physics simulations.",
     image: "/work/reliability.png",
   },
   {

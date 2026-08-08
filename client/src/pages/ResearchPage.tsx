@@ -21,12 +21,12 @@ export default function ResearchPage() {
           Research
         </p>
         <h1 className="font-display text-display-lg text-ink mb-6 max-w-3xl">
-          Research &amp; <em className="italic text-accent">product development</em>.
+          Research alongside the <em className="italic text-accent">product work</em>.
         </h1>
         <p className="text-lg text-ink-soft max-w-2xl">
-          Longer-horizon work: autonomous underwater systems, ML for engineering
-          R&amp;D, and frameworks I use to help clients make sharper technology
-          decisions.
+          Longer-horizon threads. Autonomous underwater systems, ML for
+          engineering R&amp;D, an autonomous swarm paper, and frameworks I use
+          to help teams pick the right technology.
         </p>
       </motion.div>
 
