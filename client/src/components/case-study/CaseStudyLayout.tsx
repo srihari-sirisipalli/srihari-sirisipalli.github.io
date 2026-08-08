@@ -46,6 +46,22 @@ export default function CaseStudyLayout({
             ))}
           </ul>
         )}
+        {project.links && project.links.length > 0 && (
+          <div className="flex flex-wrap gap-3 mt-8">
+            {project.links.map((l) => (
+              <a
+                key={l.url}
+                href={l.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 bg-ink text-bg px-4 py-2 rounded-full text-sm font-medium hover:bg-accent transition-colors"
+              >
+                {l.label}
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+              </a>
+            ))}
+          </div>
+        )}
       </header>
 
       <div className="case-study-prose">{children}</div>

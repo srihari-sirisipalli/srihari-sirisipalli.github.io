@@ -1,0 +1,31 @@
+## The problem
+
+A folder of PDFs turns into a mess remarkably quickly. `IMG_20231105_scan.pdf`, `Document (3).pdf`, `Copy of Final_v2_FINAL.pdf`, `scan_0042.pdf`. Multiply that by years of accumulation and you have a personal or organisational archive that is theoretically searchable and practically opaque.
+
+DocForge fixes it by reading each PDF with a local vision-language model and renaming it to something a human can read at a glance. Everything runs offline.
+
+## What it does
+
+**Reads.** Every page of every PDF, including scanned image-only ones (Tesseract fallback).
+
+**Understands.** Passes the pages to a local VLM through Ollama and asks it what the document actually is: a certificate, a contract, a financial report, an identity document, a receipt.
+
+**Renames.** Generates descriptive filenames like `quarterly_financial_report_q3_2023.pdf` instead of `IMG_3847.pdf`. Consistent conventions, no cloud round-trip.
+
+**Organises.** Sorts the renamed files into folders by type, year, or domain — whichever convention the user picks.
+
+**Preserves.** Dry-run mode shows every proposed change before anything moves. Full rollback by job ID undoes an entire batch if the classification was wrong.
+
+## Design choices
+
+**Local-only.** No API calls, no telemetry, no cloud storage. The whole reason to reach for DocForge instead of a hosted document intelligence service is that the documents never should have to leave the machine.
+
+**Fallback path.** VLM inference isn't free. Fast heuristics (regex + PDF metadata) handle the trivial cases and short-circuit before the VLM runs. The VLM is the tiebreaker, not the first line of defence.
+
+**Auditable.** Every operation is a job with an ID. Exports to Excel, JSON, CSV, or Markdown so the classification trail is inspectable. Rollback is a one-liner.
+
+**Cross-platform.** Windows, macOS, Linux. Same behaviour on all three.
+
+## Where it fits
+
+Personal document archives. Legal and compliance folders that can't leave a specific machine. Research groups with years of scanned papers. Onboarding for anyone inheriting someone else's document sprawl.

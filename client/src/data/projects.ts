@@ -1,3 +1,8 @@
+export interface ProjectLink {
+  label: string;
+  url: string;
+}
+
 export interface PortfolioProject {
   id: string;
   title: string;
@@ -6,6 +11,7 @@ export interface PortfolioProject {
   description: string;
   image: string;
   href?: string;
+  links?: ProjectLink[];
 }
 
 export const portfolio: PortfolioProject[] = [
@@ -17,7 +23,46 @@ export const portfolio: PortfolioProject[] = [
     description:
       "End-to-end technical rebuild of Openct: complete website redesign, Flutter mobile rebuild, new backend on DigitalOcean and Redis, and shipped features across web and mobile.",
     image: "/work/openct.svg",
-    href: "https://openct.co",
+    links: [
+      { label: "Website", url: "https://openct.co" },
+      { label: "Play Store", url: "https://play.google.com/store/apps/details?id=co.openct" },
+    ],
+  },
+  {
+    id: "real-time-ai-avatar",
+    title: "Real-Time Offline 3D AI Avatar",
+    category: "AI & GenAI",
+    tags: ["Whisper", "Ollama", "RAG", "Three.js", "WebSockets"],
+    description:
+      "Fully offline 3D AI avatar. You give it your documents, it answers from them using local RAG. Real-time speech in and out, browser-rendered 3D presenter, no cloud calls.",
+    image: "/work/ai-avatar.svg",
+  },
+  {
+    id: "auv-programme",
+    title: "Autonomous Underwater Vehicle Programme",
+    category: "Research & Product Development",
+    tags: ["AUV", "Reliability", "Structural Analysis", "Marine"],
+    description:
+      "Ongoing research and product development on autonomous underwater vehicles and underwater vehicle propulsion reliability. Led an engineering team across design, structural analysis, and marine deliverables.",
+    image: "/work/auv.svg",
+  },
+  {
+    id: "docforge",
+    title: "DocForge: Offline Document Intelligence",
+    category: "AI & GenAI",
+    tags: ["Python", "Ollama", "VLM", "Tesseract", "PDF"],
+    description:
+      "Offline PDF organiser that reads each page with a local vision-language model and generates clean descriptive filenames and folder structures. Zero cloud calls, zero data leaves the machine.",
+    image: "/work/docforge.svg",
+  },
+  {
+    id: "decision-support-framework",
+    title: "Decision-Support Framework for Digital Technology Adoption",
+    category: "Applied Research",
+    tags: ["Research", "Decision Systems", "Digital Transformation"],
+    description:
+      "Multi-aspect research framework for evaluating and prioritising digital technology adoption in industrial settings. Weighs technical fit, operational readiness, risk, and long-term impact.",
+    image: "/work/decision-support.svg",
   },
   {
     id: "patent-similarity",

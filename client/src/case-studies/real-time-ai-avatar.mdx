@@ -1,0 +1,23 @@
+## The idea
+
+Give the avatar your documents. Ask it anything about them. It answers, out loud, from a 3D face on the screen, entirely on the local machine. No cloud, no uploads, no bytes leaving the room.
+
+## How it works
+
+**You drop in documents.** PDFs, text, whatever the corpus is. They get chunked and embedded locally into a FAISS index.
+
+**You talk to it.** Whisper transcribes speech in real time on the local machine.
+
+**It retrieves.** RAG over the local index pulls the passages that answer your question.
+
+**It replies.** A local LLM through Ollama generates the answer, grounded in the retrieved passages.
+
+**It speaks.** Local text-to-speech turns the reply into audio. The 3D presenter lip-syncs to the audio in a browser scene.
+
+## Why offline
+
+The moment nothing leaves the machine, deployment gets simple. Defense, healthcare, legal, industrial R&D, sensitive customer data — the whole conversation about compliance shortens dramatically.
+
+## Where it fits
+
+Give it a training manual, it's an onboarding coach. Give it a legal corpus, it's a first-pass paralegal. Give it a technical archive, it's an always-available expert. Give it your own notes, it's a study buddy.

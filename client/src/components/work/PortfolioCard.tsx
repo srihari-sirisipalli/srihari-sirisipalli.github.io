@@ -11,7 +11,9 @@ interface PortfolioCardProps {
 
 export default function PortfolioCard({ project }: PortfolioCardProps) {
   const hasCaseStudy = caseStudySlugs.has(project.id);
-  const externalHref = project.href;
+  // Prefer internal case study over external href when both exist,
+  // so cards open a proper work page instead of jumping to the client's site.
+  const externalHref = hasCaseStudy ? undefined : project.href;
 
   const inner = (
     <article className="group h-full flex flex-col">
