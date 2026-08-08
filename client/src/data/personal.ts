@@ -10,7 +10,7 @@ export const personal = {
     "Researcher",
   ],
   bio: [
-    "I do product development. Apps, websites, industry software, AI systems, and automation. Whatever the surface, I build it end-to-end.",
+    "I do product development. Apps, Websites, Industry Software, AI Systems, and Automation. Whatever the surface, I build it end-to-end.",
     "Fractional CTO at Openct. Independent practice hired when a project needs hard engineering depth and production delivery in one place.",
   ],
   stats: [

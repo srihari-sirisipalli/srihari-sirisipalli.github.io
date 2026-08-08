@@ -18,11 +18,11 @@ export default function Hero() {
             </p>
             <h1 className="font-display font-medium text-display-xl text-ink mb-8">
               I build <em className="italic text-accent">products</em>.<br />
-              Apps, websites, industry software, <em className="italic text-accent">AI</em>, automation.
+              Apps, Websites, Industry Software, <em className="italic text-accent">AI</em>, Automation.
             </h1>
             <p className="font-sans text-lg md:text-xl text-ink-soft leading-relaxed max-w-2xl mb-10">
-              Whatever the surface, mobile app, live web platform, engineering
-              software, AI system, or automation pipeline, I build it end-to-end.
+              Whatever the surface, Mobile App, Live Web Platform, Engineering
+              Software, AI System, or Automation Pipeline, I build it end-to-end.
               Hired when a project needs hard engineering depth and production
               delivery in one place.
             </p>
