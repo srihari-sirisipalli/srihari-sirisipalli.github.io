@@ -46,7 +46,7 @@ export const portfolio: PortfolioProject[] = [
     id: "cattle-biometric",
     title: "Cattle Biometric Identification at Scale",
     category: "Computer Vision",
-    type: "research",
+    type: "work",
     tags: ["SimCLR", "FAISS", "Multi-view", "Distributed", "Agritech"],
     description:
       "Multi-view biometric retrieval pipeline for cattle identification. 100,000+ images indexed with contrastive embeddings, FAISS multi-index search, and distributed image processing across worker pools.",
@@ -156,12 +156,22 @@ export const portfolio: PortfolioProject[] = [
   {
     id: "auv-programme",
     title: "Autonomous Underwater Vehicle Programme",
-    category: "Research & Product Development",
-    type: "research",
-    tags: ["AUV", "Reliability", "Structural Analysis", "Marine"],
+    category: "Underwater Systems",
+    type: "work",
+    tags: ["AUV", "Product Development", "Marine", "Team Lead"],
     description:
-      "Ongoing research and product development on autonomous underwater vehicles and underwater vehicle propulsion reliability. Led an engineering team across design, structural analysis, and marine deliverables.",
+      "Ongoing product development on autonomous underwater vehicles. Led an engineering team across mechanical, structural, and systems work, from concept through vehicle delivery.",
     image: "/work/auv.svg",
+  },
+  {
+    id: "underwater-reliability",
+    title: "Underwater Vehicle Propulsion Reliability",
+    category: "Structural Reliability",
+    type: "research",
+    tags: ["Reliability", "Structural Analysis", "Fatigue", "Marine"],
+    description:
+      "Research on structural reliability of underwater vehicle propulsion subsystems. Failure-mode analysis, fatigue prediction, and design margins for components that operate underwater over service life.",
+    image: "/work/reliability.svg",
   },
   {
     id: "decision-support-framework",
