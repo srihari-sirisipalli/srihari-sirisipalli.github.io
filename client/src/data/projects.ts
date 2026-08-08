@@ -26,7 +26,7 @@ export const portfolio: PortfolioProject[] = [
     tags: ["Flutter", "DigitalOcean", "Redis", "Product"],
     description:
       "End-to-end technical rebuild of Openct: complete website redesign, Flutter mobile rebuild, new backend on DigitalOcean and Redis, and shipped features across web and mobile.",
-    image: "/work/openct.svg",
+    image: "/work/openct.png",
     links: [
       { label: "Website", url: "https://openct.co" },
       { label: "Play Store", url: "https://play.google.com/store/apps/details?id=com.open.ct.openct&hl=en_IN" },
@@ -70,7 +70,7 @@ export const portfolio: PortfolioProject[] = [
     tags: ["Video Analytics", "PPE", "ANPR", "Dash", "Mining"],
     description:
       "End-to-end computer vision system for SCCL mining operations: strategy documents, technical architecture, a Python analytics backend across 11 features, and a Dash NOC dashboard for live operator use.",
-    image: "/work/sccl-mining.svg",
+    image: "/work/sccl-mining.png",
   },
   {
     id: "zapstays-platform",
@@ -80,7 +80,7 @@ export const portfolio: PortfolioProject[] = [
     tags: ["PHP 8", "MySQL", "Full-Stack", "Live"],
     description:
       "Full-stack hostel and co-living platform for verified travelers and owners across India. Quote-based flow, real-time chat, three-role codebase, and admin power-tools. Live production.",
-    image: "/work/zapstays.svg",
+    image: "/work/zapstays.png",
     links: [{ label: "Live", url: "https://zapstays.in" }],
   },
   {
@@ -91,7 +91,7 @@ export const portfolio: PortfolioProject[] = [
     tags: ["Python", "Signal Processing", "PyQt5", "ISO 10816"],
     description:
       "Transparent rule-based fault diagnostics for rotating machinery. Ranks probable mechanical, bearing, and electrical faults with traceable evidence rather than opaque ML predictions.",
-    image: "/work/vibration.svg",
+    image: "/work/vibration.png",
   },
   {
     id: "machine-fault-detection-ml",
@@ -101,7 +101,7 @@ export const portfolio: PortfolioProject[] = [
     tags: ["Python", "PCA", "Clustering", "Anomaly Detection", "PyQt5"],
     description:
       "Vibration-based ML fault detection library and desktop app. Extracts ~45 time and frequency features per sample, standardises, PCA-reduces, clusters, and flags anomalies against a learned model.",
-    image: "/work/mfdms.svg",
+    image: "/work/mfdms.png",
   },
   {
     id: "admos-swarm",
@@ -152,7 +152,7 @@ export const portfolio: PortfolioProject[] = [
     tags: ["Python", "PyQt5", "NumPy", "SciPy"],
     description:
       "Self-contained Python FEA engine for offshore platforms and jack-up rigs. Six analysis drivers, custom Skyline LDLT solver, PyQt5 and OpenGL desktop workstation.",
-    image: "/work/pynaos.svg",
+    image: "/work/pynaos.png",
   },
   {
     id: "naval-arch-studio",
@@ -162,7 +162,7 @@ export const portfolio: PortfolioProject[] = [
     tags: ["Python", "PyQt5", "PyOpenGL", "ReportLab"],
     description:
       "Naval architecture suite covering hydrostatics, stability, seakeeping, damage, structural strength, and classification rules, validated against Maxsurf.",
-    image: "/work/navalarch.svg",
+    image: "/work/navalarch.png",
   },
   {
     id: "moses-doe-pipeline",
@@ -172,7 +172,7 @@ export const portfolio: PortfolioProject[] = [
     tags: ["Python", "MOSES", "XGBoost", "Optuna"],
     description:
       "Parametric sea-transport platform driving Bentley MOSES through stratified DOE cases, feeding ML surrogates, sensitivity analysis, and multi-objective optimisation.",
-    image: "/work/moses-doe.svg",
+    image: "/work/moses-doe.png",
   },
   {
     id: "ship-recycling-expert-system",
@@ -182,7 +182,7 @@ export const portfolio: PortfolioProject[] = [
     tags: ["Django", "HTMX", "Tailwind", "WeasyPrint"],
     description:
       "Multi-domain expert system turning ship intake data into compliant, safe, economically viable recycling plans. Hazmat tracking, cutting sequences, workflow DAG.",
-    image: "/work/ship-recycling.svg",
+    image: "/work/ship-recycling.png",
   },
   {
     id: "dcdc-surrogate-pipeline",
@@ -192,7 +192,7 @@ export const portfolio: PortfolioProject[] = [
     tags: ["Python", "XGBoost", "PyTorch", "PINN"],
     description:
       "End-to-end ML surrogate pipeline for a dual-input DC-DC converter. Physics-informed network with a five-layer OOD detector and differential-evolution inverse design.",
-    image: "/work/dcdc.svg",
+    image: "/work/dcdc.png",
   },
   {
     id: "auv-programme",
@@ -202,7 +202,7 @@ export const portfolio: PortfolioProject[] = [
     tags: ["Autonomous Underwater Vehicle", "Product Development", "Marine", "Team Lead"],
     description:
       "Currently leading an engineering team on Autonomous Underwater Vehicle design and development. Mechanical, structural, and systems work, from concept through vehicle delivery.",
-    image: "/work/auv.svg",
+    image: "/work/auv.png",
   },
   {
     id: "underwater-reliability",
@@ -212,7 +212,7 @@ export const portfolio: PortfolioProject[] = [
     tags: ["Reliability", "ML Surrogates", "DOE", "AI", "Structural Analysis"],
     description:
       "Research on structural reliability of underwater vehicle propulsion. Failure-mode analysis, fatigue prediction, and design margins, sped up with AI, Design of Experiments, and ML surrogates over expensive physics simulations.",
-    image: "/work/reliability.svg",
+    image: "/work/reliability.png",
   },
   {
     id: "decision-support-framework",

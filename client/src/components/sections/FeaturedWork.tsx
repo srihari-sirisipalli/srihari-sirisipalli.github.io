@@ -2,9 +2,10 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
 import { portfolio } from "@/data/projects";
+import { caseStudySlugs } from "@/data/caseStudies";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
-const FEATURED_IDS = ["openct-rebuild", "offshore-digital-twin", "patent-similarity"];
+const FEATURED_IDS = ["openct-rebuild", "offshore-digital-twin", "sccl-mining-cv"];
 
 export default function FeaturedWork() {
   const featured = FEATURED_IDS.map((id) => portfolio.find((p) => p.id === id)).filter(
@@ -56,6 +57,9 @@ export default function FeaturedWork() {
 }
 
 function ProjectPreviewCard({ project }: { project: typeof portfolio[number] }) {
+  const hasCaseStudy = caseStudySlugs.has(project.id);
+  const externalHref = hasCaseStudy ? undefined : project.href;
+
   const inner = (
     <>
       <div className="aspect-[4/3] rounded-xl overflow-hidden bg-accent-soft border border-rule mb-4 group-hover:border-accent transition-colors">
@@ -80,16 +84,24 @@ function ProjectPreviewCard({ project }: { project: typeof portfolio[number] }) 
     </>
   );
 
-  return project.href ? (
-    <a
-      href={project.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block group"
-    >
-      {inner}
-    </a>
-  ) : (
-    <div className="block group">{inner}</div>
-  );
+  if (hasCaseStudy) {
+    return (
+      <Link href={`/work/${project.id}`} className="block group">
+        {inner}
+      </Link>
+    );
+  }
+  if (externalHref) {
+    return (
+      <a
+        href={externalHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block group"
+      >
+        {inner}
+      </a>
+    );
+  }
+  return <div className="block group">{inner}</div>;
 }

@@ -13,17 +13,17 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="text-sm text-ink-faint mb-6 tracking-wide">
-              Fractional CTO &middot; End-to-end software &amp; product
+            <p className="text-sm text-ink-faint mb-6 tracking-wide font-sans">
+              Fractional CTO &middot; End-to-end product, software &amp; engineering
             </p>
             <h1 className="font-display font-medium text-display-xl text-ink mb-8">
-              I ship <em className="italic text-accent">software</em> for<br />
-              engineering &amp; industrial <em className="italic text-accent">R&amp;D</em>.
+              I build <em className="italic text-accent">end-to-end product</em><br />
+              for <em className="italic text-accent">engineering R&amp;D</em>.
             </h1>
-            <p className="text-lg md:text-xl text-ink-soft leading-relaxed max-w-2xl mb-10">
-              End-to-end product, AI, digital twins, apps, backend, and
-              automations. Hired when a project needs hard engineering depth
-              and production software delivery in one place.
+            <p className="font-sans text-lg md:text-xl text-ink-soft leading-relaxed max-w-2xl mb-10">
+              Product, software, AI, digital twins, apps, backend, automations,
+              and core engineering. Hired when a project needs hard engineering
+              depth and production delivery in one place.
             </p>
             <div className="flex flex-wrap gap-4 items-center">
               <a
