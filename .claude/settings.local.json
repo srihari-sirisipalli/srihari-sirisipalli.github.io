@@ -1,7 +1,27 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(pip install:*)",
+      "Bash(python:*)",
+      "Bash(PYTHONIOENCODING=utf-8 python:*)",
+      "Bash(mkdir:*)",
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run:*)",
+      "Bash(npx vite:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git mv:*)",
+      "Bash(where:*)",
+      "Bash(/c/Python313/python.exe:*)",
+      "Bash(gh run:*)",
+      "Bash(git status:*)",
+      "Bash(git pull:*)",
+      "Bash(git:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(pip show:*)"
     ],
     "deny": [],
     "ask": []

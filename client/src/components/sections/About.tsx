@@ -1,51 +1,58 @@
 import { motion } from "framer-motion";
 import { personal } from "@/data/personal";
-import SectionWrapper from "@/components/layout/SectionWrapper";
-import AnimatedCounter from "@/components/ui/AnimatedCounter";
-import { staggerContainer, fadeUp } from "@/lib/animations";
+import { workExperience, consultingRole } from "@/data/experience";
 
 export default function About() {
   return (
-    <SectionWrapper id="about">
-      <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-        {/* Text */}
-        <div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-2">
-            About <span className="gradient-text">Me</span>
-          </h2>
-          <div className="w-16 h-1 bg-primary rounded-full mb-6" />
-          {personal.bio.map((p, i) => (
-            <p key={i} className="text-text-muted leading-relaxed mb-4">
-              {p}
-            </p>
-          ))}
-        </div>
-
-        {/* Stats grid */}
+    <section id="about" className="py-24 sm:py-32 px-5 sm:px-8 bg-bg-sunk">
+      <div className="max-w-5xl mx-auto">
         <motion.div
-          className="grid grid-cols-2 gap-4"
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          {personal.stats.map((stat) => (
-            <motion.div
-              key={stat.label}
-              variants={fadeUp}
-              className="glass rounded-xl p-4 sm:p-6 text-center hover:bg-surface-hover transition-colors"
-            >
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-1">
-                <AnimatedCounter
-                  value={stat.value}
-                  suffix={stat.suffix}
-                />
-              </div>
-              <div className="text-sm text-text-muted">{stat.label}</div>
-            </motion.div>
-          ))}
+          <p className="text-sm text-accent tracking-wide mb-4 uppercase font-medium">
+            About
+          </p>
+          <p className="font-display text-3xl md:text-4xl text-ink leading-tight max-w-4xl mb-10">
+            {personal.bio[0]}
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-x-16 gap-y-6 max-w-4xl">
+            <div>
+              <p className="text-sm text-ink-faint mb-2 uppercase tracking-wide">Now</p>
+              <p className="text-ink-soft">
+                Fractional CTO at Openct. Independent engineering practice
+                across software and product delivery, AI, digital twins,
+                automations, and core engineering.
+              </p>
+            </div>
+            <div>
+              <p className="text-sm text-ink-faint mb-2 uppercase tracking-wide">Where</p>
+              <p className="text-ink-soft">
+                {personal.location}. Working remote across timezones.
+              </p>
+            </div>
+            <div>
+              <p className="text-sm text-ink-faint mb-2 uppercase tracking-wide">Recent roles</p>
+              <ul className="text-ink-soft space-y-1">
+                <li>{consultingRole.title} &middot; {consultingRole.company}</li>
+                {workExperience.slice(0, 2).map((r) => (
+                  <li key={r.id}>{r.title} &middot; {r.company}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="text-sm text-ink-faint mb-2 uppercase tracking-wide">Off-work</p>
+              <p className="text-ink-soft">
+                Mentored 3 teams at CODEIAM hackathon (2 in top 5 of 40).
+                Zenith Science Club core member at Mahindra University.
+              </p>
+            </div>
+          </div>
         </motion.div>
       </div>
-    </SectionWrapper>
+    </section>
   );
 }

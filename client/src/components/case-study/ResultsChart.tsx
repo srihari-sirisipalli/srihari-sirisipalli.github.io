@@ -25,7 +25,7 @@ interface ResultsChartProps {
   yLabel?: string;
 }
 
-const palette = ["#60a5fa", "#a78bfa", "#22d3ee", "#facc15", "#4ade80", "#f87171"];
+const palette = ["#E4572E", "#B4421F", "#1A1A1A", "#4A4A4A", "#8B8B8B", "#DDD5C6"];
 
 export default function ResultsChart({
   kind,
@@ -38,13 +38,13 @@ export default function ResultsChart({
 }: ResultsChartProps) {
   return (
     <figure className="my-8 not-prose">
-      <div className="rounded-xl bg-bg-card border border-surface-border p-4 sm:p-6">
+      <div className="rounded-xl bg-bg-sunk border border-rule p-4 sm:p-6">
         <ResponsiveContainer width="100%" height={height}>
           {renderChart(kind, data, xKey, series, yLabel)}
         </ResponsiveContainer>
       </div>
       {caption && (
-        <figcaption className="mt-2 text-xs text-text-dim text-center font-mono">
+        <figcaption className="mt-2 text-xs text-ink-faint text-center">
           {caption}
         </figcaption>
       )}
@@ -59,14 +59,14 @@ function renderChart(
   series: { dataKey: string; label?: string; color?: string }[],
   yLabel?: string,
 ) {
-  const axisColor = "#64748b";
-  const gridColor = "rgba(255,255,255,0.06)";
+  const axisColor = "#8B8B8B";
+  const gridColor = "rgba(26,26,26,0.08)";
   const tooltipStyle = {
-    backgroundColor: "#12121a",
-    border: "1px solid rgba(255,255,255,0.1)",
+    backgroundColor: "#FFFFFF",
+    border: "1px solid #DDD5C6",
     borderRadius: 8,
     fontSize: 12,
-    color: "#e2e8f0",
+    color: "#1A1A1A",
   } as const;
 
   const commonAxes = (
@@ -83,7 +83,7 @@ function renderChart(
             : undefined
         }
       />
-      <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "rgba(96,165,250,0.06)" }} />
+      <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "rgba(228,87,46,0.08)" }} />
       {series.length > 1 && <Legend wrapperStyle={{ fontSize: 11, color: axisColor }} />}
     </>
   );
@@ -124,7 +124,6 @@ function renderChart(
     );
   }
 
-  // scatter
   return (
     <ScatterChart>
       {commonAxes}

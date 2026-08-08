@@ -34,7 +34,7 @@ export default function WorkDetailPage({ id }: { id: string }) {
     return (
       <NotFound
         title="No case study yet"
-        message={`${project.title} doesn't have a deep-dive case study written yet. Check back soon, or browse all projects.`}
+        message={`${project.title} doesn't have a deep-dive case study written yet.`}
       />
     );
   }
@@ -46,7 +46,7 @@ export default function WorkDetailPage({ id }: { id: string }) {
       <MDXProvider components={mdxComponents}>
         <Suspense
           fallback={
-            <div className="text-text-muted text-sm py-8" aria-live="polite">
+            <div className="text-ink-faint text-sm py-8" aria-live="polite">
               Loading case study…
             </div>
           }
@@ -60,15 +60,15 @@ export default function WorkDetailPage({ id }: { id: string }) {
 
 function NotFound({ title, message }: { title: string; message: string }) {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-32 text-center">
-      <p className="text-sm font-mono text-text-dim mb-3">404</p>
-      <h1 className="text-3xl font-bold mb-3">{title}</h1>
-      <p className="text-text-muted mb-8">{message}</p>
+    <div className="max-w-3xl mx-auto px-5 pt-32 pb-24 text-center">
+      <p className="text-sm text-ink-faint mb-3">404</p>
+      <h1 className="font-display text-display-md text-ink mb-3">{title}</h1>
+      <p className="text-ink-soft mb-8">{message}</p>
       <Link
-        to="/work"
-        className="inline-flex items-center gap-1.5 text-primary hover:underline"
+        href="/work"
+        className="inline-flex items-center gap-1.5 text-ink hover:text-accent link-underline"
       >
-        <ArrowLeft size={14} aria-hidden="true" />
+        <ArrowLeft size={14} />
         Back to all work
       </Link>
     </div>

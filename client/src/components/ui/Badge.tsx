@@ -10,8 +10,8 @@ export default function Badge({ children, className }: BadgeProps) {
     <span
       className={cn(
         "inline-block px-2.5 py-1 text-xs font-medium rounded-full",
-        "bg-primary/10 text-primary/80 border border-primary/20",
-        className
+        "bg-transparent text-ink-soft border border-rule",
+        className,
       )}
     >
       {children}
