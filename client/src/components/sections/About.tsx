@@ -23,9 +23,9 @@ export default function About() {
             <div>
               <p className="text-sm text-ink-faint mb-2 uppercase tracking-wide">Now</p>
               <p className="text-ink-soft">
-                Fractional CTO at Openct. Independent engineering practice
-                across software and product delivery, AI, digital twins,
-                automations, and core engineering.
+                Fractional CTO at Openct. Independent product development
+                practice across apps, websites, industry software, AI,
+                automation, and core engineering.
               </p>
             </div>
             <div>

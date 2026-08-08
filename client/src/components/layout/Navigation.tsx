@@ -6,10 +6,10 @@ import { personal } from "@/data/personal";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { href: "/work", label: "Work" },
+  { href: "/work", label: "Products" },
   { href: "/research", label: "Research" },
   { href: "/experience", label: "Experience" },
-  { href: "/blog", label: "Blog" },
+  { href: "/blog", label: "Writing" },
 ];
 
 export default function Navigation() {

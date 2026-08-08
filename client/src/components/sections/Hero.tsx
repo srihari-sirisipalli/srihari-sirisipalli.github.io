@@ -14,16 +14,17 @@ export default function Hero() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <p className="text-sm text-ink-faint mb-6 tracking-wide font-sans">
-              Fractional CTO &middot; End-to-end product, software &amp; engineering
+              Product Developer &middot; Apps &middot; Websites &middot; Industry Software &middot; AI &middot; Automation
             </p>
             <h1 className="font-display font-medium text-display-xl text-ink mb-8">
-              I build <em className="italic text-accent">end-to-end product</em><br />
-              for <em className="italic text-accent">engineering R&amp;D</em>.
+              I build <em className="italic text-accent">products</em>.<br />
+              Apps, websites, industry software, <em className="italic text-accent">AI</em>, automation.
             </h1>
             <p className="font-sans text-lg md:text-xl text-ink-soft leading-relaxed max-w-2xl mb-10">
-              Product, software, AI, digital twins, apps, backend, automations,
-              and core engineering. Hired when a project needs hard engineering
-              depth and production delivery in one place.
+              Whatever the surface, mobile app, live web platform, engineering
+              software, AI system, or automation pipeline, I build it end-to-end.
+              Hired when a project needs hard engineering depth and production
+              delivery in one place.
             </p>
             <div className="flex flex-wrap gap-4 items-center">
               <a
@@ -39,7 +40,7 @@ export default function Hero() {
                 href="/work"
                 className="inline-flex items-center gap-2 text-ink text-sm font-medium link-underline"
               >
-                See the work
+                See the products
                 <ArrowUpRight size={16} />
               </Link>
             </div>
