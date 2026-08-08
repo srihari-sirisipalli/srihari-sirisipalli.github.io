@@ -1,347 +1,673 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Sri_Hari_Sirisipalli_Resume</title>
-  <style>
-    /* Default styles provided by pandoc.
-    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-    */
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-    ul.task-list[class]{list-style: none;}
-    ul.task-list li input[type="checkbox"] {
-      font-size: inherit;
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
-  <link rel="stylesheet" href="resume-style.css" />
+<meta charset="utf-8" />
+<title>Sri Hari Sirisipalli — Lead Engineer & AI Systems Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0B1930;
+    --ink-soft: #3A4560;
+    --ink-faint: #6A7590;
+    --rule: #DDD5C6;
+    --rule-strong: #C8BFAD;
+    --accent: #B04A2A;
+    --accent-soft: #FBF6EB;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #fff;
+    color: var(--ink);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 10pt;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 8.5in;
+    margin: 0 auto;
+    padding: 0.6in 0.65in 0.55in 0.65in;
+    background: #fff;
+  }
+
+  /* ============ HEADER ============ */
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20pt;
+    align-items: end;
+    padding-bottom: 12pt;
+    border-bottom: 1.4pt solid var(--ink);
+    margin-bottom: 12pt;
+  }
+  h1.name {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    font-size: 32pt;
+    line-height: 0.98;
+    letter-spacing: -0.022em;
+    color: var(--ink);
+  }
+  .tagline {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 12.5pt;
+    color: var(--accent);
+    margin-top: 5pt;
+    letter-spacing: -0.005em;
+  }
+  .contact {
+    text-align: right;
+    font-size: 8.5pt;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+  .contact a { color: var(--ink); text-decoration: none; border-bottom: 0.5pt solid var(--rule); }
+  .contact .line { white-space: nowrap; }
+
+  /* ============ SECTION TITLES ============ */
+  h2.section {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    font-size: 12.5pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    padding-bottom: 4pt;
+    border-bottom: 0.7pt solid var(--rule-strong);
+    margin-top: 14pt;
+    margin-bottom: 8pt;
+    break-after: avoid-page;
+  }
+  h2.section:first-child { margin-top: 0; }
+
+  /* ============ SUMMARY ============ */
+  .summary p {
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5pt;
+    color: var(--ink);
+    line-height: 1.5;
+    margin-bottom: 5pt;
+  }
+  .summary p.lead {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 11.5pt;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.45;
+    margin-bottom: 6pt;
+  }
+  .summary p.lead strong { color: var(--accent); font-weight: 600; font-style: italic; }
+  .summary p.sub { color: var(--ink-soft); font-size: 10pt; }
+
+  /* ============ ROLE ============ */
+  .role { margin-bottom: 12pt; }
+  .role.compact { page-break-inside: avoid; }
+  .role .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10pt;
+    margin-bottom: 2pt;
+  }
+  .role h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 13pt;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.008em;
+    line-height: 1.2;
+  }
+  .role .role-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 9pt;
+    color: var(--ink-faint);
+    font-weight: 500;
+    text-align: right;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+  }
+  .role .company {
+    font-family: 'Inter', sans-serif;
+    font-size: 10pt;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 5pt;
+    letter-spacing: 0.005em;
+  }
+  .role .intro {
+    font-size: 10pt;
+    color: var(--ink-soft);
+    margin-bottom: 5pt;
+    line-height: 1.45;
+    font-style: italic;
+  }
+
+  .role .group { margin-top: 5pt; }
+  .role .group:first-of-type { margin-top: 0; }
+  .role .group-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 8.5pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    color: var(--ink);
+    margin-bottom: 3pt;
+    display: flex;
+    align-items: center;
+    gap: 6pt;
+  }
+  .role .group-label::after {
+    content: "";
+    flex: 1;
+    height: 0.5pt;
+    background: var(--rule);
+  }
+
+  .role ul { list-style: none; padding: 0; }
+  .role ul li {
+    font-size: 10pt;
+    color: var(--ink-soft);
+    line-height: 1.45;
+    margin-bottom: 2.5pt;
+    padding-left: 12pt;
+    position: relative;
+  }
+  .role ul li::before {
+    content: "";
+    position: absolute;
+    left: 4pt;
+    top: 6pt;
+    width: 3pt;
+    height: 3pt;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .role ul li strong { color: var(--ink); font-weight: 600; }
+
+  /* ============ SKILLS GRID ============ */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 160pt 1fr;
+    gap: 6pt 14pt;
+    padding: 0;
+  }
+  .skills-grid .cat {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    font-size: 10pt;
+    color: var(--accent);
+    letter-spacing: -0.005em;
+    padding-top: 1pt;
+  }
+  .skills-grid .vals {
+    font-size: 10pt;
+    color: var(--ink-soft);
+    line-height: 1.42;
+  }
+  .skills-grid .vals strong { color: var(--ink); font-weight: 600; }
+  .skills-grid .row-sep {
+    grid-column: 1 / -1;
+    height: 0.5pt;
+    background: var(--rule);
+  }
+
+  /* ============ PROJECTS ============ */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8pt 20pt;
+  }
+  .proj {
+    page-break-inside: avoid;
+    padding: 0;
+  }
+  .proj h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 10.5pt;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    line-height: 1.3;
+  }
+  .proj .p-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 8.5pt;
+    color: var(--accent);
+    font-weight: 600;
+    margin-top: 1pt;
+    letter-spacing: 0.01em;
+  }
+  .proj p {
+    font-size: 9.5pt;
+    color: var(--ink-soft);
+    line-height: 1.42;
+    margin-top: 2pt;
+  }
+
+  /* ============ EDUCATION / LEADERSHIP TWO-COLUMN ============ */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14pt 24pt;
+  }
+  .edu-item h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 11.5pt;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .edu-item .school { font-size: 10pt; color: var(--accent); font-weight: 500; margin-top: 1pt; }
+  .edu-item .meta { font-size: 9pt; color: var(--ink-faint); margin-top: 1pt; }
+  .edu-item .cw { font-size: 9.5pt; color: var(--ink-soft); margin-top: 4pt; line-height: 1.4; }
+
+  ul.leader { list-style: none; padding: 0; }
+  ul.leader li {
+    font-size: 9.5pt;
+    color: var(--ink-soft);
+    margin-bottom: 4pt;
+    padding-left: 10pt;
+    position: relative;
+    line-height: 1.42;
+  }
+  ul.leader li::before {
+    content: "";
+    position: absolute;
+    left: 3pt;
+    top: 6pt;
+    width: 3pt;
+    height: 3pt;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  ul.leader li strong { color: var(--ink); font-weight: 600; }
+
+  /* ============ PUBLICATIONS ============ */
+  .pub {
+    padding: 8pt 12pt;
+    background: var(--accent-soft);
+    border-left: 2pt solid var(--accent);
+  }
+  .pub h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 11pt;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+  .pub .venue {
+    font-size: 9pt;
+    color: var(--accent);
+    font-weight: 600;
+    margin-top: 2pt;
+    letter-spacing: 0.01em;
+  }
+  .pub .venue em { font-style: italic; color: var(--ink); }
+  .pub .authors { font-size: 9pt; color: var(--ink-soft); margin-top: 3pt; line-height: 1.42; }
+  .pub .authors strong { color: var(--ink); font-weight: 700; }
+  .pub a { color: var(--ink); text-decoration: none; border-bottom: 0.5pt solid var(--accent); }
+
+  /* ============ LANGUAGE ============ */
+  .lang {
+    font-size: 10pt;
+    color: var(--ink-soft);
+  }
+  .lang strong { color: var(--ink); font-weight: 600; }
+
+  /* ============ PRINT ============ */
+  @page {
+    size: Letter;
+    margin: 0;
+  }
+  @media print {
+    body { background: #fff; }
+    .page { padding: 0.55in 0.6in 0.45in 0.6in; margin: 0; }
+    h2.section { break-after: avoid-page; }
+    .role.compact, .proj, .pub, .edu-item, .role .group { break-inside: avoid-page; }
+    .role .head { break-after: avoid-page; }
+  }
+</style>
 </head>
 <body>
-<h1 id="sri-hari-sirisipalli">Sri Hari Sirisipalli</h1>
-<p><strong>Lead Engineer &amp; AI Systems Engineer ·
-End-to-End</strong></p>
-<p>Visakhapatnam, India · sriharisirisipalli0@gmail.com · <a
-href="https://www.linkedin.com/in/sri-hari-sirisipalli/">linkedin.com/in/sri-hari-sirisipalli</a>
-· <a
-href="https://github.com/srihari-sirisipalli">github.com/srihari-sirisipalli</a>
-· <a
-href="https://srihari-sirisipalli.github.io">srihari-sirisipalli.github.io</a>
-· <a
-href="https://calendly.com/sriharisirisipalli0">calendly.com/sriharisirisipalli0</a></p>
-<hr />
-<h2 id="summary">Summary</h2>
-<p>Lead Engineer and AI Systems Engineer. I lead, engineer, and build
-end-to-end. AI systems, computer vision, GenAI apps, and industry
-software from concept to production. Digital twins, CFD, FEA, and
-reliability engineering where the work needs deep physics. Cloud,
-DevOps, and product delivery to ship it. Marine, offshore, and naval
-engineering when the project sits in that domain. Fractional CTO at
-Openct.</p>
-<p>The bet the practice is built on: engineering depth and product
-delivery are more useful together than apart. No handoff between the
-person doing the analysis and the person doing the app. Same engineer,
-both halves.</p>
-<hr />
-<h2 id="experience">Experience</h2>
-<h3 id="fractional-cto-openct">Fractional CTO, Openct</h3>
-<p>Feb 2026 to Present · Self-employed · Remote</p>
-<ul>
-<li>Embedded as fractional CTO leading product audit, new feature
-development, complete openct.co website redesign, backend architecture
-rebuild, and Flutter mobile app rebuild.</li>
-<li>Complete redesign of the openct.co website with new design system,
-information architecture, and content flow.</li>
-<li>Rebuilding the Openct Flutter mobile app end-to-end with new
-architecture, state management, and design system.</li>
-<li>New backend architecture from scratch on DigitalOcean, Redis, and
-PostgreSQL. Third-party integrations across payments, communication, and
-analytics.</li>
-<li>CI/CD for mobile and backend. Observability, incident response, and
-deployment automation.</li>
-<li>Owning architecture decisions, hiring input, code review,
-engineering standards, and product-engineering delivery cadence.</li>
-</ul>
-<h3
-id="lead-engineer-ai-systems-engineer-independent-systems-engineering">Lead
-Engineer &amp; AI Systems Engineer, Independent Systems Engineering</h3>
-<p>Jun 2023 to Present · Freelance · Remote</p>
-<p>Independent engineering practice building end-to-end systems across
-AI, digital twins, apps, backend, cloud, computer vision, and core
-engineering. Also leading engineering teams on marine, offshore, and
-naval design projects.</p>
-<p><em>AI, ML &amp; GenAI</em></p>
-<ul>
-<li>RAG systems, embeddings, semantic retrieval, and offline LLM
-stacks.</li>
-<li>Real-time offline 3D AI avatar (deployed): 75% STT and 52% TTS
-latency reduction. Whisper, Ollama, LangChain, WebSockets,
-Three.js.</li>
-<li>DocForge: offline document intelligence for engineering and
-compliance teams.</li>
-<li>Ship Recycling Expert System: HKC, Basel Convention, EU SRR, ILO
-compliance, 204-activity workflow DAG, 7 PDF report types.</li>
-</ul>
-<p><em>Computer Vision</em></p>
-<ul>
-<li>Multi-view cattle biometric retrieval at scale: 100,000+ images,
-SimCLR contrastive embeddings, FAISS multi-index, 20 distributed worker
-processes.</li>
-<li>Currently building end-to-end computer vision for SCCL Mining
-Operations (upcoming): 11 detection features and live NOC
-dashboard.</li>
-</ul>
-<p><em>Digital Twins &amp; Simulation</em></p>
-<ul>
-<li>Offshore riser fatigue and motion digital twin. Predicted
-significant wave height at R squared 0.9992 across 88,560 simulated sea
-states and 40,000+ ML experiments.</li>
-<li>Mooring digital twin, Battery digital twin, Ship emergency-response
-digital twin.</li>
-<li>MOSES sea-transport DOE automation platform: stratified Latin
-Hypercube Sampling over 4 ballast zones producing 15,000 DOE cases from
-80 input parameters; per-case 12-sheet Excel workbooks (6-DOF motions,
-structural loads, intact and damage stability across 28
-compartments).</li>
-<li>NavalArch Studio: ship design and stability suite with 13 domain
-subpackages, roughly 450 tests, validated against Maxsurf (4,759 t
-displacement match).</li>
-<li>PyNAOS: pure-Python FEA engine for offshore structures, 593 tests at
-98.6% coverage, six analysis drivers, custom Skyline LDLT solver.</li>
-</ul>
-<p><em>Reliability &amp; ML for Engineering R&amp;D</em></p>
-<ul>
-<li>Reliability Analysis Workbench for underwater vehicle propulsion
-structural reliability. OpenTURNS, DOE, ML surrogates over CFD and
-FEA.</li>
-<li>Multi-input DC-DC converter surrogate and inverse design:
-physics-informed network with 5-layer OOD gate, roughly 10 to the 4
-inference speedup.</li>
-<li>Vibration diagnostics rule engine (ISO 10816): 13 diagnostic rules,
-30+ features, PyQt5 workflow.</li>
-</ul>
-<p><em>Apps, Platforms &amp; Industry Software</em></p>
-<ul>
-<li>zapstays.in (live production): full-stack hostel and co-living
-platform, roughly 9,000 LOC PHP 8, 50 pages, 60 API endpoints, 20+ DB
-tables, real-time chat, Google OAuth, admin power-tools.</li>
-<li>VHop nightlife platform (in build).</li>
-</ul>
-<p><em>Backend &amp; Cloud</em></p>
-<ul>
-<li>AWS (Lambda, EC2, S3, SQS, IAM), DigitalOcean, Redis, PostgreSQL.
-Terraform, Docker, CI/CD. Async and multiprocessing pipelines for
-high-throughput workloads.</li>
-</ul>
-<p><em>Marine, Offshore &amp; Naval Engineering</em></p>
-<ul>
-<li>Leading engineering teams on ship, offshore, and naval design
-projects.</li>
-<li>Hydrostatics, stability, seakeeping, damage. Offshore platforms,
-jack-ups, risers, mooring, gangways. Planning craft, service boats.</li>
-<li>Class work against IMO IS Code, SOLAS, IACS, DNV-GL.</li>
-</ul>
-<p><em>AUV &amp; Underwater Systems</em></p>
-<ul>
-<li>Leading an engineering team on Autonomous Underwater Vehicle (AUV)
-design and development. Sub-100m class body-of-revolution vehicle, CFRP
-pressure hull, vectored thruster, autonomous survey missions.</li>
-<li>Requirements-driven MBSE and V-model with FMEA. Covers mechanical,
-structural, propulsion, and systems work, from concept and
-pre-feasibility through vehicle delivery.</li>
-</ul>
-<h3 id="software-engineer-llm-cloud-infrastructure-pangeon">Software
-Engineer, LLM &amp; Cloud Infrastructure, Pangeon</h3>
-<p>Mar 2024 to Present · Part-time · Remote</p>
-<ul>
-<li>Patent similarity and prior-art LLM system at production scale for
-Intellipat, one of Pangeon’s portfolio startups. Supports 1,000+ daily
-similarity evaluations.</li>
-<li>Embedding-driven retrieval integrated with LLM semantic scoring for
-automated prior-art ranking.</li>
-<li>Re-architected compute workloads from EC2 to AWS Lambda, reducing
-infrastructure costs 30% and improving batch completion speed 5 to
-7x.</li>
-<li>Reproducible AWS provisioning with Terraform across accounts for
-consistent cross-account deployments.</li>
-<li>Async and multiprocessing framework for high-throughput
-evaluation.</li>
-<li>Custom Terraform GUI for AWS resource management.</li>
-</ul>
-<h3 id="aiml-advisor-agritech-startup">AI/ML Advisor, Agritech
-Startup</h3>
-<p>Mar 2025 to Aug 2025 · Remote</p>
-<ul>
-<li>Benchmarked commercial (OpenAI, Anthropic) and open-source LLMs
-(LLaMA, Mistral) for agriculture QA.</li>
-<li>Evaluated bilingual answering (English and Telugu) for Andhra
-agriculture use cases.</li>
-<li>Designed STT fine-tuning pipeline: audio collection, transcription,
-diarization, dataset prep.</li>
-</ul>
-<h3 id="data-engineer-sas2py">Data Engineer, Sas2Py</h3>
-<p>Mar 2023 to Jun 2023 · Full-time</p>
-<ul>
-<li>Led migration of legacy SAS data pipelines to PySpark; achieved over
-99% functional parity on validation.</li>
-<li>Modeled job dependency graphs to eliminate scheduling bottlenecks
-and optimize distributed execution.</li>
-</ul>
-<h3 id="machine-learning-intern-corteva-agriscience">Machine Learning
-Intern, Corteva Agriscience</h3>
-<p>Jul 2022 to Dec 2022 · Hyderabad · Remote</p>
-<ul>
-<li>Converted TensorFlow and PyTorch models to ONNX for cross-platform
-deployment.</li>
-<li>Optimized inference via structured pruning and post-training
-quantization.</li>
-<li>Validated numerical consistency across model formats for reliable
-production deployment.</li>
-</ul>
-<h3 id="software-engineer-intern-dojima-networks">Software Engineer
-Intern, Dojima Networks</h3>
-<p>Jun 2022 to Dec 2022 · Bangalore · Remote</p>
-<ul>
-<li>Integrated Polkadot ecosystem components for cross-chain
-interoperability.</li>
-<li>Implemented cross-chain communication workflows for transaction
-routing and state synchronization.</li>
-<li>Deployed Prometheus and Grafana monitoring stack for real-time API
-observability.</li>
-</ul>
-<hr />
-<h2 id="publications">Publications</h2>
-<p><strong>ADMOS: An Adaptive Dual-Mode Operational Swarm for Resilient
-Asset Defense under Communication Jamming.</strong> Research Square
-(Preprint, under review at Discover Vehicles, Springer Nature). Jul 15,
-2026. Authors: Mohamed Hijazy Shazin Hassan, Dandu S. N. V. P. R. Varma,
-Jaswanth Kumar Bobbadi, Neeraj Sree Mailee Dudaboyina, Narendra
-Sirisipalli, <strong>Sri Hari Sirisipalli</strong>, Giri Rajasekhar
-Gunnu. DOI: <a
-href="https://gist.science/paper/rs/rs-9957095">gist.science/paper/rs/rs-9957095</a></p>
-<hr />
-<h2 id="selected-projects">Selected Projects</h2>
-<p><strong>Openct Product &amp; Platform Rebuild</strong> · Fractional
-CTO · openct.co Complete website redesign, Flutter mobile rebuild,
-backend on DigitalOcean + Redis + PostgreSQL, third-party integrations,
-CI/CD, and observability. Feb 2026 to Present.</p>
-<p><strong>Autonomous Underwater Vehicle (AUV) Design &amp;
-Development</strong> · Engineering Lead Sub-100m class
-body-of-revolution vehicle, CFRP pressure hull, vectored thruster,
-autonomous survey missions. Requirements-driven MBSE and V-model with
-FMEA. Covering mechanical, structural, propulsion, and systems work from
-concept through vehicle delivery.</p>
-<p><strong>Offshore Riser Digital Twin — Motion &amp; Fatigue</strong>
-Coupled hydrodynamics (Bentley MOSES), FEA (custom Python engine and
-ANSYS APDL), and reliability. Live twin ingests measured motion and
-current data, updates fatigue budget in real time, and flags risk
-components for operations.</p>
-<p><strong>DocForge — Offline Document Intelligence</strong> Local LLMs
-and embeddings, no internet round-trip. RAG over technical PDFs, patent
-corpora, and long specs. Python, LangChain, ChromaDB, React front
-end.</p>
-<p><strong>Reliability Analysis Workbench — AUV Propulsion &amp;
-Offshore Systems</strong> DOE across CFD and FEA runs, ML surrogates,
-and OpenTURNS reliability layer. Live dashboard for design tweak to
-failure-probability feedback without waiting for a full solve.</p>
-<p><strong>Real-Time Offline 3D AI Avatar</strong> (deployed) Fully
-offline 3D agent with 75% STT and 52% TTS latency reduction. Whisper +
-Ollama + LangChain + WebSockets + Three.js.</p>
-<p><strong>LLM Patent Similarity Search</strong> · Pangeon / Intellipat
-Embedding + LLM semantic scoring; EC2 to AWS Lambda re-architecture;
-Terraform GUI. Mar 2024 to Present.</p>
-<p><strong>Goodhar — Cattle Biometric Identification at Scale</strong>
-Large-scale multi-view cattle biometric identification for a state
-agritech initiative. SimCLR embeddings, FAISS multi-index,
-near-real-time retrieval. Currently on hold pending data collection.</p>
-<p><strong>zapstays.in — Hostel &amp; Co-Living Platform</strong> (live
-production) Roughly 9K LOC PHP 8, 50 pages, 60 API endpoints, 20+ DB
-tables, real-time chat, Google OAuth, admin tools, CSV export, audit
-log.</p>
-<p><strong>PyNAOS: Pure-Python FEA Engine for Offshore
-Structures</strong> 6 analysis drivers, 3D Timoshenko beam elements with
-P-Delta, Skyline LDLT solver, PyQt5 workstation, 593 tests at 98.63%
-coverage.</p>
-<p><strong>NavalArch Studio: Ship Design &amp; Stability Suite</strong>
-13 domain subpackages, roughly 450 tests, Maxsurf-validated
-hydrostatics, IMO/SOLAS/IACS/DNV-GL rule integration.</p>
-<p><strong>MOSES Sea-Transport DOE Automation Platform</strong> 15,000
-DOE cases over 80 parameters, PyQt5 orchestrator,
-XGBoost/PyTorch/LightGBM surrogates, SALib sensitivity, Optuna/PyMoo
-optimization.</p>
-<p><strong>Ship Recycling &amp; Dismantling Expert System</strong>
-Django app; HKC + Basel + EU SRR + ILO compliance; 204-activity workflow
-DAG; 7 report types.</p>
-<p><strong>Multi-Input DC-DC Converter Surrogate &amp; Inverse
-Design</strong> Physics-informed network with 5-layer OOD gate; XGBoost
-R squared 0.985; roughly 10 to the 4 inference speedup; PyQt5 GUI for
-parameter pinning.</p>
-<p><strong>Vibration Diagnostics Rule Engine</strong> 13 diagnostic
-rules for rotating machinery (unbalance, misalignment, bearing defects,
-rotor faults); 30+ features; ISO 10816 severity mapping.</p>
-<hr />
-<h2 id="education">Education</h2>
-<p><strong>B.Tech, Mechanical Engineering</strong> · Mahindra
-University, Hyderabad Aug 2018 to Jun 2022 · CGPA 7.5</p>
-<p>Coursework: Linear Algebra &amp; Matrices, Probability &amp;
-Statistics, Data Structures, Big Data Computing, Advanced Data
-Analytics, Time Series Forecasting, GPU Programming, Computer Aided
-Engineering Design.</p>
-<p>Activities: Zenith Science Club core team (MU Research Symposium
-2020); AERO Sports Meet volunteer (2019 to 2022).</p>
-<hr />
-<h2 id="skills">Skills</h2>
-<p><strong>AI, ML &amp; GenAI:</strong> PyTorch, TensorFlow,
-Scikit-learn, XGBoost, LightGBM, Hugging Face, Transformers, ONNX,
-Surrogate Modeling, Physics-Informed NNs, OOD Detection, SHAP, Feature
-Engineering, Model Optimization.</p>
-<p><strong>GenAI &amp; LLMs:</strong> LangChain, LlamaIndex, RAG
-Pipelines, FAISS, ChromaDB, Vector Databases, Embedding Models, Ollama,
-vLLM, Whisper STT, Prompt Engineering, Offline LLM Stacks.</p>
-<p><strong>Computer Vision:</strong> OpenCV, YOLO, BoT-SORT, SimCLR,
-ResNet, Tesseract, MediaPipe, Visual Similarity Search, Multi-View
-Embeddings, Ranking Fusion.</p>
-<p><strong>Digital Twins &amp; Simulation:</strong> Digital Twins, CFD
-(ANSYS Fluent, OpenFOAM, k-omega SST), FEA (ANSYS APDL, ANSYS
-Mechanical, custom Python engine), Reliability Analysis (OpenTURNS),
-DOE, Latin Hypercube, SALib, Optuna, PyMoo.</p>
-<p><strong>Engineering CAD/CAE:</strong> ANSYS Fluent, ANSYS APDL, ANSYS
-Mechanical, OpenFOAM, Bentley MOSES, Autodesk Inventor, SolidWorks,
-FreeCAD, Fusion 360, AutoCAD, Maxsurf, Rhino.</p>
-<p><strong>Mobile, Web &amp; Apps:</strong> Flutter, Dart, React, React
-Native, Next.js, TypeScript, Vite, Tailwind, FastAPI, Django,
-WebSockets, HTMX, PyQt5, PyQt6, Streamlit.</p>
-<p><strong>Backend &amp; Cloud:</strong> AWS (EC2, Lambda, S3, SQS),
-DigitalOcean, GCP, Redis, PostgreSQL, MySQL, SQLite, Terraform, Docker,
-CI/CD (GitHub Actions), IAM, Nginx.</p>
-<p><strong>Data Engineering:</strong> PySpark, Hadoop MapReduce, ETL
-Pipelines, NumPy, SciPy, Pandas, Polars, Airflow, Prometheus, Grafana,
-MLflow, Weights &amp; Biases, Data Validation.</p>
-<p><strong>Programming &amp; Tooling:</strong> Python, TypeScript,
-JavaScript, Dart, C++, MATLAB, SQL, Bash, Java, Go, C, Git, Linux.</p>
-<p><strong>Marine, Offshore &amp; Naval:</strong> Naval Architecture,
-Ship Design, Offshore Structures, AUV, Hydrodynamics, Seakeeping,
-Mooring, Stability, IMO IS Code, SOLAS, IACS, DNV-GL.</p>
-<hr />
-<h2 id="leadership-activities">Leadership &amp; Activities</h2>
-<ul>
-<li><strong>CODEIAM Mentor</strong> (Jul 2024): Mentored 3 teams at a
-university hackathon; 2 teams ranked in top 5 of 40.</li>
-<li><strong>AERO Sports Meet</strong> (2019 to 2022): Volunteer and
-Security team for annual campus events.</li>
-<li><strong>Zenith Science Club</strong> (2019 to 2022): Core team for
-MU Research Symposium 2020.</li>
-</ul>
-<hr />
+<div class="page">
+
+  <header>
+    <div>
+      <h1 class="name">Sri Hari Sirisipalli</h1>
+      <div class="tagline">Lead Engineer &amp; AI Systems Engineer · End-to-End</div>
+    </div>
+    <div class="contact">
+      <div class="line">Visakhapatnam, India</div>
+      <div class="line"><a href="mailto:sriharisirisipalli0@gmail.com">sriharisirisipalli0@gmail.com</a></div>
+      <div class="line"><a href="https://srihari-sirisipalli.github.io">srihari-sirisipalli.github.io</a></div>
+      <div class="line"><a href="https://www.linkedin.com/in/sri-hari-sirisipalli/">linkedin.com/in/sri-hari-sirisipalli</a></div>
+      <div class="line"><a href="https://github.com/srihari-sirisipalli">github.com/srihari-sirisipalli</a></div>
+      <div class="line"><a href="https://calendly.com/sriharisirisipalli0">calendly.com/sriharisirisipalli0</a></div>
+    </div>
+  </header>
+
+  <!-- SUMMARY -->
+  <section class="summary">
+    <h2 class="section">Summary</h2>
+    <p class="lead">Lead Engineer and AI Systems Engineer. I <strong>lead</strong>, <strong>engineer</strong>, and <strong>build</strong> end-to-end.</p>
+    <p>AI, computer vision, GenAI, apps, and industry software from concept to production. Digital twins, CFD, FEA, and reliability where the work needs deep physics. Cloud, DevOps, and product delivery to ship it. Marine, offshore, and naval engineering when the project sits in that domain. Fractional CTO at Openct.</p>
+    <p class="sub">The bet the practice is built on: engineering depth and product delivery are more useful together than apart. No handoff between the person doing the analysis and the person doing the app. Same engineer, both halves.</p>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section>
+    <h2 class="section">Experience</h2>
+
+    <div class="role compact">
+      <div class="head">
+        <h3>Fractional CTO</h3>
+        <div class="role-meta">Feb 2026 – Present · Remote</div>
+      </div>
+      <div class="company">Openct</div>
+      <ul>
+        <li>Embedded as fractional CTO leading product audit, feature development, full openct.co website redesign, backend rebuild, and Flutter mobile app rebuild.</li>
+        <li>New backend architecture from scratch on <strong>DigitalOcean, Redis, PostgreSQL</strong>. Third-party integrations across payments, communication, and analytics.</li>
+        <li>CI/CD for mobile and backend. Observability, incident response, deployment automation.</li>
+        <li>Owning architecture decisions, hiring input, code review, engineering standards, and product-engineering delivery cadence.</li>
+      </ul>
+    </div>
+
+    <div class="role">
+      <div class="head">
+        <h3>Lead Engineer &amp; AI Systems Engineer</h3>
+        <div class="role-meta">Jun 2023 – Present · Freelance · Remote</div>
+      </div>
+      <div class="company">Independent Systems Engineering</div>
+      <p class="intro">Independent engineering practice building end-to-end systems across AI, digital twins, apps, backend, cloud, computer vision, and core engineering. Also leading engineering teams on marine, offshore, and naval design projects.</p>
+
+      <div class="group">
+        <div class="group-label">AI, ML &amp; GenAI</div>
+        <ul>
+          <li>RAG systems, embeddings, semantic retrieval, and offline LLM stacks.</li>
+          <li><strong>Real-time offline 3D AI avatar</strong> (deployed): 75% STT and 52% TTS latency reduction. Whisper, Ollama, LangChain, WebSockets, Three.js.</li>
+          <li><strong>DocForge</strong>: offline document intelligence for engineering and compliance teams.</li>
+          <li><strong>Ship Recycling Expert System</strong>: HKC, Basel Convention, EU SRR, ILO compliance; 204-activity workflow DAG; 7 PDF report types.</li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <div class="group-label">Computer Vision</div>
+        <ul>
+          <li>Multi-view cattle biometric retrieval at scale: 100,000+ images, SimCLR contrastive embeddings, FAISS multi-index, 20 distributed workers.</li>
+          <li>Building end-to-end computer vision for <strong>SCCL Mining Operations</strong> (upcoming): 11 detection features, live NOC dashboard.</li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <div class="group-label">Digital Twins &amp; Simulation</div>
+        <ul>
+          <li>Offshore riser fatigue and motion digital twin. Predicted significant wave height at R² 0.9992 across 88,560 simulated sea states and 40,000+ ML experiments.</li>
+          <li>Mooring digital twin, Battery digital twin, Ship emergency-response digital twin.</li>
+          <li>MOSES sea-transport DOE automation platform: stratified LHS over 4 ballast zones, 15,000 DOE cases from 80 parameters. 12-sheet per-case Excel workbooks (6-DOF motions, structural loads, intact and damage stability across 28 compartments).</li>
+          <li><strong>NavalArch Studio</strong>: ship design and stability suite. 13 domain subpackages, ~450 tests, Maxsurf-validated (4,759 t displacement match).</li>
+          <li><strong>PyNAOS</strong>: pure-Python FEA engine for offshore structures. 593 tests at 98.6% coverage, six analysis drivers, custom Skyline LDLT solver.</li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <div class="group-label">Reliability &amp; ML for Engineering R&amp;D</div>
+        <ul>
+          <li><strong>Reliability Analysis Workbench</strong> for underwater vehicle propulsion. OpenTURNS, DOE, ML surrogates over CFD and FEA.</li>
+          <li>Multi-input DC-DC converter surrogate and inverse design: physics-informed network with 5-layer OOD gate, ~10⁴× inference speedup.</li>
+          <li>Vibration diagnostics rule engine (ISO 10816): 13 diagnostic rules, 30+ features, PyQt5 workflow.</li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <div class="group-label">Apps, Platforms &amp; Backend</div>
+        <ul>
+          <li><strong>zapstays.in</strong> (live production): full-stack hostel and co-living platform. ~9,000 LOC PHP 8, 50 pages, 60 API endpoints, 20+ DB tables, real-time chat, Google OAuth, admin power-tools.</li>
+          <li><strong>VHop</strong> nightlife platform (in build).</li>
+          <li>AWS (Lambda, EC2, S3, SQS, IAM), DigitalOcean, Redis, PostgreSQL. Terraform, Docker, CI/CD. Async and multiprocessing pipelines for high-throughput workloads.</li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <div class="group-label">Marine, Offshore, Naval &amp; AUV</div>
+        <ul>
+          <li>Leading engineering teams on ship, offshore, and naval design projects. Hydrostatics, stability, seakeeping, damage. Offshore platforms, jack-ups, risers, mooring, gangways. Planning craft, service boats.</li>
+          <li>Leading an engineering team on <strong>Autonomous Underwater Vehicle (AUV)</strong> design and development. Sub-100 m class, CFRP pressure hull, vectored thruster, autonomous survey missions. Requirements-driven MBSE and V-model with FMEA, concept through vehicle delivery.</li>
+          <li>Class work against IMO IS Code, SOLAS, IACS, DNV-GL.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role compact">
+      <div class="head">
+        <h3>Software Engineer, LLM &amp; Cloud Infrastructure</h3>
+        <div class="role-meta">Mar 2024 – Present · Part-time · Remote</div>
+      </div>
+      <div class="company">Pangeon</div>
+      <ul>
+        <li>Patent similarity and prior-art LLM system at production scale for <strong>Intellipat</strong>, one of Pangeon's portfolio startups. 1,000+ daily similarity evaluations.</li>
+        <li>Embedding-driven retrieval integrated with LLM semantic scoring for automated prior-art ranking.</li>
+        <li>Re-architected compute workloads from EC2 to AWS Lambda. Infrastructure costs down 30%, batch completion speed up 5–7×.</li>
+        <li>Reproducible AWS provisioning with Terraform across accounts. Custom Terraform GUI for AWS resource management.</li>
+      </ul>
+    </div>
+
+    <div class="role compact">
+      <div class="head">
+        <h3>AI / ML Advisor</h3>
+        <div class="role-meta">Mar 2025 – Aug 2025 · Remote</div>
+      </div>
+      <div class="company">Agritech Startup</div>
+      <ul>
+        <li>Benchmarked commercial (OpenAI, Anthropic) and open-source LLMs (LLaMA, Mistral) for agriculture QA.</li>
+        <li>Evaluated bilingual answering (English + Telugu) for Andhra agriculture use cases.</li>
+        <li>Designed STT fine-tuning pipeline: audio collection, transcription, diarization, dataset prep.</li>
+      </ul>
+    </div>
+
+    <div class="role compact">
+      <div class="head">
+        <h3>Data Engineer</h3>
+        <div class="role-meta">Mar 2023 – Jun 2023 · Full-time</div>
+      </div>
+      <div class="company">Sas2Py</div>
+      <ul>
+        <li>Led migration of legacy SAS data pipelines to PySpark; over 99% functional parity on validation.</li>
+        <li>Modeled job dependency graphs to eliminate scheduling bottlenecks and optimize distributed execution.</li>
+      </ul>
+    </div>
+
+    <div class="role compact">
+      <div class="head">
+        <h3>Machine Learning Intern</h3>
+        <div class="role-meta">Jul 2022 – Dec 2022 · Remote</div>
+      </div>
+      <div class="company">Corteva Agriscience</div>
+      <ul>
+        <li>Converted TensorFlow and PyTorch models to ONNX for cross-platform deployment.</li>
+        <li>Optimized inference via structured pruning and post-training quantization; validated numerical consistency across formats.</li>
+      </ul>
+    </div>
+
+    <div class="role compact">
+      <div class="head">
+        <h3>Software Engineer Intern</h3>
+        <div class="role-meta">Jun 2022 – Dec 2022 · Bangalore · Remote</div>
+      </div>
+      <div class="company">Dojima Networks</div>
+      <ul>
+        <li>Integrated Polkadot ecosystem components for cross-chain interoperability.</li>
+        <li>Implemented cross-chain communication for transaction routing and state sync. Deployed Prometheus + Grafana monitoring stack.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SELECTED PROJECTS -->
+  <section>
+    <h2 class="section">Selected Projects</h2>
+    <div class="projects-grid">
+
+      <div class="proj">
+        <h3>Openct — Product &amp; Platform Rebuild</h3>
+        <div class="p-meta">Fractional CTO · openct.co</div>
+        <p>Complete website redesign, Flutter mobile rebuild, backend on DigitalOcean + Redis + PostgreSQL, third-party integrations, CI/CD, and observability.</p>
+      </div>
+
+      <div class="proj">
+        <h3>Autonomous Underwater Vehicle (AUV)</h3>
+        <div class="p-meta">Engineering Lead · Design &amp; Development</div>
+        <p>Sub-100 m class body-of-revolution vehicle. CFRP pressure hull, vectored thruster, autonomous survey missions. Requirements-driven MBSE and V-model with FMEA, concept through vehicle delivery.</p>
+      </div>
+
+      <div class="proj">
+        <h3>Offshore Riser Digital Twin</h3>
+        <div class="p-meta">Motion &amp; Fatigue</div>
+        <p>Coupled hydrodynamics (Bentley MOSES), FEA (custom Python engine + ANSYS APDL), and reliability. Live twin ingests measured motion and current data, updates fatigue budget in real time, flags risk components for operations.</p>
+      </div>
+
+      <div class="proj">
+        <h3>DocForge</h3>
+        <div class="p-meta">Offline Document Intelligence</div>
+        <p>Local LLMs and embeddings, no internet round-trip. RAG over technical PDFs, patent corpora, and long specs. Python, LangChain, ChromaDB, React front end.</p>
+      </div>
+
+      <div class="proj">
+        <h3>Reliability Analysis Workbench</h3>
+        <div class="p-meta">AUV Propulsion &amp; Offshore Systems</div>
+        <p>DOE across CFD and FEA runs, ML surrogates, OpenTURNS reliability layer. Live dashboard for design-tweak to failure-probability feedback without waiting for a full solve.</p>
+      </div>
+
+      <div class="proj">
+        <h3>Real-Time Offline 3D AI Avatar</h3>
+        <div class="p-meta">Deployed</div>
+        <p>Fully offline 3D agent. 75% STT and 52% TTS latency reduction. Whisper + Ollama + LangChain + WebSockets + Three.js.</p>
+      </div>
+
+      <div class="proj">
+        <h3>LLM Patent Similarity Search</h3>
+        <div class="p-meta">Pangeon / Intellipat</div>
+        <p>Embedding + LLM semantic scoring, EC2 to AWS Lambda re-architecture, Terraform GUI. 1,000+ daily evaluations at production scale.</p>
+      </div>
+
+      <div class="proj">
+        <h3>Goodhar — Cattle Biometric ID</h3>
+        <div class="p-meta">State Agritech Initiative</div>
+        <p>Large-scale multi-view cattle biometric identification. SimCLR embeddings, FAISS multi-index, near-real-time retrieval. On hold pending data collection.</p>
+      </div>
+
+      <div class="proj">
+        <h3>zapstays.in — Hostel &amp; Co-Living Platform</h3>
+        <div class="p-meta">Live Production</div>
+        <p>~9K LOC PHP 8, 50 pages, 60 API endpoints, 20+ DB tables, real-time chat, Google OAuth, admin tools, CSV export, audit log.</p>
+      </div>
+
+      <div class="proj">
+        <h3>PyNAOS &amp; NavalArch Studio</h3>
+        <div class="p-meta">Industry Software</div>
+        <p>PyNAOS: pure-Python FEA engine for offshore structures, 6 analysis drivers, custom Skyline LDLT solver, 593 tests at 98.63% coverage. NavalArch Studio: ship design + stability suite, 13 subpackages, Maxsurf-validated.</p>
+      </div>
+
+      <div class="proj">
+        <h3>MOSES Sea-Transport DOE Automation</h3>
+        <div class="p-meta">Simulation Platform</div>
+        <p>15,000 DOE cases over 80 parameters. PyQt5 orchestrator. XGBoost / PyTorch / LightGBM surrogates. SALib sensitivity. Optuna / PyMoo optimization.</p>
+      </div>
+
+      <div class="proj">
+        <h3>DC-DC Converter Surrogate</h3>
+        <div class="p-meta">Physics-Informed ML</div>
+        <p>Physics-informed network with 5-layer OOD gate. XGBoost R² 0.985. ~10⁴× inference speedup. PyQt5 GUI for parameter pinning.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <h2 class="section">Skills</h2>
+    <div class="skills-grid">
+      <div class="cat">AI, ML &amp; GenAI</div>
+      <div class="vals"><strong>PyTorch, TensorFlow, Scikit-learn, XGBoost, LightGBM.</strong> Hugging Face, Transformers, ONNX. Surrogate Modeling, Physics-Informed NNs, OOD Detection, SHAP, Feature Engineering, Model Optimization.</div>
+      <div class="row-sep"></div>
+
+      <div class="cat">GenAI &amp; LLMs</div>
+      <div class="vals"><strong>LangChain, LlamaIndex, RAG Pipelines, FAISS, ChromaDB.</strong> Vector DBs, Embedding Models. Ollama, vLLM, Whisper STT, Prompt Engineering, Offline LLM Stacks.</div>
+      <div class="row-sep"></div>
+
+      <div class="cat">Computer Vision</div>
+      <div class="vals"><strong>OpenCV, YOLO, BoT-SORT, SimCLR, ResNet.</strong> Tesseract, MediaPipe, Visual Similarity Search, Multi-View Embeddings, Ranking Fusion.</div>
+      <div class="row-sep"></div>
+
+      <div class="cat">Digital Twins &amp; Simulation</div>
+      <div class="vals"><strong>Digital Twins, CFD, FEA, Reliability (OpenTURNS).</strong> DOE, Latin Hypercube, SALib, Optuna, PyMoo.</div>
+      <div class="row-sep"></div>
+
+      <div class="cat">Engineering CAD / CAE</div>
+      <div class="vals"><strong>ANSYS Fluent, ANSYS APDL, ANSYS Mechanical, OpenFOAM.</strong> Bentley MOSES, Autodesk Inventor, SolidWorks, FreeCAD, Fusion 360, AutoCAD, Maxsurf, Rhino.</div>
+      <div class="row-sep"></div>
+
+      <div class="cat">Apps, Mobile &amp; Web</div>
+      <div class="vals"><strong>Flutter, Dart, React, React Native, Next.js.</strong> TypeScript, Vite, Tailwind, PyQt5, PyQt6, Streamlit, HTMX.</div>
+      <div class="row-sep"></div>
+
+      <div class="cat">Backend &amp; Cloud</div>
+      <div class="vals"><strong>FastAPI, Django, Node.js, AWS (Lambda, EC2, S3, SQS, IAM), DigitalOcean.</strong> GCP, Redis, PostgreSQL, MySQL, Terraform, Docker, CI/CD, Nginx.</div>
+      <div class="row-sep"></div>
+
+      <div class="cat">Data &amp; Observability</div>
+      <div class="vals"><strong>PySpark, NumPy, SciPy, Pandas, Polars, Airflow.</strong> Prometheus, Grafana, MLflow, Weights &amp; Biases, ONNX, ETL Pipelines.</div>
+      <div class="row-sep"></div>
+
+      <div class="cat">Programming</div>
+      <div class="vals"><strong>Python, TypeScript, JavaScript, Dart, C++.</strong> MATLAB, SQL, Bash, Java, Go, C.</div>
+      <div class="row-sep"></div>
+
+      <div class="cat">Marine, Offshore &amp; Naval</div>
+      <div class="vals"><strong>Naval Architecture, Ship Design, Offshore Structures, AUV, Hydrodynamics.</strong> Seakeeping, Mooring, Stability. IMO IS Code, SOLAS, IACS, DNV-GL.</div>
+    </div>
+  </section>
+
+  <!-- EDUCATION / LEADERSHIP TWO-COLUMN -->
+  <section>
+    <h2 class="section">Education &amp; Leadership</h2>
+    <div class="two-col">
+      <div class="edu-item">
+        <h3>B.Tech, Mechanical Engineering</h3>
+        <div class="school">Mahindra University, Hyderabad</div>
+        <div class="meta">Aug 2018 – Jun 2022 · CGPA 7.5</div>
+        <div class="cw">Coursework: Linear Algebra &amp; Matrices, Probability &amp; Statistics, Data Structures, Big Data Computing, Advanced Data Analytics, Time Series Forecasting, GPU Programming, Computer Aided Engineering Design.</div>
+      </div>
+      <ul class="leader">
+        <li><strong>CODEIAM Mentor</strong> (Jul 2024) · Mentored 3 teams at a university hackathon; 2 teams in top 5 of 40.</li>
+        <li><strong>Zenith Science Club</strong> (2019 – 2022) · Core team for MU Research Symposium 2020.</li>
+        <li><strong>AERO Sports Meet</strong> (2019 – 2022) · Volunteer and Security team for annual campus events.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS + LANGUAGES -->
+  <section>
+    <h2 class="section">Publications</h2>
+    <div class="pub">
+      <h3>ADMOS: An Adaptive Dual-Mode Operational Swarm for Resilient Asset Defense under Communication Jamming</h3>
+      <div class="venue">Research Square · Preprint, under review at <em>Discover Vehicles</em> (Springer Nature) · Jul 15, 2026 · DOI: <a href="https://gist.science/paper/rs/rs-9957095">gist.science/paper/rs/rs-9957095</a></div>
+      <div class="authors">Mohamed Hijazy Shazin Hassan, Dandu S. N. V. P. R. Varma, Jaswanth Kumar Bobbadi, Neeraj Sree Mailee Dudaboyina, Narendra Sirisipalli, <strong>Sri Hari Sirisipalli</strong>, Giri Rajasekhar Gunnu.</div>
+    </div>
+    <div class="lang" style="margin-top:10pt; padding-top:6pt; border-top:0.5pt solid var(--rule);">
+      <strong style="font-family:'Inter',sans-serif; font-size:8.5pt; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); margin-right:8pt;">Languages</strong>
+      <strong>English</strong> (Fluent) · <strong>Telugu</strong> (Native) · <strong>Hindi</strong> (Conversational)
+    </div>
+  </section>
+
+</div>
 </body>
 </html>
