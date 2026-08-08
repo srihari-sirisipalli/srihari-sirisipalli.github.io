@@ -7,6 +7,7 @@ import HomePage from "@/pages/HomePage";
 const WorkPage = lazy(() => import("@/pages/WorkPage"));
 const WorkDetailPage = lazy(() => import("@/pages/WorkDetailPage"));
 const ResearchPage = lazy(() => import("@/pages/ResearchPage"));
+const ExperiencePage = lazy(() => import("@/pages/ExperiencePage"));
 const BlogPage = lazy(() => import("@/pages/BlogPage"));
 const BlogDetailPage = lazy(() => import("@/pages/BlogDetailPage"));
 
@@ -49,6 +50,11 @@ export default function App() {
           <Route path="/research">
             <Suspense fallback={<PageFallback />}>
               <ResearchPage />
+            </Suspense>
+          </Route>
+          <Route path="/experience">
+            <Suspense fallback={<PageFallback />}>
+              <ExperiencePage />
             </Suspense>
           </Route>
           <Route path="/blog">

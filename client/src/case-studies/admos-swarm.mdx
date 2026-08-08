@@ -1,0 +1,25 @@
+## The paper
+
+ADMOS: An Adaptive Dual-Mode Operational Swarm for Resilient Asset Defense under Communication Jamming. Co-authored, preprint on Research Square, under peer review at Discover Vehicles (Springer Nature).
+
+## The question
+
+Many multi-UAV systems assume the robots can always communicate with one another. In practice that assumption fails: environmental conditions, interference, or deliberate jamming can degrade or eliminate the communication link. A swarm that depends entirely on coordination loses one of its greatest strengths the moment the link drops. The paper asks whether a swarm can keep protecting a critical asset even when communication between its members is severely degraded or completely gone.
+
+## The architecture
+
+ADMOS combines three ideas:
+
+**Consistent distributed state estimation.** Each UAV maintains a shared belief about the world without relying on a single coordinator that could be jammed or lost.
+
+**Adaptive mode switching.** A hybrid supervisor lets each agent slide between cooperative and autonomous operation based on the observed communication state. Under healthy links, the swarm acts as one. Under jamming, individuals fall back to autonomous defence.
+
+**Safety-aware control.** A higher-order control-barrier-function filter keeps the individual and collective behaviour inside safe operating envelopes across the mode transition.
+
+The design goal is graceful degradation, not abrupt mission failure.
+
+## Where it sits
+
+Autonomous systems moving into contested and unpredictable environments need to keep working when the world does not cooperate. ADMOS is a small contribution to the broader question of how to design systems that stay useful when their assumptions break.
+
+Read the preprint: [gist.science/paper/rs/rs-9957095](https://gist.science/paper/rs/rs-9957095)

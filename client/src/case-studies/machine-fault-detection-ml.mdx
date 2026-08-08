@@ -1,0 +1,25 @@
+## What it is
+
+MFDMS (Machine Fault Detection and Monitoring System) is a vibration-based ML fault-detection library paired with a desktop app. Load raw vibration signals, compute physically-motivated features, reduce dimensionality, cluster the healthy operating space, and flag anomalies in new data against the learned model.
+
+## The pipeline
+
+**Feature extraction.** Around 45 features per sample, drawn from time-domain statistics (RMS, kurtosis, crest factor, skewness), frequency-domain spectra (FFT bands, harmonic energy), and optional time-frequency features. Every feature has a physical interpretation, not a black-box number.
+
+**Standardisation and reduction.** A scaler flattens dynamic range across sensors and operating regimes. PCA reduces the feature space to its dominant modes, cutting noise and making cluster geometry meaningful.
+
+**Clustering.** The reduced feature space is clustered on healthy baseline data. Cluster centroids and covariances define the healthy operating envelope.
+
+**Detection.** Any new sample gets standardised, PCA-projected, and scored against the nearest cluster centroid. Samples beyond a user-set distance threshold are flagged as anomalies. The threshold is a knob, not a mystery.
+
+## Design choices
+
+**Physics-first features, ML-second.** The features come from vibration engineering literature. The ML learns the geometry of the healthy state, it does not learn what a fault is from scratch. This makes the system explainable to a maintenance engineer, not just a data scientist.
+
+**Persistent artifacts.** Every training run produces a `scaler.pkl`, `pca_model.pkl`, and `clustering_model.pkl`. Inference on new data replays the same three transforms. Reproducibility is not an afterthought.
+
+**Library plus GUI.** The `mfdms` package is importable and scriptable. The desktop app wraps the same library for engineers who prefer a UI. Both paths hit the same code.
+
+## Where it sits alongside the rule engine
+
+MFDMS is the ML counterpart to the [Vibration Diagnostics Rule Engine](/work/vibration-diagnostics). The rule engine is deterministic and traceable, best for known named faults. MFDMS is unsupervised and adaptive, best for detecting deviations from healthy behaviour when the fault mode has not been seen before. Together they cover both halves of the diagnostic problem.

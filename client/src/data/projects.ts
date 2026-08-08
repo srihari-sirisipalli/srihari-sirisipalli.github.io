@@ -21,7 +21,7 @@ export const portfolio: PortfolioProject[] = [
   {
     id: "openct-rebuild",
     title: "Openct Product & Platform Rebuild",
-    category: "Fractional CTO",
+    category: "Apps & Platforms",
     type: "work",
     tags: ["Flutter", "DigitalOcean", "Redis", "Product"],
     description:
@@ -86,12 +86,33 @@ export const portfolio: PortfolioProject[] = [
   {
     id: "vibration-diagnostics",
     title: "Vibration Diagnostics Rule Engine",
-    category: "ML for Engineering R&D",
-    type: "research",
+    category: "Machine Health",
+    type: "work",
     tags: ["Python", "Signal Processing", "PyQt5", "ISO 10816"],
     description:
       "Transparent rule-based fault diagnostics for rotating machinery. Ranks probable mechanical, bearing, and electrical faults with traceable evidence rather than opaque ML predictions.",
     image: "/work/vibration.svg",
+  },
+  {
+    id: "machine-fault-detection-ml",
+    title: "Machine Fault Detection ML (MFDMS)",
+    category: "Machine Health",
+    type: "research",
+    tags: ["Python", "PCA", "Clustering", "Anomaly Detection", "PyQt5"],
+    description:
+      "Vibration-based ML fault detection library and desktop app. Extracts ~45 time and frequency features per sample, standardises, PCA-reduces, clusters, and flags anomalies against a learned model.",
+    image: "/work/mfdms.svg",
+  },
+  {
+    id: "admos-swarm",
+    title: "ADMOS: Adaptive Dual-Mode Operational Swarm",
+    category: "Autonomous Systems Research",
+    type: "research",
+    tags: ["UAV Swarms", "Control", "Springer Preprint", "Co-author"],
+    description:
+      "Co-authored research on a resilient multi-UAV swarm that adaptively switches between cooperative and autonomous modes to defend an asset under communication jamming. Preprint on Research Square, under review at Discover Vehicles (Springer).",
+    image: "/work/admos.svg",
+    links: [{ label: "Preprint", url: "https://gist.science/paper/rs/rs-9957095" }],
   },
   {
     id: "docforge",

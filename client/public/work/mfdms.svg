@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
+  <rect width="640" height="400" fill="#FCE7DF"/>
+  <g fill="#E4572E" opacity="0.35">
+    <circle cx="180" cy="180" r="30"/>
+    <circle cx="260" cy="140" r="20"/>
+    <circle cx="340" cy="200" r="35"/>
+    <circle cx="430" cy="160" r="18"/>
+    <circle cx="500" cy="210" r="25"/>
+    <circle cx="150" cy="240" r="15"/>
+  </g>
+  <g fill="none" stroke="#E4572E" stroke-width="2" opacity="0.4">
+    <ellipse cx="260" cy="170" rx="120" ry="60"/>
+    <ellipse cx="450" cy="185" rx="90" ry="55"/>
+  </g>
+  <line x1="80" y1="320" x2="560" y2="320" stroke="#B4421F" stroke-width="1"/>
+  <line x1="80" y1="345" x2="380" y2="345" stroke="#B4421F" stroke-width="1"/>
+</svg>

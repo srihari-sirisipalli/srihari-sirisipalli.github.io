@@ -89,7 +89,7 @@ a {
   border-bottom: 1px solid var(--rule);
 }
 
-/* Case-study MDX prose — editorial theme */
+/* Case-study MDX prose, editorial theme */
 .case-study-prose {
   color: var(--ink-soft);
   font-family: "Inter", system-ui, sans-serif;
